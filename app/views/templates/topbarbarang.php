@@ -8,6 +8,83 @@
         </button>
     </form>
 
+    <!-- Topbar Search ATAS-->
+    <br>
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small cari_barang" id="cari_barang" placeholder="Scan QR Code" aria-label="Search" aria-describedby="basic-addon2" name="IDBarang" autocomplete="off">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div data-toggle= "modal" data-target="#detail">> -->
+
+    <?php
+    if (isset($_GET['IDBarang'])) :
+        $ambilsemuadatabarang = mysqli_query($conn, "SELECT*FROM barang WHERE ID_Barang= '" . $_GET['IDBarang'] . "'");
+        $barang = mysqli_fetch_array($ambilsemuadatabarang);
+        // var_dump($user);
+
+
+        if ($barang != NULL) :
+
+    ?>
+            <div class="modal fade" id="detail">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Detail Barang</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td width='35%'><strong>ID Barang</strong></td>
+                                    <td> : </td>
+                                    <td>
+                                        <center><?php echo $barang['ID_Barang'] ?> </center>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td width='35%'><strong>Nama Barang</strong></td>
+                                    <td> : </td>
+                                    <td><?php echo $barang['Nama_Barang'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td width='35%'><strong>Jumlah Barang</strong></td>
+                                    <td> :
+                                    <td>
+                                    <td><?php echo $barang['Jumlah_Barang'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td width='35%'><strong>Merek Barang</strong></td>
+                                    <td> :
+                                    <td>
+                                    <td><?php echo $barang['Merek_Barang'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <?php else : ?>
+            <div class='alert alert-danger'> Data Tidak Ada </div>
+    <?php endif;
+    endif; ?>
+    </form>
+
     <!-- Topbar Navbar BAWAH-->
     <ul class="navbar-nav ml-auto">
 
@@ -45,14 +122,13 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
-                        <div class="icon-circle bg-primary">
+                        <div class="icon-circle bg-success">
                             <i class="fas fa-file-alt text-white"></i>
                         </div>
                     </div>
                     <div>
                         <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to
-                            download!</span>
+                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -77,10 +153,10 @@
                         Spending Alert: We've noticed unusually high spending for your account.
                     </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                    Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
             </div>
         </li>
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -88,7 +164,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['User_nama']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Halo, <?php echo $_SESSION['User_nama'] ?></span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
             </a>
             <!-- Dropdown - User Information -->
@@ -114,6 +190,5 @@
         </li>
 
     </ul>
-
 </nav>
 <!-- End of Topbar -->

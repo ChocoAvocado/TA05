@@ -5,7 +5,7 @@ class dashboard extends Controller{
     {
         $data['judul'] = 'dashboard';
         $this->view('templates/header', $data);
-        $this->view('home/index');
+        $this->view('webadmin/dashboard/index');
         $this->view('templates/footer');
     }
 }   

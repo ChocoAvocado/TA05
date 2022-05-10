@@ -1,11 +1,12 @@
 <?php
 
-class Barang extends Controller{
+class Peminjaman extends Controller{
     public function index()
     {
-        $data['judul'] = 'Barang';
+        $data['judul'] = 'Peminjaman';
         $this->view('templates/header',$data);
-        $this->view('webadmin/barang/index');
+        $this->view('webadmin/aktifitas/peminjaman');
         $this->view('templates/footer');
     }
+    
 }

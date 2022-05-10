@@ -40,7 +40,6 @@ require "../function.php";
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-
         <?php include('sidebar.php'); ?>
 
         <!-- Content Wrapper -->

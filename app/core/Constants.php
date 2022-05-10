@@ -1,3 +1,3 @@
 <?php 
 
-define('BASEURL', 'http://localhost/websitePeminjaman/public');
+define('BASEURL', 'http://localhost/websitePeminjaman/public/');

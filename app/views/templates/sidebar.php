@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
 
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-tools"></i>
@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -31,14 +31,14 @@
 
     <!--side bar menu-->
     <li class="nav-item">
-        <a class="nav-link" href="user.php">
+        <a class="nav-link" href="user">
             <i class="fas fa-fw fa-user"></i>
             <span>User</span></a>
     </li>
 
 
     <li class="nav-item">
-        <a class="nav-link" href="barang.php">
+        <a class="nav-link" href="barang">
             <i class="fas fa-fw fa-shopping-bag"></i>
             <span>Barang</span></a>
     </li>
@@ -52,9 +52,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" 
         data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="peminjaman.php">Peminjaman</a>
-                <a class="collapse-item" href="pengembalian.php">Pengembalian</a>
-                <a class="collapse-item" href="perpanjangan.php">Perpanjangan</a>
+                <a class="collapse-item" href="peminjaman">Peminjaman</a>
+                <a class="collapse-item" href="pengembalian">Pengembalian</a>
+                <a class="collapse-item" href="perpanjangan">Perpanjangan</a>
             </div>
     </li>
 
