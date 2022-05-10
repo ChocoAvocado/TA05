@@ -15,7 +15,6 @@
 <!-- End of Content Wrapper -->
 
 </div>
-</div>
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -40,7 +39,6 @@
         </div>
     </div>
 </div>
-</body>
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
@@ -72,5 +70,19 @@
 <!-- chart js -->
 <script src="../js/demo/chart-pie-demo.js"></script>
 <script src="../js/demo/chart-bar-demo.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+
+<script>
+    $('#dataTable').dataTable({
+        "lengthMenu": [5, 10, 20]
+    });
+</script>
+
+</body>
 
 </html>
