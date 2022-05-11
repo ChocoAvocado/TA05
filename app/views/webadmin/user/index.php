@@ -1,5 +1,5 @@
 <?php
-require "../function.php";
+require "function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +40,7 @@ require "../function.php";
     <div id="wrapper">
 
         <!-- adding sidebar here -->
-        <?php include('sidebar.php'); ?>
+        <!-- <?php include('sidebar.php'); ?> -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

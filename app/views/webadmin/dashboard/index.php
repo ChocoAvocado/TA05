@@ -1,4 +1,4 @@
-<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +29,7 @@
     <div id="wrapper">
 
         <!-- adding sidebar here -->
-        <?php include('sidebar.php'); ?>
+        <?php include('../sidebar.php'); ?>
 
         <div class="container" id="blur">
 

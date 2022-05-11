@@ -1,4 +1,3 @@
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -7,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Laboratorium</title>
+	<title>Halaman <?= $data['judul']; ?> </title>
    <!--Made with love by Mutiullah Samim -->
    
 	<!--Bootsrap 4 CDN-->
@@ -70,7 +69,7 @@
 							 $_SESSION['User_tag'] = $Tag;
 							 $_SESSION['User_level_id'] = "1";
 							 // alihkan ke halaman dashboard dosen
-							 header("location:webadmin");
+							 header("location:dashboard");
 						   
 							// cek jika user login sebagai mahasiswa
 							}else if($data['User_level_id']=="3"){
