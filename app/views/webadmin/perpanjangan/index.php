@@ -12,26 +12,26 @@ require "function.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link href="<?php BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
     <title>Pinjam Alat - Barang</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link href="<?php BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="<?php BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!--include css js datatable-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="<?php BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="<?php BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -41,7 +41,7 @@ require "function.php";
     <div id="wrapper">
 
 
-        <?php include('templates/sidebar.php'); ?>
+        <?php include('sidebar.php'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -49,7 +49,7 @@ require "function.php";
             <!-- Main Content -->
             <div id="content">
 
-                <?php include('templates/topbar.php'); ?>
+                <?php include('topbar.php'); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -57,10 +57,9 @@ require "function.php";
                     <!-- Page Heading -->
                     <div class="row ">
                         <div class="col-lg-6">
-                            <h3 class="mb-2 text-gray-800">Data Pengembalian</h3>
+                            <h3 class="mb-2 text-gray-800">Data Perpanjangan</h3>
                         </div>
                         <div class="col-lg-6">
-
                             <a href="formpengembalian.php" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
                             <a href="formpeminjaman.php" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
 
@@ -72,7 +71,7 @@ require "function.php";
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Pengembalian</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Perpanjangan</h6>
                         </div>
                         <div class="card-body">
 
@@ -89,8 +88,9 @@ require "function.php";
                                             <th>ID Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Tanggal Pinjam</th>
-                                            <th>Rencana Tgl Kembali</th>
-                                            <th>Tgl Kembali Riil</th>
+                                            <th>Rencana Tgl Kembali 1 </th>
+                                            <th>Rencana Tgl Kembali 2 </th>
+                                            <th>Rencana Tgl Kembali 3 </th>
 
 
                                         </tr>
@@ -105,41 +105,42 @@ require "function.php";
 
                                             $NamaPeminjam = "";
                                             $TglPinjam = "";
-                                            $TglKembaliPlan = "";
+                                            $TglKembaliplan = "";
+                                            $TglKembaliplan2 = "";
+                                            $TglKembaliplan3 = "";
 
                                             while ($data = mysqli_fetch_array($ambildatapinjam)) {
 
-                                                if ($data['Pinjam_tgl_kembalireal'] == null) {
+                                                if ($data['Pinjam_tgl_kembalireal'] != null) {
                                                     continue;
                                                 } else {
-
                                                     $TglPinjam = $data['Pinjam_tgl'];
-                                                    $NIM = $data['User_id'];
+                                                    $NIM = $data['Pinjam_user_tag'];
                                                     $tagRFID = $data['User_tag'];
                                                     $NamaPeminjam = $data['User_nama'];
                                                     $NomorKoin = $data['User_nokoin'];
-                                                    $IDpeminjam = $data['Pinjam_user_tag'];
                                                     $IDBarangPinjam = $data['Pinjam_barang_id'];
                                                     $NamaBarang = $data['Barang_nama'];
-                                                    $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan3'];
-                                                    $TglKembaliRiil = $data['Pinjam_tgl_kembalireal'];
+                                                    $TglKembaliplan = $data['Pinjam_tgl_kembaliplan1'];
+                                                    $TglKembaliplan2 = $data['Pinjam_tgl_kembaliplan2'];
+                                                    $TglKembaliplan3 = $data['Pinjam_tgl_kembaliplan3'];
 
-                                                    if ($TglKembaliPlan == null) {
-                                                        $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan2'];
-                                                        if ($TglKembaliPlan == null) {
-                                                            $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan1'];
-                                                        } else {
-                                                        }
-                                                    } else {
+
+                                                    if ($TglKembaliplan2 != null)
+                                                        $TglKembaliplan2 = date("d-m-Y", strtotime($TglKembaliplan2));
+                                                    else {
                                                     }
 
+                                                    if ($TglKembaliplan3 != null)
+                                                        $TglKembaliplan3 = date("d-m-Y", strtotime($TglKembaliplan3));
+                                                    else {
+                                                    }
+
+
                                                     $TglPinjam = date("d-m-Y", strtotime($TglPinjam));
-                                                    $TglKembaliPlan = date("d-m-Y", strtotime($TglKembaliPlan));
-                                                    $TglKembaliRiil = date("d-m-Y", strtotime($TglKembaliRiil));
+                                                    $TglKembaliplan = date("d-m-Y", strtotime($TglKembaliplan));
 
                                             ?>
-
-
 
                                                     <td><?= $NIM; ?></td>
                                                     <td><?= $NamaPeminjam; ?></td>
@@ -148,8 +149,9 @@ require "function.php";
                                                     <td><?= $IDBarangPinjam; ?></td>
                                                     <td><?= $NamaBarang; ?></td>
                                                     <td><?= $TglPinjam; ?></td>
-                                                    <td><?= $TglKembaliPlan; ?></td>
-                                                    <td><?= $TglKembaliRiil; ?></td>
+                                                    <td><?= $TglKembaliplan; ?></td>
+                                                    <td><?= $TglKembaliplan2; ?></td>
+                                                    <td><?= $TglKembaliplan3; ?></td>
 
                                         </tr>
                                 <?php
@@ -209,8 +211,8 @@ require "function.php";
         </div>
     </div>
 
-   <!-- Bootstrap core JavaScript-->
-    <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
+     <!-- Bootstrap core JavaScript-->
+     <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

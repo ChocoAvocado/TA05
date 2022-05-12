@@ -29,7 +29,7 @@
     <div id="wrapper">
 
         <!-- adding sidebar here -->
-        <?php include "../templates/sidebar.php"; ?>
+        <?php include "templates/sidebar.php"; ?>
 
         <div class="container" id="blur">
 
@@ -39,7 +39,7 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <?php include "../templates/topbar.php"; ?>
+                    <?php include "templates/topbar.php"; ?>
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">

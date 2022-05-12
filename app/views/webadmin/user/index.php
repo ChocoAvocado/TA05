@@ -40,7 +40,7 @@ require "function.php";
     <div id="wrapper">
 
         <!-- adding sidebar here -->
-        <!-- <?php include('sidebar.php'); ?> -->
+        <?php include('templates/sidebar.php'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

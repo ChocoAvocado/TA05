@@ -41,7 +41,7 @@ require "function.php";
     <div id="wrapper">
 
 
-        <?php include('sidebar.php'); ?>
+        <?php include('templates/sidebar.php'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -49,7 +49,7 @@ require "function.php";
             <!-- Main Content -->
             <div id="content">
 
-                <?php include('topbar.php'); ?>
+                <?php include('templates/topbar.php'); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
