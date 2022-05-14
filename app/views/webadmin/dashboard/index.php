@@ -1,4 +1,6 @@
-<?php require "function.php"; ?>
+<?php 
+	require_once __DIR__.('/../../function.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +31,7 @@
     <div id="wrapper">
 
         <!-- adding sidebar here -->
-        <?php include "templates/sidebar.php"; ?>
+        <?php include __DIR__."/../templates/sidebar.php"?>
 
         <div class="container" id="blur">
 
@@ -39,7 +41,7 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <?php include "templates/topbar.php"; ?>
+                    <?php include __DIR__."/../templates/topbar.php"; ?>
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
@@ -56,7 +58,7 @@
 
                             <!-- pejetan peminjaman -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <a class="btn btn-success" href="formpeminjaman.php">
+                                <a class="btn btn-success" href="formpeminjaman">
                                     <div class="card-tombol">
 
                                         <div class="col mr-2">
@@ -74,7 +76,7 @@
                             </div>
 
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <a class="btn btn-danger" href="formpengembalian.php">
+                                <a class="btn btn-danger" href="formpengembalian">
                                     <div class="card-tombol justify-content-center">
 
                                         <div class="col mr-2">

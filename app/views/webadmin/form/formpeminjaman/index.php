@@ -1,6 +1,7 @@
-<?php
-require "function.php";
+<?php 
+	require_once __DIR__.('/../../../function.php'); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +13,19 @@ require "function.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Peminjaman Alat</title>
+    <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
-    <!-- Custom fonts for this template-->
+    <title>Pinjam Alat - Barang</title>
+
+    <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template -->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
 
-    <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <!-- Custom styles for this page -->
+    <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <style>
         #container {
@@ -37,7 +41,6 @@ require "function.php";
         }
     </style>
 
-
 </head>
 
 <body id="page-top">
@@ -47,7 +50,7 @@ require "function.php";
 
 
         <!-- adding sidebar here -->
-        <?php include('sidebar.php'); ?>
+        <?php include __DIR__."/../../templates/sidebar.php"?>
 
         <div class="container" id="blur">
 
@@ -57,21 +60,20 @@ require "function.php";
                 <!-- Main Content -->
                 <div id="content">
 
-                    <?php include('topbar.php'); ?>
+                    <?php include __DIR__.('/../../templates/topbar.php'); ?>
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-
-
-
                         <form method="form">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h3 class="mb-2 text-gray-800">Form Pengembalian</h3>
+                                    <h3 class="mb-2 text-gray-800">Form Peminjaman</h3>
                                 </div>
+
                             </div>
                             <br>
+
 
                             <div class="row">
                                 <!-- Data Peminjaman dan search bar nya -->
@@ -214,96 +216,94 @@ require "function.php";
                             </div>
 
                             <form method="post">
+                                <!-- TOMBOL POST PEMINJAMAN -->
+                                <!-- jumlah barang pinjam -->
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card shadow mb-4">
 
-                                <input type="hidden" name="cariuser" value="<?= $valuecariuser ?>" required>
-                                <input type="hidden" name="caribarang" value="<?= $valuecaribarang ?>" required>
+                                            <div class="card-body">
+                                                <div class="row">
 
+                                                    <div class="col-auto mb-4 form-group">
+                                                        <h6 class="mb-0 text-gray-800">Jumlah Barang pinjam</h6>
+                                                        <input type="text" class="form-control form-control-user" name="jumlahbarangpinjam">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- datetimepicker -->
+                                    <div class="col-lg-6">
+                                        <div class="card shadow mb-4">
+
+                                            <div class="card-body">
+                                                <div class="row">
+
+                                                    <div class="col-auto mb-4 form-group">
+                                                        <h6 class="mb-0 text-gray-800">Input tanggal pengembalian</h6>
+                                                        <input type="text" name="tanggalkembaliplan" id="picker" class="form-control">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Bukti Peminjaman dan tombol pinjam-->
                                 <div class="row justify-content-center">
 
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-2">
-                                            <div class="card shadow">
-                                                <div class="card-header">
-                                                    <input type="checkbox" onchange="document.getElementById('formPerpanjangan').disabled = !this.checked;" name='Perpanjangan' id='perpanjangan' /> perpanjangan
-                                                </div>
-                                                <div class="card-body" id='formPerpanjangan'>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto mb-0 form-group">
-                                                            <h6 class="mb-0 text-gray-800">Input tanggal pengembalian baru</h6>
-                                                            <input type="text" id="picker1" class="form-control">
-                                                        </div>
+                                    <div class="col-lg-6">
+
+                                        <!-- Input Bukti Peminjaman -->
+                                        <div class="card shadow mb-4">
+
+                                            <div class="card-header py-3 ">
+                                                <h6 class="m-0 font-weight-bold text-primary">Bukti Peminjaman</h6>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row justify-content-center">
+
+                                                    <div id="container">
+                                                        <video autoplay="true" id="videoElement">
+
+                                                        </video>
                                                     </div>
 
-                                                    <div class="row justify-content-center" style="padding: 0.75em;">
-                                                        <div class="">
-                                                            <a href="#" class="btn btn-info btn-icon-split">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fas fa-clock"></i>
-                                                                </span>
-                                                                <span class="text">Perpanjang</span>
-                                                            </a>
-                                                        </div>
+
+                                                    <div class="row-button ">
+                                                        <a class="btn btn-secondary">
+                                                            <span class="text">Ambil Foto</span>
+                                                        </a>
                                                     </div>
+
+
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
 
+                                    <input type="hidden" name="cariuser" value="<?= $valuecariuser ?>" required>
+                                    <input type="hidden" name="caribarang" value="<?= $valuecaribarang ?>" required>
 
-                                        <div class="col-lg-6 mb-4">
-
-                                            <!-- Input Bukti Peminjaman -->
-                                            <div class="card shadow mb-4">
-
-                                                <div class="card-header py-3 ">
-                                                    <h6 class="m-0 font-weight-bold text-primary">Bukti Peminjaman</h6>
-                                                </div>
-
-                                                <div class="card-body">
-                                                    <div class="row justify-content-center">
-
-                                                        <div id="container">
-                                                            <video autoplay="true" id="videoElement">
-
-                                                            </video>
-                                                        </div>
-
-
-                                                        <div class="row-button ">
-                                                            <a class="btn btn-secondary">
-                                                                <span class="text">Ambil Foto</span>
-                                                            </a>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                            <p class="mb-4"> *Konfirmasi setiap data peminjam dan data barang pinjaman sebelum
-                                                menyelesaikan transaksi pengembalian</p>
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-6">
+                                            <p class="mb-4"> *Konfirmasi setiap data peminjam dan data barang pinjaman sebelum menyelesaikan transaksi peminjaman</p>
                                             <div class="row-button justify-content-center">
-                                                <button class="btn btn-warning btn-icon-split" type="submit" name="kembalialat">
+                                                <button class="btn btn-success btn-icon-split" type="submit" name="pinjamalat">
                                                     <!--data-toggle="modal" data-target="#konfirmasipinjam"-->
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-check"></i>
                                                     </span>
-                                                    <span class="text">Kembali</span>
+                                                    <span class="text">Pinjam</span>
                                                 </button>
                                             </div>
-
                                         </div>
-
                                     </div>
-
-
-
-
-
 
 
 
@@ -331,12 +331,34 @@ require "function.php";
                                 </div>
                             </form>
                         </form>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Politeknik ATMI Surakarta 2022</span>
                     </div>
                 </div>
-            </div>
+            </footer>
+            <!-- End of Footer -->
+
+
         </div>
     </div>
+    </div>
+
+    </div>
+
+
+
 </body>
+
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -357,28 +379,6 @@ require "function.php";
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
-<script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<?= BASEURL; ?>/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="<?= BASEURL; ?>/vendor/datatables/jquery.dataTables.js"></script>
-<script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
-
-<!-- datetime picker -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-<script src="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 <script>
     var video = document.querySelector("#videoElement");
 
@@ -394,6 +394,29 @@ require "function.php";
             });
     }
 </script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
+<script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<?= BASEURL; ?>/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="<?= BASEURL; ?>/vendor/datatables/jquery.dataTables.js"></script>
+<script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>F
+
+<!-- datetime picker -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<script src="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 <script>
     $('#picker').datetimepicker({
 

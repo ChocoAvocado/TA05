@@ -1,4 +1,6 @@
-<?php require_once __DIR__."../function.php" ; ?>
+<?php 
+	require_once __DIR__.('/../../function.php'); 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +43,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include "templates/sidebar.php"?>
+        <?php include __DIR__."/../templates/sidebar.php"?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

@@ -1,6 +1,7 @@
-<?php
-require "function.php";
+<?php 
+	require_once __DIR__.('/../../function.php'); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,26 +13,26 @@ require "function.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="<?php BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
     <title>Pinjam Alat - Barang</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?php BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="<?php BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!--include css js datatable-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="<?php BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?php BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -40,8 +41,7 @@ require "function.php";
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-
-        <?php include('sidebar.php'); ?>
+        <?php include __DIR__."/../templates/sidebar.php"?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -49,7 +49,7 @@ require "function.php";
             <!-- Main Content -->
             <div id="content">
 
-                <?php include('topbar.php'); ?>
+                <?php include __DIR__.('/../templates/topbar.php'); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -60,9 +60,8 @@ require "function.php";
                             <h3 class="mb-2 text-gray-800">Data Perpanjangan</h3>
                         </div>
                         <div class="col-lg-6">
-                            <a href="formpengembalian.php" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
-                            <a href="formpeminjaman.php" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
-
+                            <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
+                            <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
                         </div>
                     </div>
                     <!-- end of page heading -->
@@ -211,8 +210,8 @@ require "function.php";
         </div>
     </div>
 
-     <!-- Bootstrap core JavaScript-->
-     <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

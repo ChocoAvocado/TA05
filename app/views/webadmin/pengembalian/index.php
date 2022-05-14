@@ -1,6 +1,7 @@
-<?php
-require "function.php";
+<?php 
+	require_once __DIR__.('/../../function.php'); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,8 +41,7 @@ require "function.php";
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-
-        <?php include('templates/sidebar.php'); ?>
+        <?php include __DIR__."/../templates/sidebar.php"?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -49,7 +49,7 @@ require "function.php";
             <!-- Main Content -->
             <div id="content">
 
-                <?php include('templates/topbar.php'); ?>
+                <?php include __DIR__.('/../templates/topbar.php'); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -60,10 +60,8 @@ require "function.php";
                             <h3 class="mb-2 text-gray-800">Data Pengembalian</h3>
                         </div>
                         <div class="col-lg-6">
-
-                            <a href="formpengembalian.php" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
-                            <a href="formpeminjaman.php" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
-
+                            <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
+                            <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
                         </div>
                     </div>
                     <!-- end of page heading -->
