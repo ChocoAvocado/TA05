@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Peminjaman Alat</title>
+    <title>Halaman <?= $data['judul']; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">

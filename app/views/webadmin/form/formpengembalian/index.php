@@ -177,7 +177,6 @@
                                             <br><br>
                                             <div class="row">
 
-
                                                 <div class="col-11 mb-4 form-group disablingKeyboard">
                                                     <h6 class="mb-0 text-gray-800">Nama barang</h6>
                                                     <input type="#" placeholder="<?php echo $caribarangnama ?>" class="form-control form-control-user" id="exampleInputEmail">
@@ -197,25 +196,17 @@
                                                     <h6 class="mb-0 text-gray-800">Jumlah Barang</h6>
                                                     <input type="#" placeholder="<?php echo $caribarangjumlah ?>" class="form-control form-control-user" id="exampleInputEmail">
                                                 </div>
-
-
-
                                             </div>
 
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
 
                             <form method="post">
 
                                 <input type="hidden" name="cariuser" value="<?= $valuecariuser ?>" required>
                                 <input type="hidden" name="caribarang" value="<?= $valuecaribarang ?>" required>
-
 
                                 <!-- Bukti Peminjaman dan tombol pinjam-->
                                 <div class="row justify-content-center">
@@ -224,7 +215,11 @@
                                         <div class="col-lg-6 mb-2">
                                             <div class="card shadow">
                                                 <div class="card-header">
-                                                    <input type="checkbox" onchange="document.getElementById('formPerpanjangan').disabled = !this.checked;" name='Perpanjangan' id='perpanjangan' /> perpanjangan
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" onchange="document.getElementById('formPerpanjangan').disabled = !this.checked;" name='Perpanjangan' id='switchPerpanjangan' >
+                                                        <label for="switchPerpanjangan" class="custom-control-label"> Perpanjangan</label>
+                                                    </div>                    
+                                                    
                                                 </div>
                                                 <div class="card-body" id='formPerpanjangan'>
                                                     <div class="row justify-content-center">
@@ -247,8 +242,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                         <div class="col-lg-6 mb-4">
 
@@ -297,13 +290,6 @@
                                         </div>
 
                                     </div>
-
-
-
-
-
-
-
 
                                     <!-- Modal Tombol Pinjam-->
                                     <div class="modal fade" id="konfirmasipinjam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" ria-hidden="true">

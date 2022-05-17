@@ -8,70 +8,8 @@ $conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 // //     exit;
 // }
 
-//TAMBAH BARANG
-if (isset($_POST["btn_simpan"])) {
-  $NamaBarang = $_POST["NamaBarang"];
-  $MerekBarang = $_POST["MerekBarang"];
-  $Jumlah = $_POST["Jumlah"];
-  $Foto = $_FILES['Foto_Barang/']['name'];
 
-
-  $addtotable = mysqli_query($conn, "insert into barang (Nama_Barang,Merek_Barang,Jumlah_Barang,Foto_Barang)values ('$NamaBarang', '$MerekBarang', '$Jumlah''$Foto)");
-  if ($addtotable) {
-    header('location:barang.php');
-  } else
-    echo 'Gagal';
-  header('location:barang.php');
-}
-
-
-
-//EDIT BARANG
-if (isset($_POST["editbarang"])) {
-  $IDBarang = $_POST['ID_Barang'];
-  $NamaBarang = $_POST['NamaBarang'];
-  $MerekBarang = $_POST["MerekBarang"];
-  $Jumlah = $_POST['Jumlah'];
-
-  $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg');
-  $nama_file              = $_FILES['file']['name'];
-  $x                      = explode('.', $nama_file);
-  $ekstensi               = strtolower(end($x));
-  $ukuran                 = $_FILES['file']['size'];
-  $file_tmp               = $_FILES['file']['tmp_name'];
-
-  if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
-    move_uploaded_file($file_tmp, '../img' . $nama_file);
-    $file_jadi = $nama_file;
-  } else {
-    $file_jadi = $gambar_lama;
-  }
-
-
-  $edit = mysqli_query($conn, "update barang set Barang_nama='$NamaBarang',Barang_jumlah='$Jumlah', Barang_merk='$MerekBarang' ,Barang_foto='$file_jadi' where Barang_id= '$IDBarang'");
-  if ($edit) {
-    header('location:barang.php');
-  } else
-    echo 'Gagal';
-  header('location:barang.php');
-}
-
-
-//HAPUS BARANG
-if (isset($_POST["hapusdatabarang"])) {
-  $IDBarang = $_POST['ID_Barang'];
-  var_dump($IDBarang);
-  $hapusfk = mysqli_query($conn, "delete from pinjam where Pinjam_barang_id=$IDBarang");
-  $hapus = mysqli_query($conn, "delete from barang where Barang_id=$IDBarang");
-  if ($hapus) {
-    header('location:barang.php');
-  } else
-    echo 'Gagal';
-  header('location:barang.php');
-  // echo mysqli_error($conn);
-  // exit;
-}
-
+//---------------------------------USER-----------------------------------------------------------------------------//
 
 //TAMBAH User
 if (isset($_POST["addnamauser"])) {
@@ -130,12 +68,13 @@ if (isset($_POST["edituser"])) {
   $edit1 = mysqli_query($conn, "UPDATE user SET User_nama='$NamaUser',User_level_id=$Jabuser, User_prodi='$Prodi', 
           User_email='$Email', User_pin='$Pin', User_tag='$Tag', User_koin='$Koin', 
           User_nokoin='$Nokoin' WHERE User_id= '$IDUser'");
-  if ($conn->query($edit1) === TRUE) {
-    echo 'Berhasil';
-    header("location:user.php");
-  } else
-    echo 'Gagal';
-  header('location:user.php');
+  // if ($conn->query($edit1) === TRUE) {
+  //   echo 'Berhasil';
+  //   header("location:user");
+  // } else {
+  //   echo 'Gagal';
+  // header('location:user');
+  // }
 }
 
 //HAPUS User
@@ -155,6 +94,76 @@ if (isset($_POST["hapus"])) {
     die(mysqli_error($conn));
   }
 }
+
+
+
+//-----------------------------------BARANG---------------------------------------------------------------------------------//
+
+
+//TAMBAH BARANG
+if (isset($_POST["btn_simpan"])) {
+  $NamaBarang = $_POST["NamaBarang"];
+  $MerekBarang = $_POST["MerekBarang"];
+  $Jumlah = $_POST["Jumlah"];
+  $Foto = $_FILES['Foto_Barang/']['name'];
+
+
+  $addtotable = mysqli_query($conn, "insert into barang (Nama_Barang,Merek_Barang,Jumlah_Barang,Foto_Barang)values ('$NamaBarang', '$MerekBarang', '$Jumlah''$Foto)");
+  if ($addtotable) {
+    header('location:barang.php');
+  } else
+    echo 'Gagal';
+  header('location:barang.php');
+}
+
+
+//EDIT BARANG
+if (isset($_POST["editbarang"])) {
+  $IDBarang = $_POST['ID_Barang'];
+  $NamaBarang = $_POST['NamaBarang'];
+  $MerekBarang = $_POST["MerekBarang"];
+  $Jumlah = $_POST['Jumlah'];
+
+  $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg');
+  $nama_file              = $_FILES['file']['name'];
+  $x                      = explode('.', $nama_file);
+  $ekstensi               = strtolower(end($x));
+  $ukuran                 = $_FILES['file']['size'];
+  $file_tmp               = $_FILES['file']['tmp_name'];
+
+  if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
+    move_uploaded_file($file_tmp, '../img' . $nama_file);
+    $file_jadi = $nama_file;
+  } else {
+    $file_jadi = $gambar_lama;
+  }
+
+
+  $edit = mysqli_query($conn, "update barang set Barang_nama='$NamaBarang',Barang_jumlah='$Jumlah', Barang_merk='$MerekBarang' ,Barang_foto='$file_jadi' where Barang_id= '$IDBarang'");
+  if ($edit) {
+    header('location:barang.php');
+  } else
+    echo 'Gagal';
+  header('location:barang.php');
+}
+
+
+//HAPUS BARANG
+if (isset($_POST["hapusdatabarang"])) {
+  $IDBarang = $_POST['ID_Barang'];
+  var_dump($IDBarang);
+  $hapusfk = mysqli_query($conn, "delete from pinjam where Pinjam_barang_id=$IDBarang");
+  $hapus = mysqli_query($conn, "delete from barang where Barang_id=$IDBarang");
+  if ($hapus) {
+    header('location:barang.php');
+  } else
+    echo 'Gagal';
+  header('location:barang.php');
+  // echo mysqli_error($conn);
+  // exit;
+}
+
+
 //DETAIL BARANG
 if (isset($_POST["detail_barang"])) {
   $id_barang = $_POST['id_barang'];
@@ -163,8 +172,8 @@ if (isset($_POST["detail_barang"])) {
   $data = mysqli_fetch_array($query);
   echo json_encode($data);
 }
-//SIMPAN BARANG 
 
+//SIMPAN BARANG 
 if (isset($_POST["simpan_tambah_barang"])) {
   $NamaBarang     = $_POST["nama_barang"];
   //$LokerBarang  = $_POST["nama_loker"];
@@ -247,6 +256,13 @@ if (isset($_POST["simpan_ubah_barang"])) {
     header('location:barang.php');
   }
 }
+
+
+
+
+//-------------------------------------AKTIFITAS--------------------------------------------------------------------------------//
+
+
 
 //pencarian PEMINJAM, PENGEMBALIAN DAN BARANG PEMINJAMAN PENGEMBALIAN
 
