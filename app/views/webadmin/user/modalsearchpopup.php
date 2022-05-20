@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <td><strong></strong></td> 
-                    <td><img src='https://pinjamalat-ta05.com/Peminjaman%20Alat/websitePeminjaman/webadmin/user-foto/<?php echo $user['User_foto'] ?>' width="80"></td> 
+                    <td><img src='https://pinjamalat-ta05.com/webadmin/user-foto/<?php echo $user['User_foto'] ?>' width="80"></td> 
                 </tr>
                 <tr>
                     <td width='35%'><strong>ID User</strong></td>

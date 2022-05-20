@@ -102,7 +102,7 @@
 					Use Another Account<a href="#">Click Here</a>
 				</div>
                 <div class="d-flex justify-content-center">
-					<a href="email.php">Use Email/Username?</a>
+					<a href="email">Use Email/Username?</a>
 				</div>
 			</div>
 		</div>
