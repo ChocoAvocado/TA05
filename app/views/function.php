@@ -8,7 +8,21 @@ $conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 // //     exit;
 // }
 
+function getUrlParam($key) {
+  // $url = "http://localhost/websitePeminjaman/public/user";
+  $url = $_SERVER['REQUEST_URI'];
+  $parse = parse_url($url);
 
+  if(!isset($parse['query'])) return null;
+
+  parse_str($parse['query'], $parse_query);
+
+  if( isset($parse_query[ $key ]) ) {
+      return $parse_query[ $key ];
+  }
+  // print_r($url); exit;
+  return null;
+}
 //---------------------------------USER-----------------------------------------------------------------------------//
 
 //TAMBAH User

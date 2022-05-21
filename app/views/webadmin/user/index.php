@@ -532,7 +532,7 @@
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
-        <?php if (isset($_GET['cari'])) : ?>
+        <?php if (getUrlParam('cari')) : ?>
             $("#popupsearch").modal("show");
         <?php endif; ?>
     </script>

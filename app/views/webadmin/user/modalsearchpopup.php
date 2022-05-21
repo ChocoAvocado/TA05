@@ -8,10 +8,11 @@
       </div>
       <div class="modal-body">
           <?php
-           if (isset($_GET['cari'])):
-            $ambilsemuadatauser=mysqli_query($conn,"SELECT*FROM user WHERE User_tag = '".$_GET['cari']."'");
+          // print_r(parse_url($_SERVER['REQUEST_URI'])); exit; lanjutannya di function php 
+           if (getUrlParam('cari') != null):
+            $ambilsemuadatauser=mysqli_query($conn,"SELECT*FROM user WHERE User_tag = '".getUrlParam('cari')."'");
             $user = mysqli_fetch_array($ambilsemuadatauser);
-            // var_dump($user);
+            // var_dump($user); tambah plus ctrl + u  
            if ($user != NULL):
           ?>
             <table class="table table-striped table-bordered">
