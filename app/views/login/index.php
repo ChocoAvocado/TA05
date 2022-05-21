@@ -61,38 +61,40 @@
 						// print_r(md5("willy"));
 						// exit;
 						if($cek > 0){
-
 							$data = mysqli_fetch_assoc($qry);
-				// 			print_r($data['User_nama']);
-				// 			exit;
-						    $_SESSION['User_nama']= $data['User_nama'];
-							// cek jika user login sebagai dosen
-							if($data['User_level_id']=="1"){
-						   
-							 // buat session login dan username
-							 $_SESSION['User_tag'] = $Tag;
-							 $_SESSION['User_level_id'] = "1";
-							 // alihkan ke halaman dashboard dosen
-							 header("location:dashboard");
-						   
-							// cek jika user login sebagai mahasiswa
-							}else if($data['User_level_id']=="3"){
-							 // buat session login dan username
-							 $_SESSION['User_tag'] = $Tag;
-							 $_SESSION['User_level_id'] = "3";
-							 
-							 // alihkan ke halaman dashboard mahasiswa
-							 header("location:webuser");
-						   
-							} else {
+							if($data['User_level_id']=="1"){ //ADMIN
+								$_SESSION['User_tag'] = $Tag;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "1";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								header("location:dashboard");
+								// print_r($data);
+								// exit;
+
+							}elseif($data['User_level_id']=="2"){//Dosen
+								$_SESSION['User_tag'] = $Tag;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "2";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								header("location:DashboardDosen");
+								// print_r($data);
+								// exit;
+
+							}elseif($data['User_level_id']=="3"){//Mahasiswa
+								$_SESSION['User_tag'] = $Tag;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "3";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								header("#");
+								// print_r($data);
+								// exit;
+								
+							}
+							else {
 								echo '<span class="errormessage">Tidak Terdaftar</span>';
 							}
-							} else {
-								echo '<span class="errormessage">Tidak Terdaftar</span>';
-							}
-	
 						}
-				
+					}
 				?>
 				<!--syarat kelar-->
 

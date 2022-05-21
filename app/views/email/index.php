@@ -68,16 +68,23 @@
 
 							$data = mysqli_fetch_assoc($qry);
 						   
-							// cek jika user login sebagai dosen
+							// cek jika user login sebagai admin
 							if($data['User_level_id']=="1"){
-						   
+
 							 // buat session login dan username
 							 $_SESSION['User_email'] = $Email;
 							 $_SESSION['User_pin'] = $Pin;
 							 $_SESSION['User_level_id'] = "1";
 							 // alihkan ke halaman dashboard dosen
 							 header("location:dashboard");
-						   
+
+						   	 //buat session login dan username
+							 $_SESSION['User_email'] = $Email;
+							 $_SESSION['User_pin'] = $Pin;
+							 $_SESSION['User_level_id'] = "1";
+							 // alihkan ke halaman dashboard dosen
+							 header("location:dashboard");
+
 							// cek jika user login sebagai mahasiswa
 							}else if($data['User_level_id']=="3"){
 							 // buat session login dan username

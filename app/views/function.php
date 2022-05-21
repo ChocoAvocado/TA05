@@ -1,5 +1,4 @@
 <?php
-session_start();
 //PENYAMBUNG PHP 
 $conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 //$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
@@ -52,10 +51,10 @@ if (isset($_POST["addnamauser"])) {
 
   //   exit;
   if ($addtotable1) {
-    header('location:user.php');
+    header('location:user');
   } else {
     echo 'Gagal';
-    header('location:user.php');
+    header('location:user');
   }
 }
 
@@ -101,7 +100,7 @@ if (isset($_POST["hapus"])) {
   // print_r(md5("willy"));
   // exit;
   if ($cek == 1) {
-    header("location:user.php");
+    header("location:user");
     echo "Delete Succesfully";
     exit();
   } else {
