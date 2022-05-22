@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboarduser">
 
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-tools"></i>
@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="dashboard">
+        <a class="nav-link" href="dashboarduser">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -29,33 +29,16 @@
         Menu
     </div>
 
-    <!--side bar menu-->
     <li class="nav-item">
-        <a class="nav-link" href="user">
-            <i class="fas fa-fw fa-user"></i>
-            <span>User</span></a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="barang">
+        <a class="nav-link" href="baranguser">
             <i class="fas fa-fw fa-shopping-bag"></i>
             <span>Barang</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-running"></i>
-            <span>Aktivitas</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" 
-        data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="peminjaman">Peminjaman</a>
-                <a class="collapse-item" href="pengembalian">Pengembalian</a>
-                <a class="collapse-item" href="perpanjangan">Perpanjangan</a>
-            </div>
+        <a class="nav-link" href="riwayatuser">
+            <i class="fas fa-fw fa-clock"></i>
+            <span>Riwayat</span></a>
     </li>
 
     <!-- Divider -->
