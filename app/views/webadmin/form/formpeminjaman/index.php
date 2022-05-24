@@ -184,13 +184,16 @@
                                     </div>
 
                                     <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-6 mb-0">
-                                                <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
-                                                    alt="Chania">
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6 mb-0">
+                                                    <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
+                                                        alt="Chania">
+                                                </div>
                                             </div>
                                         </div>
-                                        <br><br>
+
+                                        <br>
                                         <div class="row">
 
 

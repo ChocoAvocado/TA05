@@ -173,7 +173,7 @@
                                                     <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail" alt="Chania">
                                                 </div>
                                             </div>
-                                            <br><br>
+                                            <br>
                                             <div class="row">
 
                                                 <div class="col-11 mb-4 form-group disablingKeyboard">
