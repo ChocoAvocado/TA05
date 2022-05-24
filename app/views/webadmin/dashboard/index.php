@@ -33,7 +33,7 @@
         <!-- adding sidebar here -->
         <?php include __DIR__."/../templates/sidebar.php"?>
 
-        <div class="container" id="blur">
+        
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -155,7 +155,7 @@
             </div>
             <!-- End of Content Wrapper -->
 
-        </div>
+        
 
 
     </div>
