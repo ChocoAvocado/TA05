@@ -222,7 +222,7 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-auto mb-0 form-group">
                                                             <h6 class="mb-0 text-gray-800">Input tanggal pengembalian baru</h6>
-                                                            <input type="text" id="picker1" class="form-control">
+                                                            <input type="text" id="picker" class="form-control">
                                                         </div>
                                                     </div>
 
@@ -387,14 +387,11 @@
 </script>
 
 <script>
-    $('#picker1').datetimepicker({
-
-        timepicker: false,
-        datepicker: true,
-        format: 'd-m-Y',
-        value: 'today'
-
-    })
+$(function() {
+    $('#picker').datetimepicker({
+        minDate: new Date()
+    });
+});
 </script>
 
 </html>

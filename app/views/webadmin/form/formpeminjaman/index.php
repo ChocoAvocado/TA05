@@ -448,14 +448,11 @@ $('#picker').datetimepicker({
 </script>
 
 <script>
-$('#picker1').datetimepicker({
-
-    timepicker: false,
-    datepicker: true,
-    format: 'd-m-Y',
-    value: 'today'
-
-})
+$(function() {
+    $('#picker').datetimepicker({
+        minDate: new Date()
+    });
+});
 </script>
 
 </html>

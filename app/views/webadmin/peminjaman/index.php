@@ -19,7 +19,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
@@ -32,7 +34,8 @@
     <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css"
+        href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -119,59 +122,63 @@
                                             ?>
 
 
-                                                <td><?= $TglPinjam; ?></td>
-                                                <td><?= $NIM; ?></td>
-                                                <td><?= $NamaPeminjam; ?></td>
-                                                <td><?= $NomorKoin; ?></td>
-                                                <td><?= $tagRFID; ?></td>
-                                                <td width="5%">
-                                                    <span>
-                                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-eye"></i>
-                                                            </span>
-                                                        </button>
+                                            <td><?= $TglPinjam; ?></td>
+                                            <td><?= $NIM; ?></td>
+                                            <td><?= $NamaPeminjam; ?></td>
+                                            <td><?= $NomorKoin; ?></td>
+                                            <td><?= $tagRFID; ?></td>
+                                            <td width="5%">
+                                                <span>
+                                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                                        data-target="#view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </button>
 
-                                                        </a>
-                                                    </span>
+                                                    </a>
+                                                </span>
 
-                                                    <!-- The Modal Table-->
+                                                <!-- The Modal Table-->
 
 
-                                                    <div class="modal fade" id="view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
-                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <!-- Modal Header -->
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Data Barang Pinjaman</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                </div>
+                                                <div class="modal fade" id="view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
+                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Data Barang Pinjaman</h4>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal">&times;</button>
+                                                            </div>
 
-                                                                <!-- Modal body -->
-                                                                <form method="post">
-                                                                    <div class="modal-body">
+                                                            <!-- Modal body -->
+                                                            <form method="post">
+                                                                <div class="modal-body">
 
-                                                                        <!-- DataTales Example -->
-                                                                        <div class="card shadow mb-4">
+                                                                    <!-- DataTales Example -->
+                                                                    <div class="card shadow mb-4">
 
-                                                                            <div class="card-body">
+                                                                        <div class="card-body">
 
-                                                                                <div class="table-responsive">
-                                                                                    <table id="dataTable_0" class="table table-bordered dataTables_wrapper" width="100%" cellspacing="0">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>no</th>
-                                                                                                <th>ID Barang</th>
-                                                                                                <th>Nama Barang</th>
-                                                                                                <th>Merek Barang</th>
-                                                                                                <th>Jumlah Barang</th>
-                                                                                                <th>Rencana Tgl Kembali</th>
-                                                                                            </tr>
-                                                                                        </thead>
+                                                                            <div class="table-responsive">
+                                                                                <table id="dataTable_0"
+                                                                                    class="table table-bordered dataTables_wrapper"
+                                                                                    width="100%" cellspacing="0">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>no</th>
+                                                                                            <th>ID Barang</th>
+                                                                                            <th>Nama Barang</th>
+                                                                                            <th>Merek Barang</th>
+                                                                                            <th>Jumlah Barang</th>
+                                                                                            <th>Rencana Tgl Kembali</th>
+                                                                                        </tr>
+                                                                                    </thead>
 
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <?php
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <?php
                                                                                                 $TglPinjam = date("Y-m-d", strtotime($TglPinjam));
 
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
@@ -200,29 +207,32 @@
 
                                                                                                 ?>
 
-                                                                                                    <td><?= $i++; ?></td>
-                                                                                                    <td><?= $IDBarang; ?></td>
-                                                                                                    <td><?= $NamaBarang; ?></td>
-                                                                                                    <td><?= $DetailBarang; ?></td>
-                                                                                                    <td><?= $JumlahBarang; ?></td>
-                                                                                                    <td><?= $TglKembaliPlan; ?></td>
-                                                                                            </tr>
+                                                                                            <td><?= $i++; ?></td>
+                                                                                            <td><?= $IDBarang; ?></td>
+                                                                                            <td><?= $NamaBarang; ?></td>
+                                                                                            <td><?= $DetailBarang; ?>
+                                                                                            </td>
+                                                                                            <td><?= $JumlahBarang; ?>
+                                                                                            </td>
+                                                                                            <td><?= $TglKembaliPlan; ?>
+                                                                                            </td>
+                                                                                        </tr>
                                                                                         <?php
                                                                                                 }
                                                                                         ?>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
+                                                                                    </tbody>
+                                                                                </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </form>
-                                                            </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </div>
+                                            </td>
                                         </tr>
-                                    <?php
+                                        <?php
                                             }
                                     ?>
                                     </tbody>
@@ -260,7 +270,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -296,18 +307,17 @@
     <script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
     </script>
 
     <script>
-        $('#dataTable').dataTable({
-            "lengthMenu": [5, 10, 20]
-        });
+    $('#dataTable').dataTable({
+        "lengthMenu": [5, 10, 20]
+    });
     </script>
-
-
+    
 </body>
 
 
