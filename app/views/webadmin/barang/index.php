@@ -311,13 +311,18 @@
                                         <tr>
                                              
                                         <?php
-                                        $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
+                                        if(isset($_SESSION['User_lab_id'])){
+                                            $Userlabid=$_SESSION['User_lab_id'];
+                                            $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
+                                            }else{
+                                            $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
+                                            }
                                         $i=1;
                                         while($data = mysqli_fetch_array($ambilsemuadatabarang))
                                         {
                                             
                                             $IDBarang= $data['Barang_id'];
-                                            $NamaBarang = $data['Barang_nama'];
+                                            // $NamaBarang = $data['Barang_nama'];
                                             $Jumlah = $data['Barang_jumlah'];
                                             $MerekBarang = $data['Barang_merk'];
                                             $Loker =$data['Barang_Loker'];
