@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboarduser">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
 
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-tools"></i>
@@ -10,16 +10,6 @@
 
         <div class="sidebar-brand-text mx-3">Peminjaman<br>Alat Lab</div>
     </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="dashboarduser">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
