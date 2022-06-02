@@ -10,8 +10,8 @@
           <?php
           // print_r(parse_url($_SERVER['REQUEST_URI'])); exit; lanjutannya di function php 
            if (getUrlParam('cari') != null):
-            $ambilsemuadatauser=mysqli_query($conn,"SELECT*FROM user WHERE User_tag = '".getUrlParam('cari')."'");
-            $user = mysqli_fetch_array($ambilsemuadatauser);
+            $caridatauser=mysqli_query($conn,"SELECT*FROM user WHERE User_tag = '".getUrlParam('cari')."'");
+            $user = mysqli_fetch_array($caridatauser);
             // var_dump($user); tambah plus ctrl + u  
            if ($user != NULL):
           ?>
