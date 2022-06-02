@@ -322,7 +322,7 @@
                                         {
                                             
                                             $IDBarang= $data['Barang_id'];
-                                            // $NamaBarang = $data['Barang_nama'];
+                                            $NamaBarang = $data['Barang_nama'];
                                             $Jumlah = $data['Barang_jumlah'];
                                             $MerekBarang = $data['Barang_merk'];
                                             $Loker =$data['Barang_Loker'];
