@@ -56,7 +56,7 @@
 				<?php
 				if(isset($_POST['login'])) {
 					$Tag = $_POST['User_tag'];
-					$qry = mysqli_query($conn, "SELECT * FROM user WHERE User_tag= '$Tag'");
+					$qry = mysqli_query($conn, "SELECT * FROM user INNER JOIN lab ON user.User_lab_id=lab.Lab_id WHERE User_tag= '$Tag'");
 					$cek = mysqli_num_rows($qry);
 						// print_r(md5("willy"));
 						// exit;
@@ -76,6 +76,9 @@
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "2";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+
+								$_SESSION['Lab_nama'] = $data['Lab_nama'];
+								
 								header("location:dashboard");
 								// print_r($data);
 								// exit;
