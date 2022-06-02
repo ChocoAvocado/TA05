@@ -76,7 +76,7 @@
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "2";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];
-								header("location:DashboardDosen");
+								header("location:dashboard");
 								// print_r($data);
 								// exit;
 
