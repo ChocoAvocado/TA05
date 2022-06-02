@@ -67,9 +67,7 @@
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "1";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];
-
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-
 								header("location:dashboard");
 								// print_r($data);
 								// exit;
@@ -79,9 +77,7 @@
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "2";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];
-
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								
 								header("location:dashboard");
 								// print_r($data);
 								// exit;
@@ -91,12 +87,10 @@
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "3";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];
-
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-
 								header("location:baranguser");
-								print_r($data);
-								exit;
+								// print_r($data);
+								// exit;
 								
 							}
 							else {
