@@ -66,7 +66,7 @@
 								$_SESSION['User_tag'] = $Tag;
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "1";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan 
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
 								header("location:dashboard");
 								// print_r($data);
@@ -76,7 +76,7 @@
 								$_SESSION['User_tag'] = $Tag;
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "2";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
 								header("location:dashboard");
 								// print_r($data);
@@ -86,7 +86,7 @@
 								$_SESSION['User_tag'] = $Tag;
 								$_SESSION['User_nama'] = $data['User_nama'];
 								$_SESSION['User_level_id'] = "3";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default 
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
 								header("location:baranguser");
 								// print_r($data);
