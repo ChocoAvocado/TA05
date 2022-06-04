@@ -107,12 +107,9 @@
                                             class="btn btn-primary">
                                             <span class="text">Cari</span>
                                         </button>
-
                                     </div>
                                     <div class="col-xl-2 col-sm-2 col-md-2">
-                                        <button type="reset" value="reset" class="btn btn-secondary">
-                                            <span class="text">Clear</span>
-                                        </button>
+                                        <a href="formpeminjaman" class="btn btn-secondary">Clear</a>
                                     </div>
                                 </div>
                             </div>

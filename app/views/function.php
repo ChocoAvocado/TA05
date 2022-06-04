@@ -331,21 +331,20 @@ if (isset($_POST["kembalialat"])) {
   date_default_timezone_set('Asia/Bangkok');
   $tglkembali = date('Y-m-d');
 
-  $pengembalian = mysqli_query($conn, "SELECT Pinjam_id, Pinjam_user_tag, Pinjam_barang_id FROM pinjam  
-  WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid ORDER BY Pinjam_id desc LIMIT 0,1");
-  $data = mysqli_fetch_array($pengembalian);
-  $pinjamid = $data['Pinjam_id'];
+  // $pengembalian = mysqli_query($conn, "SELECT * FROM pinjam  
+  // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
+  // $data = mysqli_fetch_array($pengembalian);
+  // $pinjamid = $data['Pinjam_id'];
 
-  $pengembalian = mysqli_query($conn, "UPDATE pinjam SET Pinjam_tgl_kembalireal='$tglkembali' 
-  WHERE Pinjam_id='$pinjamid'");
+  $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali' WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
   if ($pengembalian) {
-    header("location:formpeminjaman");
+    header("location:formpengembalian");
   } else
     header('location:formpengembalian');
 }
 
 
-//tombol cari di peminjaman
+//TOMBOL CARI PEMINJAMAN
 if (getUrlParam('cariuser') != null ) {
   // print_r("dfsdf");
   // print_r($_GET ['cariuser']);
@@ -397,4 +396,49 @@ if (getUrlParam('cariuser') != null ) {
   $caribarangmerk = "";
   $caribarangloker = "";
   $caribarangjumlah = "";
+}
+
+
+//TOMBOL CARI PENGEMBALIAN
+if (getUrlParam('cariuserpengembalian') != null ) {
+  // print_r("dfsdf");
+  // print_r($_GET ['cariuser']);
+  // exit;
+
+  $idpeminjam = getUrlParam('cariuserpengembalian');
+  $idbarangpinjam = getUrlParam('caribarang');
+
+  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `user` ON pinjam.Pinjam_user_tag=user.User_tag WHERE user.User_tag='$idpeminjam'");
+  $user = mysqli_fetch_array($ambilsemuadatauser);
+  //  var_dump($_GET["cariuser"]);
+  //  exit;
+  $valuecariuser = getUrlParam('cariuserpengembalian');
+
+  if ($user != NULL) {
+    $cariusernama = $user['User_nama'];
+    $cariuseremail = $user['User_email'];
+    $cariuserkoin = $user['User_nokoin'];
+    $cariuserjumlahkoin = $user['User_koin'];
+  } else {
+    $cariusernama = "";
+    $cariuseremail = "";
+    $cariuserkoin = "";
+    $cariuserjumlahkoin = "";
+  }
+
+  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_qrcode WHERE barang.Barang_qrcode='$idbarangpinjam'");
+  $barang = mysqli_fetch_array($ambilsemuadatabarang);
+  $valuecaribarang = getUrlParam('caribarang');  
+
+  if ($barang != NULL) {
+    $caribarangnama = $barang['Barang_nama'];
+    $caribarangmerk = $barang['Barang_merk'];
+    $caribarangloker = $barang['Barang_Loker'];
+    $caribarangjumlah = $barang['Pinjam_jumlah'];
+  } else {
+    $caribarangnama = "";
+    $caribarangmerk = "";
+    $caribarangloker = "";
+    $caribarangjumlah = "";
+  }
 }

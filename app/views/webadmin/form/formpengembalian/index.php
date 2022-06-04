@@ -69,6 +69,19 @@
                             <div class="col-lg-6">
                                 <h3 class="mb-2 text-gray-800">Form Pengembalian</h3>
                             </div>
+
+                            <div class="col-lg-6">
+                                <!-- BATASAN MASALAH -->
+                                <h5>
+                                    batasan masalah
+                                </h5>
+                                <li>
+                                    tidak bisa pinjam untuk barang yang sama (ditambah barang pinjamnya)
+                                </li>
+                                
+                            </div>
+
+
                         </div>
                         <br>
 
@@ -81,9 +94,9 @@
                                     <!-- serach bar data peminjam -->
                                     <div class="row">
                                         <div class="col-lg-8 input-group mb-3">
-                                            <input type="text" class="form-control" name="cariuser" id="cariuser"
-                                                placeholder="Scan RFID here" aria-label="Search"
-                                                aria-describedby="basic-addon2" required>
+                                            <input type="text" class="form-control" name="cariuserpengembalian"
+                                                id="cariuserpengembalian" placeholder="Scan RFID here"
+                                                aria-label="Search" aria-describedby="basic-addon2" required>
                                         </div>
 
                                     </div>
@@ -99,14 +112,9 @@
                                             <input type="text" class="form-control" name="caribarang" id="caribarang"
                                                 placeholder="Scan QR here" aria-label="Search"
                                                 aria-describedby="basic-addon2" required>
-                                            <!-- <div class="input-group-append">
-                                                    <button class="btn btn-primary">
-                                                        <i class="fas text-white-50 fa-search fa-sm"></i>
-                                                    </button>
-                                                </div> -->
                                         </div>
                                         <div class="col-xl-2 col-sm-2 col-md-2">
-                                            <button type="submit" name="caripinjaman" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 <span class="text">Cari</span>
                                             </button>
 
@@ -144,25 +152,25 @@
                                         <div class="row">
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama Peminjam</h6>
-                                                <input type="#" placeholder="<?php echo $cariusernama ?>"
+                                                <input type="#" value="<?php echo $cariusernama ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Alamat Email</h6>
-                                                <input type="#" placeholder="<?php echo $cariuseremail ?>"
+                                                <input type="#" value="<?php echo $cariuseremail ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nomor Koin</h6>
-                                                <input type="#" placeholder="<?php echo $cariuserkoin ?>"
+                                                <input type="#" value="<?php echo $cariuserkoin ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Koin</h6>
-                                                <input type="#" placeholder="<?php echo $cariuserjumlahkoin ?>"
+                                                <input type="#" value="<?php echo $cariuserjumlahkoin ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
@@ -188,25 +196,25 @@
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama barang</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangnama ?>"
+                                                <input type="#" value="<?php echo $caribarangnama ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama merek</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangmerk ?>"
+                                                <input type="#" value="<?php echo $caribarangmerk ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">nama loker</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangloker ?>"
+                                                <input type="#" value="<?php echo $caribarangloker ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Barang</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangjumlah ?>"
+                                                <input type="#" value="<?php echo $caribarangjumlah ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
                                         </div>
