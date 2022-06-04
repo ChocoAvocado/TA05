@@ -103,7 +103,8 @@
                                             aria-describedby="basic-addon2" required>
                                     </div>
                                     <div class="col-xl-2 col-sm-2 col-md-2">
-                                        <button autocomplete="false" type="submit" name="caripinjaman" class="btn btn-primary">
+                                        <button autocomplete="false" type="submit" name="caripinjaman"
+                                            class="btn btn-primary">
                                             <span class="text">Cari</span>
                                         </button>
 
@@ -143,27 +144,25 @@
                                         <div class="row">
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama Peminjam</h6>
-                                                <input type="text" placeholder="<?php echo $cariusernama ?>"
+                                                <input type="text" value="<?php echo $cariusernama ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail" required>
-                                                    <?php $kolomnama = $cariusernama ?>
-
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Alamat Email</h6>
-                                                <input type="#" placeholder="<?php echo $cariuseremail ?>"
+                                                <input type="#" value="<?php echo $cariuseremail ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nomor Koin</h6>
-                                                <input type="#" placeholder="<?php echo $cariuserkoin ?>"
+                                                <input type="#" value="<?php echo $cariuserkoin ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Koin</h6>
-                                                <input type="#" placeholder="<?php echo $cariuserjumlahkoin ?>"
+                                                <input type="#" value="<?php echo $cariuserjumlahkoin ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
@@ -192,25 +191,25 @@
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama barang</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangnama ?>"
+                                                <input type="#" value="<?php echo $caribarangnama ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama merek</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangmerk ?>"
+                                                <input type="#" value="<?php echo $caribarangmerk ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">nama loker</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangloker ?>"
+                                                <input type="#" value="<?php echo $caribarangloker ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Barang</h6>
-                                                <input type="#" placeholder="<?php echo $caribarangjumlah ?>"
+                                                <input type="#" value="<?php echo $caribarangjumlah ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
                                         </div>
@@ -297,9 +296,8 @@
                                 </div>
                             </div>
 
-
-                            
-
+                            <input type="hidden" name="pinjamuser" value="<?php echo $valuecariuser ?>">
+                            <input type="hidden" name="pinjambarang" value="<?php echo $valuecaribarang ?>">
 
                             <div class="row justify-content-center">
                                 <div class="col-lg-6">
@@ -307,7 +305,7 @@
                                         sebelum menyelesaikan transaksi peminjaman</p>
                                     <div class="row-button justify-content-center">
                                         <button class="btn btn-success btn-icon-split" type="submit"
-                                            data-toggle="modal" data-target="#konfirmasipinjam">
+                                            name="tombolpinjam">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
@@ -316,41 +314,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            
-                            <?php
-                            if($kolomnama != null){
-                            ?>
-                                <!-- Modal Tombol Pinjam  #masih belum dipakai-->
-                                <div class="modal fade" id="konfirmasipinjam" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" ria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Peringatan</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-    
-                                            <div class="modal-body">Anda yakin ingin meminjam alat ini?</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" name="pinjamalat" type="submit"
-                                                    data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-primary">Pinjam</a>
-                                            </div>
-    
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php
-                            } else{}
-                            ?>
-
-
-                           
-
 
                         </div>
                     </form>

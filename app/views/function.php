@@ -280,42 +280,44 @@ if (isset($_POST["simpan_ubah_barang"])) {
 //pencarian PEMINJAM, PENGEMBALIAN DAN BARANG PEMINJAMAN PENGEMBALIAN
 
 //PEMINJAMAN    #reset auto increment mysql >> ALTER TABLE 'pinjam' AUTO_INCREMENT = 0;
-if (isset($_POST["pinjamalat"])) {
-  //   print_r($_POST);
-  //   exit;
+if (isset($_POST["tombolpinjam"])) {
+  //print_r($_POST);
+  //exit;
 
-  $pinjamuserid = $_POST["pinjamuser"];
-  $pinjambarangid = $_POST["pinjambarang"];
-  $pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
-  $tglbarangkembali = $_POST["tanggalkembaliplan"];
+ 
 
-  $tglbarangkembali = strtotime($tglbarangkembali);
-  $tglbarangkembali = date('Y-m-d', $tglbarangkembali);
+$pinjamuserid = $_POST["pinjamuser"];
+$pinjambarangid = $_POST["pinjambarang"];
+$pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
+$tglbarangkembali = $_POST["tanggalkembaliplan"];
 
-  // print_r($pinjamuserid);
-  // print_r($pinjambarangid);
-  // print_r($pinjamjumlahbarang);
-  // print_r($tglbarangkembali);
-  // exit;
+$tglbarangkembali = strtotime($tglbarangkembali);
+$tglbarangkembali = date('Y-m-d', $tglbarangkembali);
 
-  $peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
-  VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
+// print_r($pinjamuserid);
+// print_r($pinjambarangid);
+// print_r($pinjamjumlahbarang);
+// print_r($tglbarangkembali);
+// exit;
 
-  //coba pake query dari internet sumber laen
-  // $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
+$peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
+VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
 
-  // $sth = $conn->prepare("insert into `pinjam` 
-  // (Pinjam_user_tag,Pinjam_barang_id,Pinjam_jumlah,Pinjam_tgl_kembaliplan1) 
-  // values ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");  
+//coba pake query dari internet sumber laen
+// $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
 
-	// $sth -> setFetchMode(PDO:: FETCH_OBJ);
-	// $sth -> execute();
+// $sth = $conn->prepare("insert into `pinjam` 
+// (Pinjam_user_tag,Pinjam_barang_id,Pinjam_jumlah,Pinjam_tgl_kembaliplan1) 
+// values ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");  
 
-  if ($peminjaman) {
-    header("location:formpeminjaman");
-  } else {
-    header('location:formpeminjaman');
-  }
+// $sth -> setFetchMode(PDO:: FETCH_OBJ);
+// $sth -> execute();
+
+if ($peminjaman) {
+ header("location:formpeminjaman");
+} else {
+ header('location:formpeminjaman');
+}
 }
 
 
