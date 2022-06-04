@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 05:54 PM
+-- Generation Time: Jun 04, 2022 at 06:49 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `peminjamanwilli`
+-- Database: `peminjamanalat`
 --
 
 -- --------------------------------------------------------
@@ -45,8 +45,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`Barang_id`, `Barang_lab_id`, `Barang_nama`, `Barang_Loker`, `Barang_jumlah`, `Barang_jumlah_sisa`, `Barang_merk`, `Barang_foto`, `Barang_qrcode`, `Barang_gudang_id`) VALUES
-(1990, 1, '', '1', 1, 0, 'Toshiba', '', '', 3),
-(1991, 2, '', '2', 2, 0, 'Razer', '', '', 4);
+(1990, 1, 'krim', '1', 1, 0, 'Toshiba', '', '123123', 3),
+(1991, 2, 'motor', '2', 2, 0, 'Razer', '', '321321', 4);
 
 -- --------------------------------------------------------
 
@@ -155,6 +155,13 @@ CREATE TABLE `pinjam` (
   `Pinjam_foto` blob NOT NULL,
   `Pinjam_foto_kembali` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pinjam`
+--
+
+INSERT INTO `pinjam` (`Pinjam_id`, `Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl`, `Pinjam_tgl_kembaliplan1`, `Pinjam_tgl_kembaliplan2`, `Pinjam_tgl_kembaliplan3`, `Pinjam_tgl_kembalireal`, `Pinjam_foto`, `Pinjam_foto_kembali`) VALUES
+(42, '1', 123123, 1, '2022-06-04', '2022-06-04', NULL, NULL, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -290,7 +297,7 @@ ALTER TABLE `gudang`
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `Pinjam_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `Pinjam_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `tr_userlab`
@@ -321,12 +328,6 @@ ALTER TABLE `instrukturlab`
   ADD CONSTRAINT `instrukturlab_ibfk_1` FOREIGN KEY (`Instruktur_lab_id`) REFERENCES `lab` (`Lab_id`),
   ADD CONSTRAINT `instrukturlab_ibfk_2` FOREIGN KEY (`Instruktur_level_id`) REFERENCES `level` (`Level_id`),
   ADD CONSTRAINT `instrukturlab_ibfk_3` FOREIGN KEY (`Instruktur_level_id`) REFERENCES `level` (`Level_id`);
-
---
--- Constraints for table `pinjam`
---
-ALTER TABLE `pinjam`
-  ADD CONSTRAINT `pinjam_ibfk_1` FOREIGN KEY (`Pinjam_barang_id`) REFERENCES `barang` (`Barang_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
