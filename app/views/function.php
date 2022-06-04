@@ -298,7 +298,8 @@ if (isset($_POST["pinjamalat"])) {
   // print_r($tglbarangkembali);
   // exit;
 
-  $peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
+  $peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
+  VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
 
   //coba pake query dari internet sumber laen
   // $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
