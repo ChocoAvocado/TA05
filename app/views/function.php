@@ -336,10 +336,9 @@ if (isset($_POST["kembalialat"])) {
   $pengembalian = mysqli_query($conn, "UPDATE pinjam SET Pinjam_tgl_kembalireal='$tglkembali' 
   WHERE Pinjam_id='$pinjamid'");
   if ($pengembalian) {
-    header("location:peminjaman.php");
+    header("location:formpeminjaman");
   } else
-
-    header('location:formpengembalian.php');
+    header('location:formpengembalian');
 }
 
 
