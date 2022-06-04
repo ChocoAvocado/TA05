@@ -245,7 +245,7 @@
                                             </div>
 
                                             <div class="container"
-                                                style="opacity: 0.5; filter: grayscale(1); pointer-events: none"
+                                                
                                                 id='formPerpanjangan'>
                                                 <div class="card-body ">
                                                     <div class="row justify-content-center">

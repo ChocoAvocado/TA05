@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 09:28 AM
+-- Generation Time: Jun 04, 2022 at 05:54 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `peminjamanalat`
+-- Database: `peminjamanwilli`
 --
 
 -- --------------------------------------------------------
@@ -33,6 +33,7 @@ CREATE TABLE `barang` (
   `Barang_nama` varchar(100) NOT NULL,
   `Barang_Loker` varchar(255) NOT NULL,
   `Barang_jumlah` int(11) NOT NULL,
+  `Barang_jumlah_sisa` int(11) NOT NULL,
   `Barang_merk` varchar(100) NOT NULL,
   `Barang_foto` varchar(100) NOT NULL,
   `Barang_qrcode` varchar(100) NOT NULL,
@@ -43,8 +44,9 @@ CREATE TABLE `barang` (
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`Barang_id`, `Barang_lab_id`, `Barang_nama`, `Barang_Loker`, `Barang_jumlah`, `Barang_merk`, `Barang_foto`, `Barang_qrcode`, `Barang_gudang_id`) VALUES
-(1, 1, 'cake', '123', 10, 'toyota', '', '123123', 4);
+INSERT INTO `barang` (`Barang_id`, `Barang_lab_id`, `Barang_nama`, `Barang_Loker`, `Barang_jumlah`, `Barang_jumlah_sisa`, `Barang_merk`, `Barang_foto`, `Barang_qrcode`, `Barang_gudang_id`) VALUES
+(1990, 1, '', '1', 1, 0, 'Toshiba', '', '', 3),
+(1991, 2, '', '2', 2, 0, 'Razer', '', '', 4);
 
 -- --------------------------------------------------------
 
@@ -86,6 +88,14 @@ CREATE TABLE `instrukturlab` (
   `Instruktur_lab_id` int(11) NOT NULL,
   `Instruktur_level_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `instrukturlab`
+--
+
+INSERT INTO `instrukturlab` (`Instruktur_id`, `Instruktur_nama`, `Instruktur_email`, `Instruktur_NIK`, `Instruktur_tag`, `Instruktur_pin`, `Instruktur_koin`, `Instruktur_foto`, `Instruktur_nokoin`, `Instruktur_lab_id`, `Instruktur_level_id`) VALUES
+(1, 'Yustina Tritularsih', 'Yustina@gmail.com', '20192032', '123456', '123456', 10, '', '', 1, 2),
+(2, 'Maria Marcelinna', 'Maria@gmail.com', '20192033', '654321', '123456', 10, '', '', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -146,14 +156,25 @@ CREATE TABLE `pinjam` (
   `Pinjam_foto_kembali` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pinjam`
+-- Table structure for table `tr_userlab`
 --
 
-INSERT INTO `pinjam` (`Pinjam_id`, `Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl`, `Pinjam_tgl_kembaliplan1`, `Pinjam_tgl_kembaliplan2`, `Pinjam_tgl_kembaliplan3`, `Pinjam_tgl_kembalireal`, `Pinjam_foto`, `Pinjam_foto_kembali`) VALUES
-(1, '0002985005', 123123, 3, '2022-06-04', '2022-06-04', NULL, NULL, '2022-06-04', '', ''),
-(4, '0002985005', 123123, 12, '2022-06-04', '2022-06-04', NULL, NULL, NULL, '', ''),
-(8, '<br />\r\n<b>Warning</b>:  Undefined variable $valuecariuser in <b>C:xampphtdocswebsitePeminjamanappvi', 0, 12, '2022-06-04', '2022-06-04', NULL, NULL, NULL, '', '');
+CREATE TABLE `tr_userlab` (
+  `Userlab_id` int(11) NOT NULL,
+  `User_tag` int(11) NOT NULL,
+  `Lab_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tr_userlab`
+--
+
+INSERT INTO `tr_userlab` (`Userlab_id`, `User_tag`, `Lab_id`) VALUES
+(1, 5, 1),
+(3, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -180,15 +201,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_id`, `User_nama`, `User_prodi`, `User_email`, `User_pin`, `User_tag`, `User_koin`, `User_foto`, `User_nokoin`, `User_level_id`, `User_lab_id`) VALUES
-(123123, 'achan', 'Mekatronika', '123@asd', '123', '14', 10, 'WhatsApp Image 2022-05-14 at 8.34.49 AM.jpeg', 'y-0000', 2, 0),
-(123456, 'Yustina', '', '', '', '12', 10, '', '', 2, 2),
-(654321, 'Maria', '', '', '', '13', 10, '', '', 2, 1),
-(20192001, 'Albertus Christian Prabaswara', 'Mekatronika', 'albertus.20192001@student.atmi.ac.id', '140801', '0002985005', 10, '20192001_ALBERTUS CHRISTIAN PRABASWARA.png', 'y-0109', 1, 0),
-(20192022, 'Doddy Alviyan', 'Mekatronika', 'doddy.20192022@student.atmi.ac.id', '220300', '0002975655', 10, '20192022_DODDY ALVIYAN.png', 'y-0130', 1, 0),
-(20192038, 'Juliana Devi Hapsari', 'Mekatronika', 'juliana.20192038@student.atmi.ac.id', '010101', '0009376159', 10, 'depi.png', 'y-0146', 1, 0),
-(20192041, 'Laurentius Alpha Marcello', 'Mekatronika', 'laurentius.20192041@student.atmi.ac.id', '180800', '0002985004', 10, '', 'y-0149', 3, 0),
-(20192055, 'Rafael Rivaldo Motto', 'Teknik Mesin', 'rafael.20192055@student.atmi.ac.id', '123456', '0006725457', 10, '20192055_RAFAEL RIVALDO MOTTO.jpg', 'y-0163', 1, 0),
-(20192070, 'Yusuf Kukuh Adi Wicaksono', 'Mekatronika', 'yusuf.20192070@student.atmi.ac.id', '010501', '0002985003', 10, '', 'y-0178', 3, 0);
+(20192001, 'Albertus Christian Prabas', 'Mekatronika', 'albertus.20192001@student.atmi.ac.id', '140801', '1', 10, '20192001_ALBERTUS CHRISTIAN PRABASWARA.png', 'y-0109', 1, 0),
+(20192022, 'Doddy Alviyan', 'Mekatronika', 'doddy.20192022@student.atmi.ac.id', '220300', '2', 10, '20192022_DODDY ALVIYAN.png', 'y-0130', 3, 0),
+(20192038, 'Juliana Devi Hapsari', 'Mekatronika', 'juliana.20192038@student.atmi.ac.id', '010101', '3', 10, 'depi.png', 'y-0146', 3, 0),
+(20192054, 'Yustina Tritularsih', '', '', '654321', '4', 0, '', '', 2, 2),
+(20192060, 'Maria Marcelinna', '', '', '123456', '5', 0, '', '', 2, 1),
+(20192070, 'Yusuf Kukuh Adi Wicaksono', 'Mekatronika', 'yusuf.20192070@student.atmi.ac.id', '010501', '6', 10, '', 'y-0178', 3, 0);
 
 --
 -- Indexes for dumped tables
@@ -233,7 +251,14 @@ ALTER TABLE `level`
 --
 ALTER TABLE `pinjam`
   ADD PRIMARY KEY (`Pinjam_id`),
-  ADD KEY `IDbarang` (`Pinjam_barang_id`);
+  ADD KEY `IDbarang` (`Pinjam_barang_id`),
+  ADD KEY `Pinjam_user_tag` (`Pinjam_user_tag`);
+
+--
+-- Indexes for table `tr_userlab`
+--
+ALTER TABLE `tr_userlab`
+  ADD PRIMARY KEY (`Userlab_id`);
 
 --
 -- Indexes for table `user`
@@ -265,7 +290,13 @@ ALTER TABLE `gudang`
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `Pinjam_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Pinjam_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `tr_userlab`
+--
+ALTER TABLE `tr_userlab`
+  MODIFY `Userlab_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -290,6 +321,12 @@ ALTER TABLE `instrukturlab`
   ADD CONSTRAINT `instrukturlab_ibfk_1` FOREIGN KEY (`Instruktur_lab_id`) REFERENCES `lab` (`Lab_id`),
   ADD CONSTRAINT `instrukturlab_ibfk_2` FOREIGN KEY (`Instruktur_level_id`) REFERENCES `level` (`Level_id`),
   ADD CONSTRAINT `instrukturlab_ibfk_3` FOREIGN KEY (`Instruktur_level_id`) REFERENCES `level` (`Level_id`);
+
+--
+-- Constraints for table `pinjam`
+--
+ALTER TABLE `pinjam`
+  ADD CONSTRAINT `pinjam_ibfk_1` FOREIGN KEY (`Pinjam_barang_id`) REFERENCES `barang` (`Barang_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
