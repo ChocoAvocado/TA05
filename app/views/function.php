@@ -273,34 +273,50 @@ if (isset($_POST["simpan_ubah_barang"])) {
 
 
 
-//-------------------------------------AKTIFITAS--------------------------------------------------------------------------------//
+//-------------------------------------AKTIFITAS-----------------------------------------------// @author Albert < albertuschristianp@gmail.com >
 
 
 
 //pencarian PEMINJAM, PENGEMBALIAN DAN BARANG PEMINJAMAN PENGEMBALIAN
 
-//PEMINJAMAN
+//PEMINJAMAN    #reset auto increment mysql >> ALTER TABLE 'pinjam' AUTO_INCREMENT = 0;
 if (isset($_POST["pinjamalat"])) {
   //   print_r($_POST);
   //   exit;
 
-  $pinjamuserid = $_POST["cariuser"];
-  $pinjambarangid = $_POST["caribarang"];
+  $pinjamuserid = $_POST["pinjamuser"];
+  $pinjambarangid = $_POST["pinjambarang"];
   $pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
-  $tglbarangpinjam = $_POST["tanggalkembaliplan"];
+  $tglbarangkembali = $_POST["tanggalkembaliplan"];
 
-  $tglbarangpinjam = strtotime($tglbarangpinjam);
-  $tglbarangpinjam = date('Y-m-d', $tglbarangpinjam);
+  $tglbarangkembali = strtotime($tglbarangkembali);
+  $tglbarangkembali = date('Y-m-d', $tglbarangkembali);
 
+  // print_r($pinjamuserid);
+  // print_r($pinjambarangid);
+  // print_r($pinjamjumlahbarang);
+  // print_r($tglbarangkembali);
+  // exit;
 
-  $peminjaman = mysqli_query($conn, "insert into pinjam(Pinjam_user_tag,Pinjam_barang_id,Pinjam_jumlah,Pinjam_tgl_kembaliplan1) 
-values ('$pinjamuserid','$pinjambarangid',$pinjamjumlahbarang,'$tglbarangpinjam')");
+  $peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
+
+  //coba pake query dari internet sumber laen
+  // $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
+
+  // $sth = $conn->prepare("insert into `pinjam` 
+  // (Pinjam_user_tag,Pinjam_barang_id,Pinjam_jumlah,Pinjam_tgl_kembaliplan1) 
+  // values ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");  
+
+	// $sth -> setFetchMode(PDO:: FETCH_OBJ);
+	// $sth -> execute();
+
   if ($peminjaman) {
-    header("location:peminjaman.php");
+    header("location:formpeminjaman");
   } else {
-    header('location:formpeminjaman.php');
+    header('location:formpeminjaman');
   }
 }
+
 
 
 
@@ -328,16 +344,19 @@ if (isset($_POST["kembalialat"])) {
 
 
 //tombol cari di peminjaman
-if (isset($_GET['caripinjaman'])) {
-  //  print_r($_GET ["cariuser"]);
-  //  exit;
+if (getUrlParam('cariuser') != null ) {
+  // print_r("dfsdf");
+  // print_r($_GET ['cariuser']);
+  // exit;
 
-  $ambilsemuadatauser = mysqli_query($conn, "SELECT User_nama, User_email, User_nokoin, User_koin, User_foto
-  FROM user WHERE User_tag = '" . $_GET['cariuser'] . "'");
+  $idpeminjam = getUrlParam('cariuser');
+  $idbarangpinjam = getUrlParam('caribarang');
+
+  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `user` WHERE User_tag = '$idpeminjam'");
   $user = mysqli_fetch_array($ambilsemuadatauser);
   //  var_dump($_GET["cariuser"]);
   //  exit;
-  $valuecariuser = $_GET['cariuser'];
+  $valuecariuser = getUrlParam('cariuser');
 
   if ($user != NULL) {
     $cariusernama = $user['User_nama'];
@@ -351,10 +370,9 @@ if (isset($_GET['caripinjaman'])) {
     $cariuserjumlahkoin = "";
   }
 
-  $ambilsemuadatabarang = mysqli_query($conn, "SELECT Barang_nama, Barang_merk, Barang_Loker, Barang_jumlah
-      FROM barang WHERE Barang_id = '" . $_GET['caribarang'] . "'");
+  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `barang` WHERE Barang_qrcode = '$idbarangpinjam'");
   $barang = mysqli_fetch_array($ambilsemuadatabarang);
-  $valuecaribarang = $_GET['caribarang'];
+  $valuecaribarang = getUrlParam('caribarang');
 
   if ($barang != NULL) {
     $caribarangnama = $barang['Barang_nama'];
