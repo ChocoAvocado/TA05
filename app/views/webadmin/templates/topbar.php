@@ -72,16 +72,17 @@
             </a>
             <!-- Dropdown - User Information -->
             
-
+<?php $qry = mysqli_query($conn, "SELECT * FROM tr_userlab LEFT JOIN lab ON tr_userlab.Lab_id=lab.Lab_id WHERE User_tag=". $_SESSION['User_tag']);
+// print_r($data);
+// exit;
+?>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+            <?php while ($data = mysqli_fetch_assoc($qry)):?>    
+            <a class="dropdown-item" href="/websitePeminjaman/public/barang?Lab_id=<?php echo $data['Lab_id']?>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <?php echo $_SESSION['Lab_nama']?>
+            <?php echo $data['Lab_nama']?>
                 </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <?php echo $_SESSION['Lab_nama']?>
-                </a>
+                <?php endwhile; ?>
             </div>
         </li>
 

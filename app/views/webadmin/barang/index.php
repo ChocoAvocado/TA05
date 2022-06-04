@@ -311,7 +311,11 @@
                                         <tr>
                                              
                                         <?php
-                                        if(isset($_SESSION['User_lab_id'])){
+                                        $labid= getUrlParam('Lab_id'); 
+                                        if($labid!= NULL){
+                                            $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$labid");
+                                        }
+                                        elseif(isset($_SESSION['User_lab_id'])){
                                             $Userlabid=$_SESSION['User_lab_id'];
                                             $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
                                             }else{
