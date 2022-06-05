@@ -78,7 +78,7 @@
                                 <li>
                                     tidak bisa pinjam untuk barang yang sama (ditambah barang pinjamnya)
                                 </li>
-                                
+
                             </div>
 
 
@@ -231,118 +231,85 @@
                             <!-- Bukti Peminjaman dan tombol pinjam-->
                             <div class="row justify-content-center">
 
-                                <div class="row">
-                                    <div class="col-lg-6 mb-2">
-                                        <div class="card shadow">
-                                            <div class="card-header">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        onchange="document.getElementById('formPerpanjangan').disabled = !this.checked;"
-                                                        name='switchPerpanjangan' id='switchPerpanjangan'>
-                                                    <label for="switchPerpanjangan" class="custom-control-label">
-                                                        Perpanjangan</label>
-                                                </div>
-                                            </div>
 
-                                            <div class="container"
-                                                
-                                                id='formPerpanjangan'>
-                                                <div class="card-body ">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto mb-0 form-group">
-                                                            <h6 class="mb-0 text-gray-800">Input tanggal pengembalian
-                                                                baru</h6>
-                                                            <input type="text" id="picker" class="form-control">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row justify-content-center" style="padding: 0.75em;">
-                                                        <div class="">
-                                                            <a href="#" class="btn btn-info btn-icon-split">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fas fa-clock"></i>
-                                                                </span>
-                                                                <span class="text">Perpanjang</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="card shadow">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">Input Tanggal Perpanjangan
+                                            </h6>
                                         </div>
-                                    </div>
 
-                                    <div class="col-lg-6 mb-4">
-
-                                        <!-- Input Bukti Peminjaman -->
-                                        <div class="card shadow mb-4">
-
-                                            <div class="card-header py-3 ">
-                                                <h6 class="m-0 font-weight-bold text-primary">Bukti Peminjaman</h6>
-                                            </div>
-
-                                            <div class="card-body">
+                                        <div class="container" id='formPerpanjangan'>
+                                            <div class="card-body ">
                                                 <div class="row justify-content-center">
-
-                                                    <div id="container">
-                                                        <video autoplay="true" id="videoElement">
-
-                                                        </video>
+                                                    <div class="col-auto mb-0 form-group">
+                                                        <h6 class="mb-0 text-gray-800">Input tanggal pengembalian
+                                                            baru</h6>
+                                                        <input type="text" name="tglperpanjangan" id="picker"
+                                                            class="form-control">
                                                     </div>
+                                                </div>
 
-
-                                                    <div class="row-button ">
-                                                        <a class="btn btn-secondary">
-                                                            <span class="text">Ambil Foto</span>
-                                                        </a>
-                                                    </div>
-
-
+                                                <div class="row justify-content-center" style="padding: 0.75em;">
+                                                    <button class="btn btn-info btn-icon-split" type="submit"
+                                                        name="tombolperpanjangan">
+                                                        <!--data-toggle="modal" data-target="#konfirmasipinjam"-->
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-check"></i>
+                                                        </span>
+                                                        <span class="text">Perpanjangan</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-                                        <p class="mb-4"> *Konfirmasi setiap data peminjam dan data barang pinjaman
-                                            sebelum
-                                            menyelesaikan transaksi pengembalian</p>
-                                        <div class="row-button justify-content-center">
-                                            <button class="btn btn-warning btn-icon-split" type="submit"
-                                                name="kembalialat">
-                                                <!--data-toggle="modal" data-target="#konfirmasipinjam"-->
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
-                                                <span class="text">Kembali</span>
-                                            </button>
-                                        </div>
-
                                     </div>
-
                                 </div>
 
-                                <!-- Modal Tombol Pinjam-->
-                                <div class="modal fade" id="konfirmasipinjam" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" ria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Peringatan</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
+                                <div class="col-lg-6">
 
-                                            <div class="modal-body">Anda yakin ingin meminjam alat ini?</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" name="pinjamalat" type="submit"
-                                                    data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-primary">Pinjam</a>
-                                            </div>
+                                    <!-- Input Bukti Peminjaman -->
+                                    <div class="card shadow mb-4">
 
+                                        <div class="card-header py-3 ">
+                                            <h6 class="m-0 font-weight-bold text-primary">Bukti Peminjaman</h6>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+
+                                                <div id="container">
+                                                    <video autoplay="true" id="videoElement">
+
+                                                    </video>
+                                                </div>
+
+
+                                                <div class="row-button ">
+                                                    <a class="btn btn-secondary">
+                                                        <span class="text">Ambil Foto</span>
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
                                         </div>
                                     </div>
+
+
+
+                                    <p class="mb-4"> *Konfirmasi setiap data peminjam dan data barang pinjaman
+                                        sebelum
+                                        menyelesaikan transaksi pengembalian</p>
+                                    <div class="row-button justify-content-center">
+                                        <button class="btn btn-warning btn-icon-split" type="submit" name="kembalialat">
+                                            <!--data-toggle="modal" data-target="#konfirmasipinjam"-->
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                            <span class="text">Kembali</span>
+                                        </button>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -431,11 +398,18 @@ $(function() {
 });
 </script>
 
-<script>
-$('.switch input[type="checkbox"]').on('change', function() {
-    console.log('Yaay, I was changed');
-});
-</script>
+<!-- <script> #untuk tombol perpanjangan, masih belum dipakai
+$('#saveButton').on('click', function() {
+
+            var $collectedIsVisible = '';
+
+            if ($('#testInput').is(':checked')) {
+
+                $collectedIsVisible = $('#testInput').attr('value', 'true');
+            } else {
+                $collectedIsVisible = $('#testInput').attr('value', 'false');
+            }});
+</script> -->
 
 
 

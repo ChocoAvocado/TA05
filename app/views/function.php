@@ -284,8 +284,6 @@ if (isset($_POST["tombolpinjam"])) {
   //print_r($_POST);
   //exit;
 
- 
-
 $pinjamuserid = $_POST["pinjamuser"];
 $pinjambarangid = $_POST["pinjambarang"];
 $pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
@@ -319,8 +317,42 @@ if ($peminjaman) {
  header('location:formpeminjaman');
 }
 }
+//END OF PEMINJAMAN
 
+//PERPANJANGAN
+if (isset($_POST["tombolperpanjangan"])) {
 
+  $pinjamuserid = $_POST["cariuser"];
+  $pinjambarangid = $_POST["caribarang"];
+  $tglperpanjangan = date_create($_POST["tglperpanjangan"]);
+  $tglperpanjangan = date_format($tglperpanjangan, "Y-m-d");
+  
+
+  // $pengembalian = mysqli_query($conn, "SELECT * FROM pinjam  
+  // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
+  // $data = mysqli_fetch_array($pengembalian);
+  // $pinjamid = $data['Pinjam_id'];
+  $cekperpanjangan = mysqli_query($conn, "SELECT Pinjam_tgl_kembaliplan2,Pinjam_tgl_kembaliplan3 FROM `pinjam` 
+  WHERE  Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+
+  $planperpanjangan = mysqli_fetch_array($cekperpanjangan);
+  if(is_null($planperpanjangan[0])){
+    $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan' 
+  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  }else if(is_null($planperpanjangan[1])){
+    $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' 
+  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  }else {
+    echo ("perpanjangan gagal");
+    exit;
+  }
+
+  if ($pengembalian) {
+    header("location:formpengembalian");
+  } else
+    header('location:formpengembalian');
+}
+//END OF PERPANJANGAN
 
 
 //PENGEMBALIAN
@@ -342,6 +374,7 @@ if (isset($_POST["kembalialat"])) {
   } else
     header('location:formpengembalian');
 }
+//END OF PENGEMBALIAN
 
 
 //TOMBOL CARI PEMINJAMAN
@@ -397,6 +430,7 @@ if (getUrlParam('cariuser') != null ) {
   $caribarangloker = "";
   $caribarangjumlah = "";
 }
+//END OF TOMBOL CARI PEMINJAMAN
 
 
 //TOMBOL CARI PENGEMBALIAN
@@ -442,3 +476,4 @@ if (getUrlParam('cariuserpengembalian') != null ) {
     $caribarangjumlah = "";
   }
 }
+//END OF TOMBOL CARI PENGEMBALIAN
