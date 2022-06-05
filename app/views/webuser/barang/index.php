@@ -60,11 +60,12 @@
                     <!-- Page Heading -->
                     <div class="row ">
                         <div class="col-lg-6">
-                            <h3 class="mb-2 text-gray-800">Data Peminjaman</h3>
+                            <h3 class="text-gray-800">Data Pinjaman</h3>
                         </div>
                         <div class="col-lg-6">
-                            <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
-                            <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
+                            <a href="#" class="btn btn-primary btn-circle float-right">
+                                <i class="fas fa-qrcode"></i>
+                            </a>
                         </div>
                     </div>
                     <!-- end of page heading -->
@@ -77,165 +78,97 @@
                         </div>
                         <div class="card-body">
 
-                            <div class="table-responsive">
+                        <div class="table-responsive">
                                 <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+
                                             <th>ID Barang</th>
                                             <th>Nama Barang</th>
-                                            <th>Nama Lab</th>
-                                            <th>Tgl Pinjam</th>
-                                            <th>Tgl Kembali</th>
-                                            <th>Tag RFID</th>
-                                            <th>View</th>
+                                            <th>Merek Barang</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Rencana Tgl Kembali 1 </th>
+                                            <th>Rencana Tgl Kembali 2 </th>
+                                            <th>Rencana Tgl Kembali 3 </th>
+                                            <th>Status</th>
+
+
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <tr>
                                             <?php
+                                            $usertag = $_SESSION['User_tag'];
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
-                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag 
-                                            ORDER BY Pinjam_tgl DESC, Pinjam_user_tag ASC;");
-
-                                            $NamaPeminjam = "";
+                                            INNER JOIN user ON pinjam.Pinjam_user_tag=user.User_tag
+                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_qrcode WHERE Pinjam_user_tag='$usertag' ;");
+                                            
                                             $TglPinjam = "";
+                                            $TglKembaliplan = "";
+                                            $TglKembaliplan2 = "";
+                                            $TglKembaliplan3 = "";
 
                                             while ($data = mysqli_fetch_array($ambildatapinjam)) {
 
-                                                $TglPinjam1 = $data['Pinjam_tgl'];
-                                                $NIM = $data['User_id'];
-                                                $tagRFID = $data['User_tag'];
-                                                $NamaPeminjam1 = $data['User_nama'];
-                                                $NomorKoin = $data['User_nokoin'];
-                                                $IDpeminjam = $data['Pinjam_user_tag'];
-                                               
-                                                if ($NamaPeminjam === $NamaPeminjam1 and $TglPinjam === $TglPinjam1)
-                                                    continue;
+                                                if ($data['Pinjam_tgl_kembalireal'] != null) {  
+                                                    continue; //LOGIC: kalau sudah mengembalikan tidak muncul di tabel perpanjangan 
+                                                } else {
+                                                    $TglPinjam = $data['Pinjam_tgl'];
+                                                    $Merekbarang = $data['Barang_merk'];
+                                                    
+                                                    $NomorKoin = $data['User_nokoin'];
+                                                    $IDBarangPinjam = $data['Pinjam_barang_id'];
+                                                    $NamaBarang = $data['Barang_nama'];
+                                                    $TglKembaliplan = $data['Pinjam_tgl_kembaliplan1'];
+                                                    $TglKembaliplan2 = $data['Pinjam_tgl_kembaliplan2'];
+                                                    $TglKembaliplan3 = $data['Pinjam_tgl_kembaliplan3'];
+                                                    $status = $data['Pinjam_status'];
 
-                                                else {
-                                                    $NamaPeminjam = $NamaPeminjam1;
-                                                    $TglPinjam = $TglPinjam1;
-                                                }
 
-                                                $TglPinjam = date("d-m-Y", strtotime($TglPinjam));
+                                                    if ($TglKembaliplan2 != null)
+                                                        $TglKembaliplan2 = date("d-m-Y", strtotime($TglKembaliplan2));
+                                                    else {
+                                                    }
+
+                                                    if ($TglKembaliplan3 != null)
+                                                        $TglKembaliplan3 = date("d-m-Y", strtotime($TglKembaliplan3));
+                                                    else {
+                                                    }
+
+
+                                                    $TglPinjam = date("d-m-Y", strtotime($TglPinjam));
+                                                    $TglKembaliplan = date("d-m-Y", strtotime($TglKembaliplan));
+
+                                                    //Code untuk memberi status tiap kolom #0=dipinjam, 1=diperpanjang, 2=dikembalikan, 3=terlambat, 
+                                                    if($status == 0){
+                                                        $status = "dipinjam";
+                                                    } else if($status == 1){
+                                                        $status = "diperpanjang";
+                                                    } else if($status == 2){
+                                                        $status = "dikembalikan";
+                                                    } else if($status == 3){
+                                                        $status = "<p style='color:red'>Terlambat.</p>";
+                                                    } else{
+                                                        $status = "#";
+                                                    }
 
                                             ?>
-
-
+                                            
+                                            <td><?= $IDBarangPinjam; ?></td>
+                                            <td><?= $NamaBarang; ?></td>
+                                            <td><?= $Merekbarang; ?></td>
                                             <td><?= $TglPinjam; ?></td>
-                                            <td><?= $NIM; ?></td>
-                                            <td><?= $NamaPeminjam; ?></td>
-                                            <td><?= $NomorKoin; ?></td>
-                                            <td><?= $tagRFID; ?></td>
-                                            <td width="5%">
-                                                <span>
-                                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                                        data-target="#view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </button>
+                                            <td><?= $TglKembaliplan; ?></td>
+                                            <td><?= $TglKembaliplan2; ?></td>
+                                            <td><?= $TglKembaliplan3; ?></td>
+                                            <td><?= $status; ?></td>
 
-                                                    </a>
-                                                </span>
-
-                                                <!-- The Modal Table-->
-
-
-                                                <div class="modal fade" id="view<?= $IDpeminjam; ?><?= $TglPinjam; ?>">
-                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <!-- Modal Header -->
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title">Data Barang Pinjaman</h4>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal">&times;</button>
-                                                            </div>
-
-                                                            <!-- Modal body -->
-                                                            <form method="post">
-                                                                <div class="modal-body">
-
-                                                                    <!-- DataTales Example -->
-                                                                    <div class="card shadow mb-4">
-
-                                                                        <div class="card-body">
-
-                                                                            <div class="table-responsive">
-                                                                                <table id="dataTable_0"
-                                                                                    class="table table-bordered dataTables_wrapper"
-                                                                                    width="100%" cellspacing="0">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th>no</th>
-                                                                                            <th>ID Barang</th>
-                                                                                            <th>Nama Barang</th>
-                                                                                            <th>Merek Barang</th>
-                                                                                            <th>Jumlah Barang</th>
-                                                                                            <th>Rencana Tgl Kembali</th>
-                                                                                        </tr>
-                                                                                    </thead>
-
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <?php
-                                                                                                $TglPinjam = date("Y-m-d", strtotime($TglPinjam));
-
-                                                                                                $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
-                                                                                                INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id 
-                                                                                                WHERE pinjam.Pinjam_user_tag = $IDpeminjam
-                                                                                                AND pinjam.Pinjam_tgl = '$TglPinjam'");
-
-                                                                                                $i = 1;
-                                                                                                while ($data = mysqli_fetch_array($ambildatabarang)) {
-                                                                                                    $IDBarang = $data['Pinjam_barang_id'];
-                                                                                                    $NamaBarang = $data['Barang_nama'];
-                                                                                                    $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan3'];
-                                                                                                    $DetailBarang = $data['Barang_merk'];
-                                                                                                    $JumlahBarang = $data['Pinjam_jumlah'];
-
-                                                                                                    if ($TglKembaliPlan === null) {
-                                                                                                        $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan2'];
-                                                                                                        if ($TglKembaliPlan === null) {
-                                                                                                            $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan1'];
-                                                                                                        } else {
-                                                                                                        }
-                                                                                                    } else {
-                                                                                                    }
-
-                                                                                                    $TglKembaliPlan = date("d-m-Y", strtotime($TglKembaliPlan));
-
-                                                                                                ?>
-
-                                                                                            <td><?= $i++; ?></td>
-                                                                                            <td><?= $IDBarang; ?></td>
-                                                                                            <td><?= $NamaBarang; ?></td>
-                                                                                            <td><?= $DetailBarang; ?>
-                                                                                            </td>
-                                                                                            <td><?= $JumlahBarang; ?>
-                                                                                            </td>
-                                                                                            <td><?= $TglKembaliPlan; ?>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <?php
-                                                                                                }
-                                                                                        ?>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
                                         </tr>
                                         <?php
+                                                }
                                             }
-                                    ?>
+                                ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -313,12 +246,17 @@
     });
     </script>
 
-    <script>
+<script>
     $('#dataTable').dataTable({
-        "lengthMenu": [5, 10, 20]
+        "lengthMenu": [5, 10, 20],
+        "columnDefs": [{
+            className: "dt-nowrap",
+            "targets": [3,4,5,6,7,8]
+        }]
     });
     </script>
-    
+
+
 </body>
 
 
