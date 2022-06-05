@@ -19,7 +19,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
@@ -32,7 +34,8 @@
     <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css"
+        href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -56,17 +59,39 @@
 
                     <!-- Page Heading -->
                     <div class="row ">
-                        <div class="col-lg-6">
+                        <div class="col-sm-7">
                             <h3 class="mb-2 text-gray-800">Data Perpanjangan</h3>
                         </div>
-                        <div class="col-lg-6">
-                            <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
-                            <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <form method="get" action=""
+                                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Pencarian Barang" name="cari" aria-label="Search"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <a href="formpengembalian"
+                                        class="btn btn-danger offset-lg-1 float-right">Kembali</a>
+                                    <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <!-- end of page heading -->
 
-                    <br>
+                    <p>*Barang yang telah dikembalikan tidak akan muncul di tabel perpanjangan</p>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -101,6 +126,7 @@
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
                                             INNER JOIN user ON pinjam.Pinjam_user_tag=user.User_tag
                                             INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_qrcode;");
+                                            
 
                                             $NamaPeminjam = "";
                                             $TglPinjam = "";
@@ -110,11 +136,11 @@
 
                                             while ($data = mysqli_fetch_array($ambildatapinjam)) {
 
-                                                if ($data['Pinjam_tgl_kembalireal'] != null) {
-                                                    continue;
+                                                if ($data['Pinjam_tgl_kembalireal'] != null) {  
+                                                    continue; //LOGIC: kalau sudah mengembalikan tidak muncul di tabel perpanjangan 
                                                 } else {
                                                     $TglPinjam = $data['Pinjam_tgl'];
-                                                    $NIM = $data['Pinjam_user_tag'];
+                                                    $NIM = $data['User_id'];
                                                     $tagRFID = $data['User_tag'];
                                                     $NamaPeminjam = $data['User_nama'];
                                                     $NomorKoin = $data['User_nokoin'];
@@ -141,19 +167,19 @@
 
                                             ?>
 
-                                                    <td><?= $NIM; ?></td>
-                                                    <td><?= $NamaPeminjam; ?></td>
-                                                    <td><?= $NomorKoin; ?></td>
-                                                    <td><?= $tagRFID; ?></td>
-                                                    <td><?= $IDBarangPinjam; ?></td>
-                                                    <td><?= $NamaBarang; ?></td>
-                                                    <td><?= $TglPinjam; ?></td>
-                                                    <td><?= $TglKembaliplan; ?></td>
-                                                    <td><?= $TglKembaliplan2; ?></td>
-                                                    <td><?= $TglKembaliplan3; ?></td>
+                                            <td><?= $NIM; ?></td>
+                                            <td><?= $NamaPeminjam; ?></td>
+                                            <td><?= $NomorKoin; ?></td>
+                                            <td><?= $tagRFID; ?></td>
+                                            <td><?= $IDBarangPinjam; ?></td>
+                                            <td><?= $NamaBarang; ?></td>
+                                            <td><?= $TglPinjam; ?></td>
+                                            <td><?= $TglKembaliplan; ?></td>
+                                            <td><?= $TglKembaliplan2; ?></td>
+                                            <td><?= $TglKembaliplan3; ?></td>
 
                                         </tr>
-                                <?php
+                                        <?php
                                                 }
                                             }
                                 ?>
@@ -192,7 +218,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,15 +255,15 @@
     <script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
     </script>
 
     <script>
-        $('#dataTable').dataTable({
-            "lengthMenu": [5, 10, 20]
-        });
+    $('#dataTable').dataTable({
+        "lengthMenu": [5, 10, 20]
+    });
     </script>
 
 

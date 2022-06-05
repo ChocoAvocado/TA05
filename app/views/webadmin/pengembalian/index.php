@@ -19,7 +19,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
@@ -32,7 +34,8 @@
     <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css"
+        href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -60,6 +63,19 @@
                             <h3 class="mb-2 text-gray-800">Data Pengembalian</h3>
                         </div>
                         <div class="col-lg-6">
+                            <form method="get" action=""
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                        placeholder="Pencarian Barang" name="cari" aria-label="Search"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                             <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
                             <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
                         </div>
@@ -139,18 +155,18 @@
 
 
 
-                                                    <td><?= $NIM; ?></td>
-                                                    <td><?= $NamaPeminjam; ?></td>
-                                                    <td><?= $NomorKoin; ?></td>
-                                                    <td><?= $tagRFID; ?></td>
-                                                    <td><?= $IDBarangPinjam; ?></td>
-                                                    <td><?= $NamaBarang; ?></td>
-                                                    <td><?= $TglPinjam; ?></td>
-                                                    <td><?= $TglKembaliPlan; ?></td>
-                                                    <td><?= $TglKembaliRiil; ?></td>
+                                            <td><?= $NIM; ?></td>
+                                            <td><?= $NamaPeminjam; ?></td>
+                                            <td><?= $NomorKoin; ?></td>
+                                            <td><?= $tagRFID; ?></td>
+                                            <td><?= $IDBarangPinjam; ?></td>
+                                            <td><?= $NamaBarang; ?></td>
+                                            <td><?= $TglPinjam; ?></td>
+                                            <td><?= $TglKembaliPlan; ?></td>
+                                            <td><?= $TglKembaliRiil; ?></td>
 
                                         </tr>
-                                <?php
+                                        <?php
                                                 }
                                             }
                                 ?>
@@ -189,7 +205,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -207,7 +224,7 @@
         </div>
     </div>
 
-   <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -225,15 +242,15 @@
     <script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
     </script>
 
     <script>
-        $('#dataTable').dataTable({
-            "lengthMenu": [5, 10, 20]
-        });
+    $('#dataTable').dataTable({
+        "lengthMenu": [5, 10, 20]
+    });
     </script>
 
 

@@ -54,10 +54,3 @@
   });
 
 })(jQuery); // End of use strict
-
-function toggle(){
-  var blur = document.getElementById('blur');
-  blur.classList.toggle('active')
-  var popupRFID1 = document.getElementById('popupRFID1');
-  popupRFID1.classList.toggle('active')
-}
