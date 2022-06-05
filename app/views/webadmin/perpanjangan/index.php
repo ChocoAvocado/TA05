@@ -100,7 +100,7 @@
                                             <?php
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
                                             INNER JOIN user ON pinjam.Pinjam_user_tag=user.User_tag
-                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id;");
+                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_qrcode;");
 
                                             $NamaPeminjam = "";
                                             $TglPinjam = "";
