@@ -44,8 +44,6 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include __DIR__."/../templates/sidebar.php"?>
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -62,11 +60,7 @@
                         <div class="col-lg-6">
                             <h3 class="text-gray-800">Data Pinjaman</h3>
                         </div>
-                        <div class="col-lg-6">
-                            <a href="#" class="btn btn-primary btn-circle float-right">
-                                <i class="fas fa-qrcode"></i>
-                            </a>
-                        </div>
+                        
                     </div>
                     <!-- end of page heading -->
 
@@ -74,7 +68,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Peminjaman</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabel Peminjaman Barang</h6>
                         </div>
                         <div class="card-body">
 
@@ -148,7 +142,7 @@
                                                     } else if($status == 2){
                                                         $status = "dikembalikan";
                                                     } else if($status == 3){
-                                                        $status = "<p style='color:red'>Terlambat.</p>";
+                                                        $status = "<p style='color:red'><b>Terlambat<b></p>";
                                                     } else{
                                                         $status = "#";
                                                     }
@@ -185,7 +179,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Politeknik ATMI Surakarta 2022</span>
+                        <span>TA05 Politeknik ATMI Surakarta 2022</span>
                     </div>
                 </div>
             </footer>
@@ -251,8 +245,8 @@
         "lengthMenu": [5, 10, 20],
         "columnDefs": [{
             className: "dt-nowrap",
-            "targets": [3,4,5,6,7,8]
-        }]
+            "targets": [3,4,5,6],
+        }],
     });
     </script>
 
