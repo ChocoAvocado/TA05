@@ -120,9 +120,9 @@
 
                                         </div>
                                         <div class="col-xl-2 col-sm-2 col-md-2">
-                                            <a href="formpeminjaman.php" class="btn btn-secondary">
+                                        <button type="reset" class="btn btn-secondary">
                                                 <span class="text">Clear</span>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

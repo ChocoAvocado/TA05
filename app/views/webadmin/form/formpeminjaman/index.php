@@ -109,7 +109,10 @@
                                         </button>
                                     </div>
                                     <div class="col-xl-2 col-sm-2 col-md-2">
-                                        <a href="formpeminjaman" class="btn btn-secondary">Clear</a>
+                                    <button autocomplete="false" type="reset" name="caripinjaman"
+                                            class="btn btn-secondary">
+                                            <span class="text">Clear</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
