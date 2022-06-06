@@ -2,6 +2,8 @@
 	require_once __DIR__.('/../../../function.php'); 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +25,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?= BASEURL; ?>/css/buttonformperpanjangan.css" rel="stylesheet">
 
     <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
@@ -42,6 +45,7 @@
 
 
 </head>
+
 
 <body id="page-top">
 
@@ -66,23 +70,21 @@
 
                     <form method="form">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h3 class="mb-2 text-gray-800">Form Pengembalian</h3>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <!-- BATASAN MASALAH -->
-                                <h5>
-                                    batasan masalah
-                                </h5>
-                                <li>
-                                    tidak bisa pinjam untuk barang yang sama (ditambah barang pinjamnya)
-                                </li>
-
-                            </div>
-
-
+                            <h3 class="mb-2 text-gray-800">Form Pengembalian</h3>
                         </div>
+                        <div class="row">
+                            <!-- BATASAN MASALAH -->
+                            <h5>
+                                batasan masalah
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <li>
+                                tidak bisa pinjam untuk barang yang sama (ditambah barang pinjamnya)
+                            </li>
+                        </div>
+
+
                         <br>
 
                         <div class="row">
@@ -120,7 +122,7 @@
 
                                         </div>
                                         <div class="col-xl-2 col-sm-2 col-md-2">
-                                        <button type="reset" class="btn btn-secondary">
+                                            <button type="reset" class="btn btn-secondary">
                                                 <span class="text">Clear</span>
                                             </button>
                                         </div>
@@ -317,30 +319,27 @@
                     </form>
                 </div>
             </div>
+            <!-- End of main content -->
+            
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Politeknik ATMI Surakarta 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
 
     </div>
 </body>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anda ingin Logout?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">x</span>
-                </button>
-            </div>
-            <div class="modal-body">Pilih "Logout" untuk keluar dari akun.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../index.php">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+
+<!--include modal disini-->
+<?php 
+include "modal.php";
+?>
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
@@ -364,53 +363,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 <script src="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
-<script>
-var video = document.querySelector("#videoElement");
 
-if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({
-            video: true
-        })
-        .then(function(stream) {
-            video.srcObject = stream;
-        })
-        .catch(function(err0r) {
-            console.log("Something went wrong!");
-        });
-}
-</script>
-<script>
-$('#picker').datetimepicker({
-
-    timepicker: false,
-    datepicker: true,
-    format: 'd-m-Y',
-    value: 'today'
-
-})
-</script>
-
-<script>
-$(function() {
-    $('#picker').datetimepicker({
-        minDate: new Date()
-    });
-});
-</script>
-
-<!-- <script> #untuk tombol perpanjangan, masih belum dipakai
-$('#saveButton').on('click', function() {
-
-            var $collectedIsVisible = '';
-
-            if ($('#testInput').is(':checked')) {
-
-                $collectedIsVisible = $('#testInput').attr('value', 'true');
-            } else {
-                $collectedIsVisible = $('#testInput').attr('value', 'false');
-            }});
-</script> -->
-
+<!--include modal disini-->
+<?php 
+include "js.php";
+?>
 
 
 </html>

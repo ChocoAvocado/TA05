@@ -284,13 +284,13 @@ if (isset($_POST["tombolpinjam"])) {
   //print_r($_POST);
   //exit;
 
-$pinjamuserid = $_POST["pinjamuser"];
-$pinjambarangid = $_POST["pinjambarang"];
+$pinjamuserid       = $_POST["pinjamuser"];
+$pinjambarangid     = $_POST["pinjambarang"];
 $pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
-$tglbarangkembali = $_POST["tanggalkembaliplan"];
+$tglbarangkembali   = $_POST["tanggalkembaliplan"];
 
-$tglbarangkembali = strtotime($tglbarangkembali);
-$tglbarangkembali = date('Y-m-d', $tglbarangkembali);
+$tglbarangkembali   = strtotime($tglbarangkembali);
+$tglbarangkembali   = date('Y-m-d', $tglbarangkembali);
 
 // print_r($pinjamuserid);
 // print_r($pinjambarangid);
@@ -319,13 +319,16 @@ if ($peminjaman) {
 }
 //END OF PEMINJAMAN
 
+
+$show_modal_perpanjangan = true;
 //PERPANJANGAN
 if (isset($_POST["tombolperpanjangan"])) {
 
-  $pinjamuserid = $_POST["cariuser"];
-  $pinjambarangid = $_POST["caribarang"];
-  $tglperpanjangan = date_create($_POST["tglperpanjangan"]);
-  $tglperpanjangan = date_format($tglperpanjangan, "Y-m-d");
+  $pinjamuserid     = $_POST["cariuser"];
+  $pinjambarangid   = $_POST["caribarang"];
+  $tglperpanjangan  = date_create($_POST["tglperpanjangan"]);
+  $tglperpanjangan  = date_format($tglperpanjangan, "Y-m-d");
+  print_r($pinjamuserid);
   
 
   // $pengembalian = mysqli_query($conn, "SELECT * FROM pinjam  
@@ -336,21 +339,23 @@ if (isset($_POST["tombolperpanjangan"])) {
   WHERE  Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
 
   $planperpanjangan = mysqli_fetch_array($cekperpanjangan);
+if($pinjamuserid != "" && $pinjambarangid != ""){
   if(is_null($planperpanjangan[0])){
-    $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan' 
+    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan' 
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  header("location:formpengembalian");
   }else if(is_null($planperpanjangan[1])){
-    $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' 
+    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' 
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  header("location:formpengembalian");
   }else {
-    echo ("perpanjangan gagal");
-    exit;
-  }
-
-  if ($pengembalian) {
+    $show_modal_perpanjangan = true;
     header("location:formpengembalian");
-  } else
-    header('location:formpengembalian');
+  }
+} else{
+  header("location:dashboard");
+}
+  
 }
 //END OF PERPANJANGAN
 
@@ -358,10 +363,10 @@ if (isset($_POST["tombolperpanjangan"])) {
 //PENGEMBALIAN
 if (isset($_POST["kembalialat"])) {
 
-  $pinjamuserid = $_POST["cariuser"];
+  $pinjamuserid   = $_POST["cariuser"];
   $pinjambarangid = $_POST["caribarang"];
   date_default_timezone_set('Asia/Bangkok');
-  $tglkembali = date('Y-m-d');
+  $tglkembali     = date('Y-m-d');
 
   // $pengembalian = mysqli_query($conn, "SELECT * FROM pinjam  
   // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
@@ -383,7 +388,7 @@ if (getUrlParam('cariuser') != null ) {
   // print_r($_GET ['cariuser']);
   // exit;
 
-  $idpeminjam = getUrlParam('cariuser');
+  $idpeminjam     = getUrlParam('cariuser');
   $idbarangpinjam = getUrlParam('caribarang');
 
   $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `user` WHERE User_tag = '$idpeminjam'");
@@ -393,14 +398,14 @@ if (getUrlParam('cariuser') != null ) {
   $valuecariuser = getUrlParam('cariuser');
 
   if ($user != NULL) {
-    $cariusernama = $user['User_nama'];
-    $cariuseremail = $user['User_email'];
-    $cariuserkoin = $user['User_nokoin'];
+    $cariusernama       = $user['User_nama'];
+    $cariuseremail      = $user['User_email'];
+    $cariuserkoin       = $user['User_nokoin'];
     $cariuserjumlahkoin = $user['User_koin'];
   } else {
-    $cariusernama = "";
-    $cariuseremail = "";
-    $cariuserkoin = "";
+    $cariusernama       = "";
+    $cariuseremail      = "";
+    $cariuserkoin       = "";
     $cariuserjumlahkoin = "";
   }
 
@@ -409,25 +414,25 @@ if (getUrlParam('cariuser') != null ) {
   $valuecaribarang = getUrlParam('caribarang');
 
   if ($barang != NULL) {
-    $caribarangnama = $barang['Barang_nama'];
-    $caribarangmerk = $barang['Barang_merk'];
-    $caribarangloker = $barang['Barang_Loker'];
+    $caribarangnama   = $barang['Barang_nama'];
+    $caribarangmerk   = $barang['Barang_merk'];
+    $caribarangloker  = $barang['Barang_Loker'];
     $caribarangjumlah = $barang['Barang_jumlah'];
   } else {
-    $caribarangnama = "";
-    $caribarangmerk = "";
-    $caribarangloker = "";
+    $caribarangnama   = "";
+    $caribarangmerk   = "";
+    $caribarangloker  = "";
     $caribarangjumlah = "";
   }
 } else {
-  $cariusernama = "";
-  $cariuseremail = "";
-  $cariuserkoin = "";
+  $cariusernama       = "";
+  $cariuseremail      = "";
+  $cariuserkoin       = "";
   $cariuserjumlahkoin = "";
 
-  $caribarangnama = "";
-  $caribarangmerk = "";
-  $caribarangloker = "";
+  $caribarangnama   = "";
+  $caribarangmerk   = "";
+  $caribarangloker  = "";
   $caribarangjumlah = "";
 }
 //END OF TOMBOL CARI PEMINJAMAN
@@ -449,14 +454,14 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   $valuecariuser = getUrlParam('cariuserpengembalian');
 
   if ($user != NULL) {
-    $cariusernama = $user['User_nama'];
-    $cariuseremail = $user['User_email'];
-    $cariuserkoin = $user['User_nokoin'];
+    $cariusernama       = $user['User_nama'];
+    $cariuseremail      = $user['User_email'];
+    $cariuserkoin       = $user['User_nokoin'];
     $cariuserjumlahkoin = $user['User_koin'];
   } else {
-    $cariusernama = "";
-    $cariuseremail = "";
-    $cariuserkoin = "";
+    $cariusernama       = "";
+    $cariuseremail      = "";
+    $cariuserkoin       = "";
     $cariuserjumlahkoin = "";
   }
 
@@ -465,14 +470,14 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   $valuecaribarang = getUrlParam('caribarang');  
 
   if ($barang != NULL) {
-    $caribarangnama = $barang['Barang_nama'];
-    $caribarangmerk = $barang['Barang_merk'];
-    $caribarangloker = $barang['Barang_Loker'];
+    $caribarangnama   = $barang['Barang_nama'];
+    $caribarangmerk   = $barang['Barang_merk'];
+    $caribarangloker  = $barang['Barang_Loker'];
     $caribarangjumlah = $barang['Pinjam_jumlah'];
   } else {
-    $caribarangnama = "";
-    $caribarangmerk = "";
-    $caribarangloker = "";
+    $caribarangnama   = "";
+    $caribarangmerk   = "";
+    $caribarangloker  = "";
     $caribarangjumlah = "";
   }
 }
