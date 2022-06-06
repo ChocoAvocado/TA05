@@ -105,6 +105,7 @@
                                             <th>Nama Peminjam</th>
                                             <th>Nomor Koin</th>
                                             <th>Tag RFID</th>
+                                            <th>Status</th>
                                             <th>View</th>
                                         </tr>
                                     </thead>
@@ -127,6 +128,7 @@
                                                 $NamaPeminjam1 = $data['User_nama'];
                                                 $NomorKoin = $data['User_nokoin'];
                                                 $IDpeminjam = $data['Pinjam_user_tag'];
+                                                $status = $data['Pinjam_status'];
                                                
                                                 if ($NamaPeminjam === $NamaPeminjam1 and $TglPinjam === $TglPinjam1)
                                                     continue;
@@ -138,6 +140,16 @@
 
                                                 $TglPinjam = date("d-m-Y", strtotime($TglPinjam));
 
+                                                if($status == 0){
+                                                    $status = "dipinjam";
+                                                } else if($status == 1){
+                                                    $status = "diperpanjang";
+                                                } else if($status == 3){
+                                                    $status = "<p style='color:red'><b>Terlambat<b></p>";
+                                                } else{
+                                                    $status = "#";
+                                                }
+
                                             ?>
 
 
@@ -146,6 +158,7 @@
                                             <td><?= $NamaPeminjam; ?></td>
                                             <td><?= $NomorKoin; ?></td>
                                             <td><?= $tagRFID; ?></td>
+                                            <td><?= $status ?></td>
                                             <td width="5%">
                                                 <span>
                                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
@@ -212,6 +225,7 @@
                                                                                                     $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan3'];
                                                                                                     $DetailBarang = $data['Barang_merk'];
                                                                                                     $JumlahBarang = $data['Pinjam_jumlah'];
+                                                                                                    $status = $data['Pinjam_status'];
 
                                                                                                     if ($TglKembaliPlan === null) {
                                                                                                         $TglKembaliPlan = $data['Pinjam_tgl_kembaliplan2'];
@@ -224,6 +238,16 @@
 
                                                                                                     $TglKembaliPlan = date("d-m-Y", strtotime($TglKembaliPlan));
 
+                                                                                                    if($status == 0){
+                                                                                                        $status = $TglKembaliPlan;
+                                                                                                    } else if($status == 1){
+                                                                                                        $status = $TglKembaliPlan;
+                                                                                                    } else if($status == 3){
+                                                                                                        $status = "<p style='color:red'><b>$TglKembaliPlan<b></p>";
+                                                                                                    } else{
+                                                                                                        $status = "#";
+                                                                                                    }
+
                                                                                                 ?>
 
                                                                                             <td><?= $i++; ?></td>
@@ -233,7 +257,7 @@
                                                                                             </td>
                                                                                             <td><?= $JumlahBarang; ?>
                                                                                             </td>
-                                                                                            <td><?= $TglKembaliPlan; ?>
+                                                                                            <td><?= $status; ?>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <?php

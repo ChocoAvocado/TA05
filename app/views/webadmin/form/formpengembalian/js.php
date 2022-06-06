@@ -45,7 +45,7 @@ $(function() {
         $('#modalperpanjangan').modal('show');
     });
 </script>
-<?php endif;?>
+<?php endif; ?>
 
 <!-- <script> #untuk tombol perpanjangan, masih belum dipakai
 $('#saveButton').on('click', function() {
