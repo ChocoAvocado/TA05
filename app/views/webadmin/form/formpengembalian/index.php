@@ -215,7 +215,7 @@
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Jumlah Barang</h6>
+                                                <h6 class="mb-0 text-gray-800">Jumlah Barang Pinjam</h6>
                                                 <input type="#" value="<?php echo $caribarangjumlah ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>
@@ -229,6 +229,7 @@
 
                             <input type="hidden" name="cariuser" value="<?= $valuecariuser ?>" required>
                             <input type="hidden" name="caribarang" value="<?= $valuecaribarang ?>" required>
+                            <input type="hidden" name="jumlahbarangpinjam" value="<?= $valuejumlahbarangpinjam ?>" required>
 
                             <!-- Bukti Peminjaman dan tombol pinjam-->
                             <div class="row justify-content-center">

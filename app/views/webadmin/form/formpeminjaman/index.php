@@ -28,6 +28,7 @@
 
     <!-- Custom styles for this page -->
     <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    
 
     <style>
     #container {
@@ -40,6 +41,13 @@
         width: 100%;
         height: 100%;
         background-color: #666;
+    }
+    </style>
+    <style>
+    .center {
+        width: 150px;
+        margin: 40px auto;
+
     }
     </style>
 
@@ -109,7 +117,7 @@
                                         </button>
                                     </div>
                                     <div class="col-xl-2 col-sm-2 col-md-2">
-                                    <button autocomplete="false" type="reset" name="caripinjaman"
+                                        <button autocomplete="false" type="reset" name="caripinjaman"
                                             class="btn btn-secondary">
                                             <span class="text">Clear</span>
                                         </button>
@@ -145,7 +153,8 @@
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
                                                 <h6 class="mb-0 text-gray-800">Nama Peminjam</h6>
                                                 <input type="text" value="<?php echo $cariusernama ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail" required>
+                                                    class="form-control form-control-user" id="exampleInputEmail"
+                                                    required>
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
@@ -235,8 +244,22 @@
 
                                             <div class="col-auto mb-4 form-group">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Barang pinjam</h6>
-                                                <input type="text" class="form-control form-control-user"
-                                                    name="jumlahbarangpinjam" value="1">
+                                                <div class="input-group">
+                                                    <span class="btn-group">
+                                                        <button type="button" class="btn btn-danger btn-number"
+                                                            data-type="minus" data-field="jumlahbarangpinjam">
+                                                            <span class="fas fa-minus"></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="jumlahbarangpinjam" class="form-control input-number"
+                                                        value="1" min="1" max="<?= $caribarangjumlah ?>">
+                                                    <span class="btn-group">
+                                                        <button type="button" class="btn btn-success btn-number"
+                                                            data-type="plus" data-field="jumlahbarangpinjam">
+                                                            <span class="fas fa-plus"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -357,21 +380,7 @@
     </div>
 </div>
 
-<script>
-var video = document.querySelector("#videoElement");
 
-if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({
-            video: true
-        })
-        .then(function(stream) {
-            video.srcObject = stream;
-        })
-        .catch(function(err0r) {
-            console.log("Something went wrong!");
-        });
-}
-</script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
@@ -395,23 +404,11 @@ if (navigator.mediaDevices.getUserMedia) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 <script src="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
-<script>
-$('#picker').datetimepicker({
 
-    timepicker: false,
-    datepicker: true,
-    format: 'd-m-Y',
-    value: 'today'
 
-})
-</script>
+<?php 
+include "js.php";
+?>
 
-<script>
-$(function() {
-    $('#picker').datetimepicker({
-        minDate: new Date()
-    });
-});
-</script>
 
 </html>

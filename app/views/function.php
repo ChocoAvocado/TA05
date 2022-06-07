@@ -298,8 +298,10 @@ $tglbarangkembali   = date('Y-m-d', $tglbarangkembali);
 // print_r($tglbarangkembali);
 // exit;
 
-$peminjaman = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
-VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");
+//mengupdate sisa barang db tabel barang dan insert data pinjaman baru
+$peminjaman1 = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') - $pinjamjumlahbarang) WHERE Barang_id='$pinjambarangid';");
+$peminjaman2 = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
+VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali');");
 
 //coba pake query dari internet sumber laen
 // $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
@@ -311,7 +313,7 @@ VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangke
 // $sth -> setFetchMode(PDO:: FETCH_OBJ);
 // $sth -> execute();
 
-if ($peminjaman) {
+if ($peminjaman2) {
  header("location:formpeminjaman");
 } else {
  header('location:formpeminjaman');
@@ -367,13 +369,17 @@ if (isset($_POST["kembalialat"])) {
   $pinjambarangid = $_POST["caribarang"];
   date_default_timezone_set('Asia/Bangkok');
   $tglkembali     = date('Y-m-d');
+  $jumlahbarangpinjam = $_POST["jumlahbarangpinjam"];
 
   // $pengembalian = mysqli_query($conn, "SELECT * FROM pinjam  
   // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
   // $data = mysqli_fetch_array($pengembalian);
   // $pinjamid = $data['Pinjam_id'];
 
+  //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
+  $peminjaman1 = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') + $jumlahbarangpinjam) WHERE Barang_id='$pinjambarangid';");
   $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali' WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+
   if ($pengembalian) {
     header("location:formpengembalian");
   } else
@@ -417,7 +423,7 @@ if (getUrlParam('cariuser') != null ) {
     $caribarangnama   = $barang['Barang_nama'];
     $caribarangmerk   = $barang['Barang_merk'];
     $caribarangloker  = $barang['Barang_Loker'];
-    $caribarangjumlah = $barang['Barang_jumlah'];
+    $caribarangjumlah = $barang['Barang_jumlah_sisa'];
   } else {
     $caribarangnama   = "";
     $caribarangmerk   = "";
@@ -454,15 +460,17 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   $valuecariuser = getUrlParam('cariuserpengembalian');
 
   if ($user != NULL) {
-    $cariusernama       = $user['User_nama'];
-    $cariuseremail      = $user['User_email'];
-    $cariuserkoin       = $user['User_nokoin'];
-    $cariuserjumlahkoin = $user['User_koin'];
+    $cariusernama             = $user['User_nama'];
+    $cariuseremail            = $user['User_email'];
+    $cariuserkoin             = $user['User_nokoin'];
+    $cariuserjumlahkoin       = $user['User_koin'];
+    $valuejumlahbarangpinjam  = $user['Pinjam_jumlah'];
   } else {
-    $cariusernama       = "";
-    $cariuseremail      = "";
-    $cariuserkoin       = "";
-    $cariuserjumlahkoin = "";
+    $cariusernama             = "";
+    $cariuseremail            = "";
+    $cariuserkoin             = "";
+    $cariuserjumlahkoin       = "";
+    $valuejumlahbarangpinjam  = "";
   }
 
   $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id WHERE pinjam.Pinjam_barang_id='$idbarangpinjam'");
