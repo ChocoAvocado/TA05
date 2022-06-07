@@ -208,7 +208,7 @@
                                             </div>
 
                                             <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Jumlah Barang</h6>
+                                                <h6 class="mb-0 text-gray-800">Jumlah Barang Tersisa</h6>
                                                 <input type="#" value="<?php echo $caribarangjumlah ?>"
                                                     class="form-control form-control-user" id="exampleInputEmail">
                                             </div>

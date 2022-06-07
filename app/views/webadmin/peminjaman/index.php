@@ -214,7 +214,7 @@
                                                                                                 $TglPinjam = date("Y-m-d", strtotime($TglPinjam));
 
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
-                                                                                                INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_qrcode 
+                                                                                                INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id 
                                                                                                 WHERE pinjam.Pinjam_user_tag = $IDpeminjam
                                                                                                 AND pinjam.Pinjam_tgl = '$TglPinjam'");
 

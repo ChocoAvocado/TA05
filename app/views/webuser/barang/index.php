@@ -96,7 +96,7 @@
                                             $usertag = $_SESSION['User_tag'];
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
                                             INNER JOIN user ON pinjam.Pinjam_user_tag=user.User_tag
-                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_qrcode WHERE Pinjam_user_tag='$usertag' ;");
+                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id WHERE Pinjam_user_tag='$usertag' ;");
                                             
                                             $TglPinjam = "";
                                             $TglKembaliplan = "";
@@ -110,7 +110,6 @@
                                                 } else {
                                                     $TglPinjam = $data['Pinjam_tgl'];
                                                     $Merekbarang = $data['Barang_merk'];
-                                                    
                                                     $NomorKoin = $data['User_nokoin'];
                                                     $IDBarangPinjam = $data['Pinjam_barang_id'];
                                                     $NamaBarang = $data['Barang_nama'];

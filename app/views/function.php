@@ -409,7 +409,7 @@ if (getUrlParam('cariuser') != null ) {
     $cariuserjumlahkoin = "";
   }
 
-  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `barang` WHERE Barang_qrcode = '$idbarangpinjam'");
+  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `barang` WHERE Barang_id = '$idbarangpinjam'");
   $barang = mysqli_fetch_array($ambilsemuadatabarang);
   $valuecaribarang = getUrlParam('caribarang');
 
@@ -447,7 +447,7 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   $idpeminjam = getUrlParam('cariuserpengembalian');
   $idbarangpinjam = getUrlParam('caribarang');
 
-  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `user` ON pinjam.Pinjam_user_tag=user.User_tag WHERE user.User_tag='$idpeminjam'");
+  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `user` ON pinjam.Pinjam_user_tag=user.User_tag WHERE pinjam.Pinjam_user_tag='$idpeminjam'");
   $user = mysqli_fetch_array($ambilsemuadatauser);
   //  var_dump($_GET["cariuser"]);
   //  exit;
@@ -465,7 +465,7 @@ if (getUrlParam('cariuserpengembalian') != null ) {
     $cariuserjumlahkoin = "";
   }
 
-  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_qrcode WHERE barang.Barang_qrcode='$idbarangpinjam'");
+  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id WHERE pinjam.Pinjam_barang_id='$idbarangpinjam'");
   $barang = mysqli_fetch_array($ambilsemuadatabarang);
   $valuecaribarang = getUrlParam('caribarang');  
 
