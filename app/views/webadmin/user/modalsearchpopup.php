@@ -4,7 +4,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Data Ditemukan</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- <button type="button"  data-dismiss="modal">&times;</button> -->
+        <a class="btn btn-primary" href="/websitePeminjaman/public/user">Tutup</a>
       </div>
       <div class="modal-body">
           <?php

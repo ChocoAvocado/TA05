@@ -9,20 +9,18 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>Login Laboratorium</title>
-	<!--Made with love by Mutiullah Samim -->
-
+	<title>Halaman <?= $data['judul']; ?> </title>
+   <!--Made with love by Mutiullah Samim -->
+   
 	<!--Bootsrap 4 CDN-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-	<!--Fontawesome CDN-->
+    
+    <!--Fontawesome CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 	<!--Custom styles-->
 	<link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/css/login.css">
-</head>
 
 <body>
 	<div class="container">
@@ -56,54 +54,54 @@
 					</form>
 
 					<!--Syarat-->
-					<?php
-					if (isset($_POST['login'])) {
-						$Email = $_POST['User_email'];
-						$Pin = $_POST['User_pin'];
-						$qry = mysqli_query($conn, "SELECT * FROM user WHERE User_email='$Email'AND User_pin='$Pin'");
-						$cek = mysqli_num_rows($qry);
+				<?php
+				if(isset($_POST['login'])) {
+					$mail = $_POST['User_email'];
+					$Pin = $_POST['User_pin'];
+					$qry = mysqli_query($conn, "SELECT * FROM user LEFT JOIN lab ON user.User_lab_id=lab.Lab_id WHERE User_pin= '$Pin'");
+					$cek = mysqli_num_rows($qry);
 						// print_r(md5("willy"));
 						// exit;
 						if($cek > 0){
-
 							$data = mysqli_fetch_assoc($qry);
-						   
-							// cek jika user login sebagai admin
-							if($data['User_level_id']=="1"){
+							if($data['User_level_id']=="1"){ //ADMIN
+								$_SESSION['User_email'] = $mail;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "1";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan 
+								$_SESSION['Lab_nama'] = $data['Lab_nama'];
+								header("location:dashboard");
+								// print_r($data);
+								// exit;
 
-							 // buat session login dan username
-							 $_SESSION['User_email'] = $Email;
-							 $_SESSION['User_pin'] = $Pin;
-							 $_SESSION['User_level_id'] = "1";
-							 // alihkan ke halaman dashboard dosen
-							 header("location:dashboard");
+							}elseif($data['User_level_id']=="2"){//Dosen
+								$_SESSION['User_email'] = $mail;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "2";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan
+								$_SESSION['Lab_nama'] = $data['Lab_nama'];
+								header("location:dashboard");
+								// print_r($data);
+								// exit;
 
-						   	 //buat session login dan username
-							 $_SESSION['User_email'] = $Email;
-							 $_SESSION['User_pin'] = $Pin;
-							 $_SESSION['User_level_id'] = "1";
-							 // alihkan ke halaman dashboard dosen
-							 header("location:dashboard");
-
-							// cek jika user login sebagai mahasiswa
-							}else if($data['User_level_id']=="3"){
-							 // buat session login dan username
-							 $_SESSION['User_email'] = $Email;
-							 $_SESSION['User_pin'] = $Pin;
-							 $_SESSION['User_level_id'] = "3";
-							 // alihkan ke halaman dashboard mahasiswa
-							 header("location:webuser");
-						   
-							} else {
+							}elseif($data['User_level_id']=="3"){//Mahasiswa
+								$_SESSION['User_email'] = $mail;
+								$_SESSION['User_nama'] = $data['User_nama'];
+								$_SESSION['User_level_id'] = "3";
+								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default 
+								$_SESSION['Lab_nama'] = $data['Lab_nama'];
+								header("location:baranguser");
+								// print_r($data);
+								// exit;
+								
+							}
+							else {
 								echo '<span class="errormessage">Tidak Terdaftar</span>';
 							}
-							} else {
-								echo '<span class="errormessage">Tidak Terdaftar</span>';
-							}
-	
 						}
-					?>
-					<!--syarat kelar-->
+					}
+				?>
+				<!--syarat kelar-->
 
 				</div>
 				<div class="card-footer">
