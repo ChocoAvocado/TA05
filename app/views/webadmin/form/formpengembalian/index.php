@@ -131,105 +131,109 @@
                             </form>
                         </div>
 
-                        <div class="row">
+                        
+                        <form method="post">
+                            <div class="row">
 
-                            <!-- row data peminjam dan barang pinjaman -->
-                            <div class="col-lg-6">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 ">
-                                        <h6 class="m-0 font-weight-bold text-primary">Data Peminjam</h6>
+                                <!-- row data peminjam dan barang pinjaman -->
+                                <div class="col-lg-6">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 ">
+                                            <h6 class="m-0 font-weight-bold text-primary">Data Peminjam</h6>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="container">
+                                                <div class="row justify-content-center">
+
+                                                    <div class="col-lg-6 mb-0">
+                                                        <img src="../img/undraw_profile_1.svg"
+                                                            class="w-100 h-100 img-thumbnail" alt="Chania">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Nama Peminjam</h6>
+                                                    <input type="#" value="<?php echo $cariusernama ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail"
+                                                        required>
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Alamat Email</h6>
+                                                    <input type="#" value="<?php echo $cariuseremail ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Nomor Koin</h6>
+                                                    <input type="#" value="<?php echo $cariuserkoin ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Jumlah Koin</h6>
+                                                    <input type="#" value="<?php echo $cariuserjumlahkoin ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 ">
+                                            <h6 class="m-0 font-weight-bold text-primary">Data Barang Pinjaman</h6>
+                                        </div>
 
-                                    <div class="card-body">
-                                        <div class="container">
+                                        <div class="card-body">
                                             <div class="row justify-content-center">
-
                                                 <div class="col-lg-6 mb-0">
-                                                    <img src="../img/undraw_profile_1.svg"
-                                                        class="w-100 h-100 img-thumbnail" alt="Chania">
+                                                    <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
+                                                        alt="Chania">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Nama barang</h6>
+                                                    <input type="#" value="<?php echo $caribarangnama ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Nama merek</h6>
+                                                    <input type="#" value="<?php echo $caribarangmerk ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">nama loker</h6>
+                                                    <input type="#" value="<?php echo $caribarangloker ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
+                                                </div>
+
+                                                <div class="col-11 mb-4 form-group disablingKeyboard">
+                                                    <h6 class="mb-0 text-gray-800">Jumlah Barang Pinjam</h6>
+                                                    <input type="#" value="<?php echo $caribarangjumlah ?>"
+                                                        class="form-control form-control-user" id="exampleInputEmail">
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Nama Peminjam</h6>
-                                                <input type="#" value="<?php echo $cariusernama ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Alamat Email</h6>
-                                                <input type="#" value="<?php echo $cariuseremail ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Nomor Koin</h6>
-                                                <input type="#" value="<?php echo $cariuserkoin ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Jumlah Koin</h6>
-                                                <input type="#" value="<?php echo $cariuserjumlahkoin ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 ">
-                                        <h6 class="m-0 font-weight-bold text-primary">Data Barang Pinjaman</h6>
-                                    </div>
 
-                                    <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-6 mb-0">
-                                                <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
-                                                    alt="Chania">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
 
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Nama barang</h6>
-                                                <input type="#" value="<?php echo $caribarangnama ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Nama merek</h6>
-                                                <input type="#" value="<?php echo $caribarangmerk ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">nama loker</h6>
-                                                <input type="#" value="<?php echo $caribarangloker ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-
-                                            <div class="col-11 mb-4 form-group disablingKeyboard">
-                                                <h6 class="mb-0 text-gray-800">Jumlah Barang Pinjam</h6>
-                                                <input type="#" value="<?php echo $caribarangjumlah ?>"
-                                                    class="form-control form-control-user" id="exampleInputEmail">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <form method="post">
 
                             <input type="hidden" name="cariuser" value="<?= $valuecariuser ?>" required>
                             <input type="hidden" name="caribarang" value="<?= $valuecaribarang ?>" required>
-                            <input type="hidden" name="jumlahbarangpinjam" value="<?= $valuejumlahbarangpinjam ?>" required>
+                            <input type="hidden" name="jumlahbarangpinjam" value="<?= $valuejumlahbarangpinjam ?>"
+                                required>
 
                             <!-- Bukti Peminjaman dan tombol pinjam-->
                             <div class="row justify-content-center">
@@ -321,7 +325,7 @@
                 </div>
             </div>
             <!-- End of main content -->
-            
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
