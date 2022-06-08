@@ -88,7 +88,7 @@
                                         <tr>
                                             <?php
                                             $usertag = $_SESSION['User_tag'];
-                                            $ambildatamahasiswa= mysqli_query($conn, "SELECT DISTINCT User_id,User_nama,User_nokoin,User_koin,Pinjam_status,Pinjam_user_tag FROM user 
+                                            $ambildatamahasiswa= mysqli_query($conn, "SELECT DISTINCT User_id,User_nama,User_nokoin,User_koin,Pinjam_user_tag FROM user 
                                             LEFT JOIN pinjam ON user.User_tag=pinjam.Pinjam_user_tag 
                                             WHERE User_level_id='3' ORDER BY User_nokoin");                                            
 
@@ -98,11 +98,10 @@
                                                 $namamahasiswa  = $data['User_nama'];
                                                 $nokoin         = $data['User_nokoin'];
                                                 $jumlahkoin     = $data['User_koin'];
-                                                $status         = $data['Pinjam_status'];
 
                                                 $tagmahasiswa   = $data['Pinjam_user_tag'];
 
-                                                if($status == '3'){
+                                                if($jumlahkoin == '10'){
                                                     $status = 
                                                 "<div class='form-check'>
                                                 <input class='form-check-input' type='checkbox' value=''
@@ -124,10 +123,8 @@
 
 
                                             <td><?= $status; ?></td>
-                                            
                                             <td><?= $nokoin; ?></td>
                                             <td><?= $jumlahkoin; ?></td>
-
                                             <td><?= $idmahasiswa; ?></td>
                                             <td><?= $namamahasiswa; ?></td>
                                             <td style="width: 5%;">

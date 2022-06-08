@@ -343,20 +343,21 @@ if (isset($_POST["tombolperpanjangan"])) {
   $planperpanjangan = mysqli_fetch_array($cekperpanjangan);
 if($pinjamuserid != "" && $pinjambarangid != ""){
   if(is_null($planperpanjangan[0])){
-    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan' 
+    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan', Pinjam_status=1 
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
   header("location:formpengembalian");
   }else if(is_null($planperpanjangan[1])){
-    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' 
+    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' Pinjam_status=1
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
   header("location:formpengembalian");
   }else {
-    $show_modal_perpanjangan = true;
-    header("location:formpengembalian");
+    //$show_modal_perpanjangan = true;
+    header("location:dashboard");
   }
 } else{
   header("location:dashboard");
 }
+
   
 }
 //END OF PERPANJANGAN
@@ -378,7 +379,7 @@ if (isset($_POST["kembalialat"])) {
 
   //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
   $peminjaman1 = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') + $jumlahbarangpinjam) WHERE Barang_id='$pinjambarangid';");
-  $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali' WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali', Pinjam_status=2 WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
 
   if ($pengembalian) {
     header("location:formpengembalian");

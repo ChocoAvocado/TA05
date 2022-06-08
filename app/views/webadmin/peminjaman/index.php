@@ -87,6 +87,7 @@
                         </div>
                     </div>
                     <!-- end of page heading -->
+                    <p>*Tanggal Pinjam dan NIM yang sama jadi satu baris</p>
 
                     <br>
                     <!-- DataTales Example -->
@@ -114,7 +115,7 @@
                                         <tr>
                                             <?php
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
-                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag 
+                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag WHERE Pinjam_status != 2 
                                             ORDER BY Pinjam_tgl DESC, Pinjam_user_tag ASC;");
 
                                             $NamaPeminjam = "";
