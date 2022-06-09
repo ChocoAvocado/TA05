@@ -1,6 +1,8 @@
 <?php 
 	require_once __DIR__.('/../../../function.php'); 
+    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +30,7 @@
 
     <!-- Custom styles for this page -->
     <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    
+
 
     <style>
     #container {
@@ -251,8 +253,9 @@
                                                             <span class="fas fa-minus"></span>
                                                         </button>
                                                     </span>
-                                                    <input type="text" name="jumlahbarangpinjam" class="form-control input-number"
-                                                        value="1" min="1" max="<?= $caribarangjumlah ?>">
+                                                    <input type="text" name="jumlahbarangpinjam"
+                                                        class="form-control input-number" value="1" min="1"
+                                                        max="<?= $caribarangjumlah ?>">
                                                     <span class="btn-group">
                                                         <button type="button" class="btn btn-success btn-number"
                                                             data-type="plus" data-field="jumlahbarangpinjam">
@@ -360,25 +363,7 @@
 </body>
 
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anda ingin Logout?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">x</span>
-                </button>
-            </div>
-            <div class="modal-body">Pilih "Logout" untuk keluar dari akun.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
@@ -404,11 +389,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 <script src="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
-
-
-<?php 
+<?php
 include "js.php";
+include "modal.php";
 ?>
+
 
 
 </html>

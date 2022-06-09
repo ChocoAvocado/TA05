@@ -273,12 +273,12 @@ if (isset($_POST["simpan_ubah_barang"])) {
 
 
 
-//-------------------------------------AKTIFITAS-----------------------------------------------// @author Albert < albertuschristianp@gmail.com >
-
+//-------------------------------------AKTIFITAS-----------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
 
 
 //pencarian PEMINJAM, PENGEMBALIAN DAN BARANG PEMINJAMAN PENGEMBALIAN
 
+//$_SESSION['suksespinjam_status'] = false;
 //PEMINJAMAN    #reset auto increment mysql >> ALTER TABLE 'pinjam' AUTO_INCREMENT = 0;
 if (isset($_POST["tombolpinjam"])) {
   //print_r($_POST);
@@ -299,21 +299,13 @@ $tglbarangkembali   = date('Y-m-d', $tglbarangkembali);
 // exit;
 
 //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
-$peminjaman1 = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') - $pinjamjumlahbarang) WHERE Barang_id='$pinjambarangid';");
+$pengurangan_jumlahbarangsisa = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') - $pinjamjumlahbarang) WHERE Barang_id='$pinjambarangid';");
+$pengurangan_jumlahkoin = mysqli_query($conn, "UPDATE `user` SET `User_koin` = (SELECT `User_koin` FROM `user` WHERE User_tag ='$pinjamuserid')-1 WHERE `User_tag` ='$pinjamuserid';");
 $peminjaman2 = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
 VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali');");
 
-//coba pake query dari internet sumber laen
-// $conn = new PDO("mysql:host=localhost;dbname=peminjamanalat",'root','');
-
-// $sth = $conn->prepare("insert into `pinjam` 
-// (Pinjam_user_tag,Pinjam_barang_id,Pinjam_jumlah,Pinjam_tgl_kembaliplan1) 
-// values ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali')");  
-
-// $sth -> setFetchMode(PDO:: FETCH_OBJ);
-// $sth -> execute();
-
 if ($peminjaman2) {
+  $suksespinjam_status = true;
  header("location:formpeminjaman");
 } else {
  header('location:formpeminjaman');
@@ -322,8 +314,8 @@ if ($peminjaman2) {
 //END OF PEMINJAMAN
 
 
-$show_modal_perpanjangan = true;
 //PERPANJANGAN
+$show_modal_perpanjangan = true;
 if (isset($_POST["tombolperpanjangan"])) {
 
   $pinjamuserid     = $_POST["cariuser"];
@@ -378,7 +370,8 @@ if (isset($_POST["kembalialat"])) {
   // $pinjamid = $data['Pinjam_id'];
 
   //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
-  $peminjaman1 = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') + $jumlahbarangpinjam) WHERE Barang_id='$pinjambarangid';");
+  $penambahan_jumlahbarangsisa = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') + $jumlahbarangpinjam) WHERE Barang_id='$pinjambarangid';");
+  $pengurangan_jumlahkoin = mysqli_query($conn, "UPDATE `user` SET `User_koin` = (SELECT `User_koin` FROM `user` WHERE User_tag ='$pinjamuserid')+1 WHERE `User_tag` ='$pinjamuserid';");
   $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali', Pinjam_status=2 WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
 
   if ($pengembalian) {
@@ -491,3 +484,24 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   }
 }
 //END OF TOMBOL CARI PENGEMBALIAN
+
+
+
+//-------------------------------------FORM PENGECEKAN-----------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
+
+//PENGECEKAN
+if (isset($_POST["pengecekan_submit"])) {
+
+  
+  $pengecekan = mysqli_query($conn, "UPDATE `pinjam` SET `Pinjam_status`='3' WHERE Pinjam_tgl_kembalireal IS NULL && 
+  ((Pinjam_tgl_kembaliplan1<CURRENT_DATE && Pinjam_tgl_kembaliplan2 IS NULL && Pinjam_tgl_kembaliplan3 IS NULL) OR 
+  (Pinjam_tgl_kembaliplan2<CURRENT_DATE && Pinjam_tgl_kembaliplan3 IS NULL) OR
+  (Pinjam_tgl_kembaliplan3<CURRENT_DATE));");
+  
+// seharusnya muncul popup lalu tombol logout
+  if ($pengecekan) {
+    header("location:checker");
+  } else
+    header('location:checker');
+}
+//END OF PENGECEKAN

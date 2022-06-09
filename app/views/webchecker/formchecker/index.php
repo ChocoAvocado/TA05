@@ -19,7 +19,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
@@ -32,7 +34,8 @@
     <script src="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css"
+        href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -61,33 +64,36 @@
                     </div>
                     <!-- end of page heading -->
 
+
                     <br>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Peminjaman Barang</h6>
-                        </div>
-                        <div class="card-body">
 
-                            <div class="table-responsive">
-                                <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Tabel Peminjaman Barang</h6>
+                            </div>
+                            <div class="card-body">
 
-                                            <th>Check</th>
-                                            <th>No-Koin</th>
-                                            <th>Jumlah Koin</th>
-                                            <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Barang Pinjam</th>
+                                <div class="table-responsive">
+                                    <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
 
-                                        </tr>
-                                    </thead>
+                                                <th>Check</th>
+                                                <th>No-Koin</th>
+                                                <th>Jumlah Koin</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Barang Pinjam</th>
 
-                                    <tbody>
-                                        <tr>
-                                            <?php
-                                            $usertag = $_SESSION['User_tag'];
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <?php
+                                            
                                             $ambildatamahasiswa= mysqli_query($conn, "SELECT DISTINCT User_id,User_nama,User_nokoin,User_koin,Pinjam_user_tag FROM user 
                                             LEFT JOIN pinjam ON user.User_tag=pinjam.Pinjam_user_tag 
                                             WHERE User_level_id='3' ORDER BY User_nokoin");                                            
@@ -101,19 +107,19 @@
 
                                                 $tagmahasiswa   = $data['Pinjam_user_tag'];
 
-                                                if($jumlahkoin == '10'){
+                                                if($jumlahkoin == '10'){ //checkbox diberi value 1 atau 0 dengan name (koin_$idmahasiswa) masih belum bisa kalau dicek uncheck secara manual
                                                     $status = 
                                                 "<div class='form-check'>
-                                                <input class='form-check-input' type='checkbox' value=''
-                                                    id='flexCheckChecked' checked>
+                                                <input class='form-check-input' type='checkbox' value='1' 
+                                                    id='flexCheckChecked' name='koin_$idmahasiswa'checked>
                                                 <label class='form-check-label' for='flexCheckChecked'>
                                                 </label>
                                                 </div>";
                                                 }else{
                                                     $status = 
                                                 "<div class='form-check'>
-                                                <input class='form-check-input' type='checkbox' value=''
-                                                    id='flexCheckChecked' >
+                                                <input class='form-check-input' type='checkbox' value='0'
+                                                    id='flexCheckChecked' name='koin_$idmahasiswa'>
                                                 <label class='form-check-label' for='flexCheckChecked'>
                                                 </label>
                                                 </div>";
@@ -122,66 +128,66 @@
                                             ?>
 
 
-                                            <td><?= $status; ?></td>
-                                            <td><?= $nokoin; ?></td>
-                                            <td><?= $jumlahkoin; ?></td>
-                                            <td><?= $idmahasiswa; ?></td>
-                                            <td><?= $namamahasiswa; ?></td>
-                                            <td style="width: 5%;">
-                                                <span>
-                                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                                        data-target="#view<?= $tagmahasiswa; ?>">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </button>
-                                                    
-                                                </span>
+                                                <td><?= $status; ?></td>
+                                                <td><?= $nokoin; ?></td>
+                                                <td><?= $jumlahkoin; ?></td>
+                                                <td><?= $idmahasiswa; ?></td>
+                                                <td><?= $namamahasiswa; ?></td>
+                                                <td style="width: 5%;">
+                                                    <span>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-toggle="modal" data-target="#view<?= $tagmahasiswa; ?>"
+                                                            style="">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </button>
+
+                                                    </span>
 
 
-                                                <!-- The Modal Table-->
+                                                    <!-- The Modal Table-->
 
-                                                <div class="modal fade" id="view<?= $tagmahasiswa; ?>">
-                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <!-- Modal Header -->
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title">Data Barang Pinjaman</h4>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal">&times;</button>
-                                                            </div>
+                                                    <div class="modal fade" id="view<?= $tagmahasiswa; ?>">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Data Barang Pinjaman</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
 
-                                                            <!-- Modal body -->
-                                                            <form method="post">
-                                                                <div class="modal-body">
+                                                                <!-- Modal body -->
+                                                                <form method="post">
+                                                                    <div class="modal-body">
 
-                                                                    <!-- DataTales Example -->
-                                                                    <div class="card shadow mb-4">
+                                                                        <!-- DataTales Example -->
+                                                                        <div class="card shadow mb-4">
 
-                                                                        <div class="card-body">
+                                                                            <div class="card-body">
 
-                                                                            <div class="table-responsive">
-                                                                                <table id="dataTable_0"
-                                                                                    class="table table-bordered dataTables_wrapper"
-                                                                                    width="100%" cellspacing="0">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            
-                                                                                            <th>ID Barang</th>
-                                                                                            <th>Nama Barang</th>
-                                                                                            <th>Nama Lab</th>
-                                                                                        </tr>
-                                                                                    </thead>
+                                                                                <div class="table-responsive">
+                                                                                    <table id="dataTable_0"
+                                                                                        class="table table-bordered dataTables_wrapper"
+                                                                                        width="100%" cellspacing="0">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>ID Barang</th>
+                                                                                                <th>Nama Barang</th>
+                                                                                                <th>Nama Lab</th>
+                                                                                            </tr>
+                                                                                        </thead>
 
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <?php
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <?php
                                                                                                 
 
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT Barang_id,Barang_nama,Lab_nama FROM pinjam 
                                                                                                 JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
                                                                                                 JOIN lab ON barang.Barang_lab_id=lab.Lab_id
-                                                                                                WHERE Pinjam_user_tag='$tagmahasiswa'");
+                                                                                                WHERE Pinjam_user_tag='$tagmahasiswa' && Pinjam_tgl_kembalireal IS NULL");
 
                                                                                                 $i = 1;
                                                                                                 while ($data = mysqli_fetch_array($ambildatabarang)) {
@@ -191,38 +197,46 @@
                                                                                                     
                                                                                                 ?>
 
-                                                                                            
-                                                                                            <td><?= $IDBarang; ?></td>
-                                                                                            <td><?= $NamaBarang; ?></td>
-                                                                                            <td><?= $Namalab; ?></td>
 
-                                                                                        </tr>
-                                                                                        <?php
+                                                                                                <td><?= $IDBarang; ?>
+                                                                                                </td>
+                                                                                                <td><?= $NamaBarang; ?>
+                                                                                                </td>
+                                                                                                <td><?= $Namalab; ?>
+                                                                                                </td>
+
+                                                                                            </tr>
+                                                                                            <?php
                                                                                                 }
                                                                                         ?>
-                                                                                    </tbody>
-                                                                                </table>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
 
-                                            </td>
+                                                </td>
 
-                                        </tr>
-                                        <?php
+                                            </tr>
+                                            <?php
                                                 }
                                         ?>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-success" name="pengecekan_submit">Submit</button>
+                        </div>
+                    </form>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -300,7 +314,7 @@
         "lengthMenu": [5, 10, 20],
         "columnDefs": [{
             className: "dt-nowrap",
-            "targets": [3, 4, 5, 6],
+            "targets": [1, 3, 4],
         }],
     });
     </script>
