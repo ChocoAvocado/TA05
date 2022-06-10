@@ -106,8 +106,8 @@
                                                 $jumlahkoin     = $data['User_koin'];
 
                                                 $tagmahasiswa   = $data['Pinjam_user_tag'];
-
-                                                if($jumlahkoin == '10'){ //checkbox diberi value 1 atau 0 dengan name (koin_$idmahasiswa) masih belum bisa kalau dicek uncheck secara manual
+//checkbox diberi value 1 atau 0 dengan name (koin_$idmahasiswa) masih belum bisa kalau dicek uncheck secara manual
+                                                if($jumlahkoin == '10'){ 
                                                     $status = 
                                                 "<div class='form-check'>
                                                 <input class='form-check-input' type='checkbox' value='1' 
