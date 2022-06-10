@@ -1,6 +1,6 @@
 <?php
- require "function.php";
- include "lib_qrcode/qrlib.php";
+ require_once __DIR__.( "function.php");
+ include __DIR__."lib_qrcode/qrlib.php";
 ?>
 <html>
 
