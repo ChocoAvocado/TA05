@@ -2,7 +2,10 @@
 	require_once __DIR__.('/../../../function.php'); 
 ?>
 
-
+<!--include modal disini-->
+<?php 
+include "modal.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -341,10 +344,7 @@
 </body>
 
 
-<!--include modal disini-->
-<?php 
-include "modal.php";
-?>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>

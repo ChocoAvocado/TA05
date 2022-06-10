@@ -39,10 +39,10 @@ $(function() {
 </script>
 
 <!--mengaktifkan modal perpanjangan-->
-<?php if($show_modal_perpanjangan):?>
+<?php if(getUrlParam('gagalperpanjang')):?>
 <script>
     $(document).ready(function(){
-        $('#modalperpanjangan').modal('show');
+        $("#modalperpanjangan").modal('show');
     });
 </script>
 <?php endif; ?>

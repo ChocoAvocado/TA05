@@ -736,7 +736,7 @@
     <script>
     <?php if (getUrlParam('cari')) : ?>
     $("#popupsearch").modal("show");
-    <?php endif; ?>
+    <?php endif; ?> 
     </script>
 
 </body>

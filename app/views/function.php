@@ -339,12 +339,12 @@ if($pinjamuserid != "" && $pinjambarangid != ""){
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
   header("location:formpengembalian");
   }else if(is_null($planperpanjangan[1])){
-    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan' Pinjam_status=1
+    $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan', Pinjam_status=1
   WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
   header("location:formpengembalian");
   }else {
     //$show_modal_perpanjangan = true;
-    header("location:dashboard");
+    header("location:formpengembalian?gagalperpanjang=");
   }
 } else{
   header("location:dashboard");
