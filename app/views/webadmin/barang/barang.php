@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__.('/../../function.php');
+    require "function.php";
     include "lib_qrcode/qrlib.php";
     
 ?>
@@ -17,17 +17,17 @@
     <title>Pinjam Alat - Barang</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?= BASEURL; ?>/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
 
 
     <!-- Custom styles for this page -->
-    <link href="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!--include css js datatable-->
 
@@ -35,8 +35,7 @@
     <script src="../plugins/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!--tampilan datatable-->
-    <link rel="stylesheet" type="text/css"
-        href="<?= BASEURL; ?>/plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="..plugins/DataTables/DataTables-1.11.5/css/dataTables.bootstrap4.css">
 
 </head>
 
@@ -45,16 +44,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include __DIR__."/../template/sidebar.php"?>
+        <?php include "sidebar.php"?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- adding sidebar here -->
-                <?php include __DIR__."/../templates/topbar.php"?>
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -175,6 +171,9 @@
                                         Alerts</a>
                                 </div>
                             </li>
+
+
+
                             <div class="topbar-divider d-none d-sm-block"></div>
 
                             <!-- Nav Item - User Information -->
@@ -274,8 +273,17 @@
                                     <tbody>
                                         <tr>
                                             <?php
-                                        $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
-                                        $i=1;
+                                          
+                                            if(isset($_SESSION['User_lab_id']))
+                                            {
+                                                 $Userlabid=$_SESSION['User_lab_id'];
+                                                 $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
+                                            }
+                                            else
+                                            {
+                                                    $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
+                                                    $i=1;
+                                            }
                                         while($data = mysqli_fetch_array($ambilsemuadatabarang))
                                         {
 
@@ -298,7 +306,7 @@
                                             $Foto=$data['Barang_foto'];
                                             if($data['Barang_foto']!="" && $data['Barang_foto']!=NULL)
                                             {
-                                                $img_barang = '<img src="../img/'.$data['Barang_foto'].'" style="width: 100px;">';
+                                                $img_barang = '<img src="/../img/'.$data['Barang_foto'].'" style="width: 100px;">';
                                             }else{
                                                 $img_barang = "-";
                                             }
@@ -460,7 +468,6 @@
 
 
                                             </td>
-kjghjgjvj
 
                                             <td>
                                                 <span>
@@ -488,51 +495,60 @@ kjghjgjvj
 
                                                                 <!-- Modal body -->
                                                                 <form method="post">
-                                                                    <div class="modal-body">
+                                                                    <div table class="modal-body">
 
-                                                                        <strong>
-                                                                            <font size="4"> ID Barang </font>
-                                                                        </strong>
-                                                                        <br>
 
-                                                                        <font color="blue"> <?="$IDBarang";?> </font>
-                                                                        <br>
-                                                                        <br>
-                                                                        <strong>
-                                                                            <font size="4"> Nama Barang </font>
-                                                                        </strong>
-                                                                        <br>
-                                                                        <font color="blue"> <?="$NamaBarang";?> </font>
-                                                                        <br>
-                                                                        <br>
-                                                                        <Strong>
-                                                                            <font size="4"> Jumlah Barang </font>
-                                                                        </Strong>
-                                                                        <br>
+                                                                        <table
+                                                                            class="table table-striped table-bordered">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <td> Gambar </td>
+                                                                                    <td> <?php echo $img_barang ?> </td>
+                                                                                </tr>
 
-                                                                        <font color="blue"> <?="$Jumlah";?> </font>
-                                                                        <br>
-                                                                        <br>
-                                                                        <Strong>
-                                                                            <font size="4"> Merek Barang </font>
-                                                                        </Strong>
-                                                                        <br>
-                                                                        <font color="blue"> <?="$MerekBarang";?> </font>
-                                                                        <br>
-                                                                        <br>
-                                                                        <Strong>
-                                                                            <font size="4"> Foto Barang </font>
-                                                                        </Strong>
-                                                                        <br>
-                                                                        <font color="blue"> <?="$img_barang";?> </font>
-                                                                        <br>
-                                                                        <Strong>
-                                                                            <font size="4"> QR Code </font>
-                                                                        </Strong>
-                                                                        <br>
-                                                                        <!--<font color = "blue"> <?="$img_qrcode";?> </font>-->
-                                                                        <!--<br>-->
-
+                                                                                <!-- <tr>
+                                                                                    <td> Lab </td>
+                                                                                    <td> <?php echo $data['nama_lab'] ?>
+                                                                                    </td>
+                                                                                </tr> -->
+                                                                                <tr>
+                                                                                    <td width='35%'><strong>ID Barang
+                                                                                        </strong></td>
+                                                                                    <td><?php echo $data['Barang_id'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong> Nama Barang </strong>
+                                                                                    </td>
+                                                                                    <td><?php echo $data['Barang_nama'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong> Merk Barang </strong>
+                                                                                    </td>
+                                                                                    <td><?php echo $data['Barang_merk'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong> Loker Barang</strong>
+                                                                                    </td>
+                                                                                    <td><?php echo $data['Barang_Loker'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong> Total Barang</strong>
+                                                                                    </td>
+                                                                                    <td><?php echo $data['Barang_jumlah'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><strong> Sisa Barang</strong>
+                                                                                    </td>
+                                                                                    <td><?php echo $data['Barang_jumlah'] ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
                                                                         <input type="hidden" name="ID_Barang"
                                                                             value="<?=$IDBarang;?>">
                                                                 </form>
@@ -541,6 +557,11 @@ kjghjgjvj
                                                                 <br>
                                                                 <div>
                                                                     <div class="modal-top">
+                                                                        <button type="submit" class="btn btn-success">
+                                                                            <a href="export.php">
+                                                                                Cetak
+                                                                        </button>
+
                                                                         <button type="submit"
                                                                             class="btn btn-primary float-right"
                                                                             data-dismiss="modal">
@@ -548,23 +569,16 @@ kjghjgjvj
                                                                         </button>
                                                                     </div>
                                                                 </div>
-
-
+                                                                <br>
                                             </td>
-
                                         </tr>
-
                                         <?php
                                         }   
                                         ?>
-
-
                                     </tbody>
-
                             </div>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -768,24 +782,24 @@ kjghjgjvj
     ?>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
-            <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="../vendor/jquery/jquery.min.js"></script>
+            <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
             <!-- Core plugin JavaScript-->
-            <script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
             <!-- Custom scripts for all pages-->
-            <script src="<?= BASEURL; ?>/js/sb-admin-2.min.js"></script>
+            <script src="../js/sb-admin-2.min.js"></script>
 
             <!-- Page level plugins -->
-            <script src="<?= BASEURL; ?>/vendor/datatables/jquery.dataTables.js"></script>
-            <script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
+            <script src="../vendor/datatables/jquery.dataTables.js"></script>
+            <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 
             <!-- Page level custom scripts -->
-            <script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
+            <script src="../js/demo/datatables-demo.js"></script>
 
 
-            <script src="<?= BASEURL; ?>/js/app.js"></script>
+            <script src="../js/app.js"></script>
 
             <script>
             $(document).ready(function() {

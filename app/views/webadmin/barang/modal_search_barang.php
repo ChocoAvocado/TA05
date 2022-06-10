@@ -37,10 +37,10 @@
                     <td> <?php echo $img_barang ?> </td> 
                 </tr>
                  
-                <tr>
+                <!-- <tr>
                     <td> Lab </td> 
                     <td> <?php echo $data['nama_lab'] ?>  </td> 
-                </tr>
+                </tr> -->
                 <tr>
                     <td width='35%'><strong>ID Barang </strong></td>
                     <td><?php echo $data['Barang_id'] ?></td>
@@ -50,15 +50,19 @@
                     <td><?php echo $data['Barang_nama'] ?></td>
                 </tr>
                 <tr>
-                    <td><strong> Merk </strong></td>
+                    <td><strong> Merk Barang </strong></td>
                     <td><?php echo $data['Barang_merk'] ?></td>
                 </tr>
                 <tr>
-                    <td><strong> Loker </strong></td>
+                    <td><strong> Loker Barang</strong></td>
                     <td><?php echo $data['Barang_Loker'] ?></td>
                 </tr>
                 <tr>
-                    <td><strong> Jumlah </strong></td>
+                    <td><strong> Total Barang</strong></td>
+                    <td><?php echo $data['Barang_jumlah'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong> Sisa Barang</strong></td>
                     <td><?php echo $data['Barang_jumlah'] ?></td>
                 </tr>
             </thead>
