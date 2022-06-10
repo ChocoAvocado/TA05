@@ -15,7 +15,7 @@
 
     <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
-    <title>Pinjam Alat - Baran</title>
+    <title>Pinjam Alat - Barang</title>
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
