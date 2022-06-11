@@ -398,6 +398,18 @@ if (getUrlParam('cariuser') != null ) {
   $idpeminjam     = getUrlParam('cariuser');
   $idbarangpinjam = getUrlParam('caribarang');
 
+  $cekkoin = mysqli_query($conn, "SELECT `User_koin` FROM `user` WHERE `User_tag`='$idpeminjam';");
+  $cekkoin_array = mysqli_fetch_array($cekkoin);
+
+  // var_dump($cekkoin_array['User_koin']);
+  // exit;
+
+  if($cekkoin_array['User_koin'] == "0"){
+    
+    header("location:formpeminjaman?peminjaman_cariuserkoin_gagal=1");
+    exit;
+  } else {}
+
   //checking apakah data peminjaman ada yang NULL >> kalau null popup peringatan (show)
   $cekpinjaman = mysqli_query($conn, "SELECT `Pinjam_id` FROM `pinjam` 
   WHERE `Pinjam_user_tag`='$idpeminjam' AND `Pinjam_barang_id`='$idbarangpinjam' AND `Pinjam_tgl_kembalireal` IS NULL");
