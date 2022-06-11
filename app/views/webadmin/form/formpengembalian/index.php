@@ -131,7 +131,7 @@
                             </form>
                         </div>
 
-                        
+
                         <form method="post">
                             <div class="row">
 
@@ -147,8 +147,9 @@
                                                 <div class="row justify-content-center">
 
                                                     <div class="col-lg-6 mb-0">
-                                                        <img src="../img/undraw_profile_1.svg"
-                                                            class="w-100 h-100 img-thumbnail" alt="Chania">
+                                                        <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+                                                        <img src='<?= BASEURL; ?>/img/<?php echo $cariuserfoto ?>'
+                                                            width="80" class="w-100 h-100 img-thumbnail" alt="Chania">
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,9 +192,9 @@
 
                                         <div class="card-body">
                                             <div class="row justify-content-center">
-                                                <div class="col-lg-6 mb-0">
-                                                    <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
-                                                        alt="Chania">
+                                            <div class="col-lg-6 mb-0"> <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+                                                    <img src='<?= BASEURL; ?>/img/<?php echo $caribarangfoto ?>'   
+                                                        width="80" class="w-100 h-100 img-thumbnail" alt="Chania">
                                                 </div>
                                             </div>
                                             <br>

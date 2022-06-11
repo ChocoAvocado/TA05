@@ -119,7 +119,7 @@
                                         </button>
                                     </div>
                                     <div class="col-xl-2 col-sm-2 col-md-2">
-                                        <button autocomplete="false" type="reset" name="caripinjaman" 
+                                        <button autocomplete="false" type="reset" name="caripinjaman"
                                             class="btn btn-secondary">
                                             <span class="text">Clear</span>
                                         </button>
@@ -144,9 +144,9 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
 
-                                                <div class="col-lg-6 mb-0">
-                                                    <img src="../img/undraw_profile_1.svg"
-                                                        class="w-100 h-100 img-thumbnail" alt="Chania">
+                                                <div class="col-lg-6 mb-0"> <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+                                                    <img src='<?= BASEURL; ?>/img/<?php echo $cariuserfoto ?>'   
+                                                        width="80" class="w-100 h-100 img-thumbnail" alt="Chania">
                                                 </div>
                                             </div>
                                         </div>
@@ -190,9 +190,9 @@
                                     <div class="card-body">
                                         <div class="container">
                                             <div class="row justify-content-center">
-                                                <div class="col-lg-6 mb-0">
-                                                    <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
-                                                        alt="Chania">
+                                                <div class="col-lg-6 mb-0"> <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+                                                    <img src='<?= BASEURL; ?>/img/<?php echo $caribarangfoto ?>'
+                                                        width="80" class="w-100 h-100 img-thumbnail" alt="Chania">
                                                 </div>
                                             </div>
                                         </div>

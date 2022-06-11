@@ -1,6 +1,6 @@
 <?php
 //PENYAMBUNG PHP 
-$conn = mysqli_connect("localhost", "root", "", "peminjamanalatz");
+$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 //$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 // if(isset($_POST)){
 // // print_r($_POST);
@@ -448,6 +448,7 @@ if (getUrlParam('cariuser') != null ) {
       $cariuseremail      = $user['User_email'];
       $cariuserkoin       = $user['User_nokoin'];
       $cariuserjumlahkoin = $user['User_koin'];
+      $cariuserfoto     = $user['User_foto'];
     } else {
       header("location:formpeminjaman?peminjaman_cariuser_gagal=1");
     }
@@ -464,6 +465,7 @@ if (getUrlParam('cariuser') != null ) {
       $caribarangmerk   = $barang['Barang_merk'];
       $caribarangloker  = $barang['Barang_Loker'];
       $caribarangjumlah = $barang['Barang_jumlah_sisa'];
+      $caribarangfoto   = $barang['Barang_foto'];
       }else{
       header("location:formpeminjaman?peminjaman_caribarangjumlah_gagal=1"); }
     } else {
@@ -477,11 +479,13 @@ if (getUrlParam('cariuser') != null ) {
   $cariuseremail      = "";
   $cariuserkoin       = "";
   $cariuserjumlahkoin = "";
+  $cariuserfoto     = "undraw_profile_3.svg";
 
   $caribarangnama   = "";
   $caribarangmerk   = "";
   $caribarangloker  = "";
   $caribarangjumlah = "";
+  $caribarangfoto   = "undraw_rocket.svg";
 }
 //END OF TOMBOL CARI PEMINJAMAN
 
@@ -518,6 +522,7 @@ if (getUrlParam('cariuserpengembalian') != null ) {
       $cariuserkoin             = $user['User_nokoin'];
       $cariuserjumlahkoin       = $user['User_koin'];
       $valuejumlahbarangpinjam  = $user['Pinjam_jumlah'];
+      $cariuserfoto             = $user['User_foto'];
     } else {
       header("location:formpengembalian?pengembalian_pencarian_gagal=1"); 
     }
@@ -531,6 +536,7 @@ if (getUrlParam('cariuserpengembalian') != null ) {
       $caribarangmerk   = $barang['Barang_merk'];
       $caribarangloker  = $barang['Barang_Loker'];
       $caribarangjumlah = $barang['Pinjam_jumlah'];
+      $caribarangfoto   = $barang['Barang_foto'];
     } else {
       header("location:formpengembalian?pengembalian_pencarian_gagal=1"); 
     }
