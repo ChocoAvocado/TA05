@@ -1,11 +1,26 @@
 <?php
 //PENYAMBUNG PHP 
-$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
+$conn = mysqli_connect("localhost", "root", "", "peminjamanalatz");
 //$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 // if(isset($_POST)){
 // // print_r($_POST);
 // //     exit;
 // }
+function isLogin(){
+if(!isset($_SESSION['User_level_id'])){
+  return false;
+}
+$levelid= $_SESSION['User_level_id'];
+if($levelid == '1'){
+  header("location:dashboard");
+}
+if($levelid == '2'){
+  header("location:switchlogin");
+}
+if($levelid == '3'){
+  header("location:baranguser");
+}
+}
 
 function getUrlParam($key) {
   // $url = "http://localhost/websitePeminjaman/public/user";

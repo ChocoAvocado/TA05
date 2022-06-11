@@ -622,7 +622,7 @@
                 <div class="modal-body">Pilih "Logout" untuk keluar dari akun.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="/websitePeminjaman/public/logout">Logout</a>
                 </div>
             </div>
         </div>
