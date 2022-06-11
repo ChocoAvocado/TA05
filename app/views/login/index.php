@@ -78,7 +78,7 @@
 								$_SESSION['User_level_id'] = "2";
 								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan
 								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								header("location:dashboard");
+								header("location:switchlogin");
 								// print_r($data);
 								// exit;
 

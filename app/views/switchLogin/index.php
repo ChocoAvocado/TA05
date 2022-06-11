@@ -34,84 +34,25 @@
                     <h1>RFID Login</h1>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="login">
-
-
-                        <!-- <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="Pin" id="pin" name="pin" disabled>
-                        <span class="eye" onclick="fungsiku()">
-                        <i id="hide2" class="fa fa-eye"></i>
-                        <i id="hide1" class="fa fa-eye-slash"></i>
-                        </span>
-					</div> -->
-                        
+                    <form method="post" >
                             <a href="" type="submit" class="btn float-center"></a>
-                            <h5 class="text-white-50 ">Silahkan Pilih lur</h5>
+                            <h5 class="text-white-50 ">Silahkan Pilih Role</h5>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-warning"
-                                    name="pengecekan_submit">Mahasiswa</button>
-                                <button type="submit" class="btn btn-success" name="pengecekan_submit">Dosen</button>
+                                    name="dosen">Dosen/Instruktur</button>
+                                <button type="submit" class="btn btn-success" name="dosenp">Dosen/Peminjam</button>
                             </div>
                         
                     </form>
                     <!--Syarat-->
                     <?php
-				if(isset($_POST['login'])) {
-					$Tag = $_POST['User_tag'];
-					$qry = mysqli_query($conn, "SELECT * FROM user LEFT JOIN lab ON user.User_lab_id=lab.Lab_id WHERE User_tag= '$Tag'");
-					$cek = mysqli_num_rows($qry);
-						// print_r(md5("willy"));
-						// exit;
-						if($cek > 0){
-							$data = mysqli_fetch_assoc($qry);
-							if($data['User_level_id']=="1"){ //ADMIN
-								$_SESSION['User_tag'] = $Tag;
-								$_SESSION['User_nama'] = $data['User_nama'];
-								$_SESSION['User_level_id'] = "1";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan 
-								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								header("location:dashboard");
-								// print_r($data);
-								// exit;
-
-							}elseif($data['User_level_id']=="2"){//Dosen
-								$_SESSION['User_tag'] = $Tag;
-								$_SESSION['User_nama'] = $data['User_nama'];
-								$_SESSION['User_level_id'] = "2";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default ruangan
-								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								header("location:dashboard");
-								// print_r($data);
-								// exit;
-
-							}elseif($data['User_level_id']=="3"){//Mahasiswa
-								$_SESSION['User_tag'] = $Tag;
-								$_SESSION['User_nama'] = $data['User_nama'];
-								$_SESSION['User_level_id'] = "3";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default 
-								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								header("location:baranguser");
-								// print_r($data);
-								// exit;
-								
-							}elseif($data['User_level_id']=="4"){//Mahasiswa
-								$_SESSION['User_tag'] = $Tag;
-								$_SESSION['User_nama'] = $data['User_nama'];
-								$_SESSION['User_level_id'] = "3";
-								$_SESSION['User_lab_id'] = $data['User_lab_id'];//default 
-								$_SESSION['Lab_nama'] = $data['Lab_nama'];
-								header("location:checker");
-								// print_r($data);
-								// exit;
-								
-							}
-							else {
-								echo '<span class="errormessage">Tidak Terdaftar</span>';
-							}
-						}
+				if(isset($_POST['dosen'])) {
+                    $_SESSION['User_level_id'] = "2";
+                    header("location:dashboard");
+					}
+                    if(isset($_POST['dosenp'])) {
+                        $_SESSION['User_level_id'] = "3";
+                        header("location:baranguser");
 					}
 				?>
                     <!--syarat kelar-->
@@ -128,24 +69,6 @@
             </div>
         </div>
     </div>
-    <!-- <script>
-    function fungsiku(){
-        var x=document.getElementById("pin");
-        var y=document.getElementById("hide1");
-        var z=document.getElementById("hide2");
-
-        if(x.type === 'Pin_User'){
-            x.type = "text";
-            y.style.display = "block";
-            z.style.display = "none";
-        }
-        else{
-            x.type = "Pin_User";
-            y.style.display = "none";
-            z.style.display = "block";
-        }
-    }
-</script> -->
 </body>
 
 </html>
