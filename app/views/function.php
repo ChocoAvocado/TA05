@@ -7,6 +7,7 @@ $conn = mysqli_connect("localhost", "root", "", "peminjamanalatz");
 // //     exit;
 // }
 function isLogin(){
+  // echo "function check";
 if(!isset($_SESSION['User_level_id'])){
   return false;
 }

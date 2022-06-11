@@ -252,7 +252,7 @@
 
                         <!-- DataTales Example -->
 
-
+                        <div class="col-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
@@ -300,7 +300,7 @@
                                             //$file_name = date("Ymd") . rand() . ".png";
                                             $file_name = $kode_barcode . ".png";
                                             $file_path = $tempdir . $file_name;
-                                            QRcode::png($kode_barcode, $file_path, "H", 3, 2);
+                                            // QRcode::png($kode_barcode, $file_path, "H", 3, 2);
                                             /* param (1)qrcontent,(2)filename,(3)errorcorrectionlevel,(4)pixelwidth,(5)margin */
                                             $img_barcode = "<img src='" . $file_path . "' />";
                                             
@@ -415,7 +415,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </td>
 
                                                 <td>
@@ -599,6 +598,7 @@
                         </div>
                     </div>
                 </div>
+                                    </div>  
                 <!-- /.container-fluid -->
 
             </div>
@@ -665,7 +665,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
       
-        <!-- Modal Header -->
+         Modal Header -->
 <!--<div class="modal-header">
           <h4 class="modal-title">Tambah Barang</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -687,10 +687,6 @@
         <button name="dudu">Buat QR Code </button> 
     </form>
 </body>-->
-
-<body>
-    <br>
-    <div class="container">
         <?php
         //Validasi untuk menampilkan pesan pemberitahuan
         if (isset($_GET['add'])) 
@@ -703,9 +699,8 @@
             }    
         }
         ?>
-        <!--<form action="simpan.php" method="post" enctype="multipart/form-data">
-            <!-- rows -->
-        <--<div class="row">
+        <!--<form action="simpan.php" method="post" enctype="multipart/form-data"> rows -->
+            <!-- <div class="row"> -->
             <!--<div class="col-sm-6">
                     <div class="form-group">
                         <div id="msg"></div>

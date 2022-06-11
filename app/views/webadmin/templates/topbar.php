@@ -96,12 +96,16 @@ else{
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
+<?php 
+$qryuser = mysqli_query($conn, "SELECT * FROM user  WHERE User_tag= ". $_SESSION['User_tag']);
+$data = mysqli_fetch_array($qryuser);
 
+?>
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['User_nama']?></span>
-                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                <img class="img-profile rounded-circle" src="http://localhost/websitePeminjaman/user-foto/<?php echo $data["User_foto"]?>">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

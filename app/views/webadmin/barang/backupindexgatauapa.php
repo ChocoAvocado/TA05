@@ -704,9 +704,9 @@
         }
         ?>
         <!--<form action="simpan.php" method="post" enctype="multipart/form-data">
-            <!-- rows -->   
+            rows   
             <--<div class="row">
-                <!--<div class="col-sm-6">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <div id="msg"></div>
                         <input type="file" name="gambar" class="file" >
