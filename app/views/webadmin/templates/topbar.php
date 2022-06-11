@@ -72,9 +72,17 @@
             </a>
             <!-- Dropdown - User Information -->
             
-<?php $qry = mysqli_query($conn, "SELECT * FROM tr_userlab LEFT JOIN lab ON tr_userlab.Lab_id=lab.Lab_id WHERE User_tag=". $_SESSION['User_tag']);
+<?php
+if($_SESSION['User_level_id'] == "1"){
+    $qry = mysqli_query($conn, "SELECT * FROM lab ");
+}
+else{
+
+
+ $qry = mysqli_query($conn, "SELECT * FROM tr_userlab LEFT JOIN lab ON tr_userlab.Lab_id=lab.Lab_id WHERE User_tag=". $_SESSION['User_tag']);
 // print_r($data);
 // exit;
+}
 ?>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <?php while ($data = mysqli_fetch_assoc($qry)):?>    

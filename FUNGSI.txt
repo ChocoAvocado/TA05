@@ -1,0 +1,4 @@
+git pull, add changes (+) tulis pesan di message . klik centang diatas , titik 3 push 
+
+ADMIN --> Untuk melakukan peminjaman ha rus memiliki akun ter pisah dari level ini .
+DOSEN --> Bisa switch saat login 
