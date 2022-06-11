@@ -1,3 +1,47 @@
+
+<!-- DAFTAR MODAL -->
+
+
+<!--mengaktifkan modal pencarian gagal-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("pengembalian_pencarian_gagal")){?>
+$("#modalperpanjangangagal_pencarian").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal perpanjangan gagal (setelah 2 kali perpanjangan)-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("perpanjangan_gagal")){?>
+$("#modalperpanjangangagal").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal perpanjangan sukses-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("perpanjangan_sukses")){?>
+$("#modalperpanjangansukses").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal pengembalian sukses-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("pengembalian_sukses")){?>
+$("#modalpengembaliansukses").modal("show");
+<?php }; ?>
+})
+</script>
+
+
+<!-- END OF DAFTAR MODAL -->
+
+
 <script>
 var video = document.querySelector("#videoElement");
 
@@ -32,21 +76,6 @@ $(function() {
     });
 });
 </script>
-<script>
-    $(document).ready(function(){
-        $("#modalperpanjangan").modal("show");
-    });
-</script>
-
-<!--mengaktifkan modal perpanjangan-->
-<?php if(getUrlParam('gagalperpanjang')):?>
-<script>
-    $(document).ready(function(){
-        $("#modalperpanjangan").modal('show');
-    });
-</script>
-<?php endif; ?>
-
 <!-- <script> #untuk tombol perpanjangan, masih belum dipakai
 $('#saveButton').on('click', function() {
 

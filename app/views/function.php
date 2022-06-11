@@ -278,44 +278,45 @@ if (isset($_POST["simpan_ubah_barang"])) {
 
 //pencarian PEMINJAM, PENGEMBALIAN DAN BARANG PEMINJAMAN PENGEMBALIAN
 
-//$_SESSION['suksespinjam_status'] = false;
+
 //PEMINJAMAN    #reset auto increment mysql >> ALTER TABLE 'pinjam' AUTO_INCREMENT = 0;
 if (isset($_POST["tombolpinjam"])) {
   //print_r($_POST);
   //exit;
 
-$pinjamuserid       = $_POST["pinjamuser"];
-$pinjambarangid     = $_POST["pinjambarang"];
-$pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
-$tglbarangkembali   = $_POST["tanggalkembaliplan"];
+  $pinjamuserid       = $_POST["pinjamuser"];
+  $pinjambarangid     = $_POST["pinjambarang"];
+  $pinjamjumlahbarang = $_POST["jumlahbarangpinjam"];
+  $tglbarangkembali   = $_POST["tanggalkembaliplan"];
 
-$tglbarangkembali   = strtotime($tglbarangkembali);
-$tglbarangkembali   = date('Y-m-d', $tglbarangkembali);
+  $tglbarangkembali   = strtotime($tglbarangkembali);
+  $tglbarangkembali   = date('Y-m-d', $tglbarangkembali);
 
-// print_r($pinjamuserid);
-// print_r($pinjambarangid);
-// print_r($pinjamjumlahbarang);
-// print_r($tglbarangkembali);
-// exit;
+  // print_r($pinjamuserid);
+  // print_r($pinjambarangid);
+  // print_r($pinjamjumlahbarang);
+  // print_r($tglbarangkembali);
+  // exit;
 
-//mengupdate sisa barang db tabel barang dan insert data pinjaman baru
-$pengurangan_jumlahbarangsisa = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') - $pinjamjumlahbarang) WHERE Barang_id='$pinjambarangid';");
-$pengurangan_jumlahkoin = mysqli_query($conn, "UPDATE `user` SET `User_koin` = (SELECT `User_koin` FROM `user` WHERE User_tag ='$pinjamuserid')-1 WHERE `User_tag` ='$pinjamuserid';");
-$peminjaman2 = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`) 
-VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali');");
+  //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
+  $pengurangan_jumlahbarangsisa = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') - $pinjamjumlahbarang) WHERE Barang_id='$pinjambarangid';");
+  $pengurangan_jumlahkoin = mysqli_query($conn, "UPDATE `user` SET `User_koin` = (SELECT `User_koin` FROM `user` WHERE User_tag ='$pinjamuserid')-1 WHERE `User_tag` ='$pinjamuserid';");
+  $peminjaman2 = mysqli_query($conn, "INSERT INTO `pinjam`(`Pinjam_user_tag`, `Pinjam_barang_id`, `Pinjam_jumlah`, `Pinjam_tgl_kembaliplan1`)
+  VALUES ('$pinjamuserid', '$pinjambarangid', '$pinjamjumlahbarang', '$tglbarangkembali');");
 
-if ($peminjaman2) {
-  $suksespinjam_status = true;
- header("location:formpeminjaman");
-} else {
- header('location:formpeminjaman');
-}
+  if ($peminjaman2) {
+    // exit;
+  header("location:formpeminjaman?peminjaman_submit_sukses=1");
+  exit; // SI KECIL INI MENGUBAH SEGALANYA <<<<< SOLUSI DARI : setelah sukses submit, malah muncul modal untuk gagal search
+  } else {
+  header('location:formpeminjaman?peminjaman_submit_gagal=1');
+  }
 }
 //END OF PEMINJAMAN
 
 
 //PERPANJANGAN
-$show_modal_perpanjangan = true;
+
 if (isset($_POST["tombolperpanjangan"])) {
 
   $pinjamuserid     = $_POST["cariuser"];
@@ -329,26 +330,25 @@ if (isset($_POST["tombolperpanjangan"])) {
   // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
   // $data = mysqli_fetch_array($pengembalian);
   // $pinjamid = $data['Pinjam_id'];
-  $cekperpanjangan = mysqli_query($conn, "SELECT Pinjam_tgl_kembaliplan2,Pinjam_tgl_kembaliplan3 FROM `pinjam` 
-  WHERE  Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  $cekperpanjangan = mysqli_query($conn, "SELECT `Pinjam_tgl_kembaliplan2`,`Pinjam_tgl_kembaliplan3` FROM `pinjam` 
+  WHERE  Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid' AND `Pinjam_tgl_kembalireal`IS NULL");
 
   $planperpanjangan = mysqli_fetch_array($cekperpanjangan);
-if($pinjamuserid != "" && $pinjambarangid != ""){
+
+// CEK diatas adalah pengecekan nilai tgl perpanjangan 2 dan 3, dibawah ada pengecekan tgl kembali << seharusnya sudah lengkap
+
   if(is_null($planperpanjangan[0])){
     $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan2='$tglperpanjangan', Pinjam_status=1 
-  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
-  header("location:formpengembalian");
+  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid' AND `Pinjam_tgl_kembalireal`IS NULL");
+  header("location:formpengembalian?perpanjangan_sukses=1");
   }else if(is_null($planperpanjangan[1])){
     $perpanjangan = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembaliplan3='$tglperpanjangan', Pinjam_status=1
-  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
-  header("location:formpengembalian");
+  WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid' AND `Pinjam_tgl_kembalireal`IS NULL");
+  header("location:formpengembalian?perpanjangan_sukses=1");
   }else {
-    //$show_modal_perpanjangan = true;
-    header("location:formpengembalian?gagalperpanjang=");
+    header("location:formpengembalian?perpanjangan_gagal=1");
   }
-} else{
-  header("location:dashboard");
-}
+
 
   
 }
@@ -368,16 +368,23 @@ if (isset($_POST["kembalialat"])) {
   // WHERE Pinjam_user_tag=$pinjamuserid and Pinjam_barang_id=$pinjambarangid");
   // $data = mysqli_fetch_array($pengembalian);
   // $pinjamid = $data['Pinjam_id'];
+  $cekdatapinjam = mysqli_query($conn, "SELECT `Pinjam_id` FROM `pinjam` WHERE `Pinjam_tgl_kembalireal` IS NULL AND `Pinjam_user_tag`='$pinjamuserid' AND `Pinjam_barang_id`='$pinjambarangid' ");
 
+  if($cekdatapinjam){
   //mengupdate sisa barang db tabel barang dan insert data pinjaman baru
   $penambahan_jumlahbarangsisa = mysqli_query($conn, "UPDATE `barang` SET `Barang_jumlah_sisa`=((SELECT `Barang_jumlah_sisa` FROM `barang` WHERE `Barang_id`='$pinjambarangid') + $jumlahbarangpinjam) WHERE Barang_id='$pinjambarangid';");
   $pengurangan_jumlahkoin = mysqli_query($conn, "UPDATE `user` SET `User_koin` = (SELECT `User_koin` FROM `user` WHERE User_tag ='$pinjamuserid')+1 WHERE `User_tag` ='$pinjamuserid';");
-  $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali', Pinjam_status=2 WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid'");
+  $pengembalian = mysqli_query($conn, "UPDATE `pinjam` SET Pinjam_tgl_kembalireal='$tglkembali', Pinjam_status=2 WHERE Pinjam_user_tag='$pinjamuserid' AND Pinjam_barang_id='$pinjambarangid' AND `Pinjam_tgl_kembalireal` IS NULL");
 
   if ($pengembalian) {
-    header("location:formpengembalian");
-  } else
-    header('location:formpengembalian');
+    // exit;
+    header("location:formpengembalian?pengembalian_sukses=1");
+    exit;
+    }
+  } else {
+    header("location:formpengembalian?gagalpengembalian=1");
+  }
+  
 }
 //END OF PENGEMBALIAN
 
@@ -391,39 +398,52 @@ if (getUrlParam('cariuser') != null ) {
   $idpeminjam     = getUrlParam('cariuser');
   $idbarangpinjam = getUrlParam('caribarang');
 
-  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `user` WHERE User_tag = '$idpeminjam'");
-  $user = mysqli_fetch_array($ambilsemuadatauser);
-  //  var_dump($_GET["cariuser"]);
-  //  exit;
-  $valuecariuser = getUrlParam('cariuser');
+  //checking apakah data peminjaman ada yang NULL >> kalau null popup peringatan (show)
+  $cekpinjaman = mysqli_query($conn, "SELECT `Pinjam_id` FROM `pinjam` 
+  WHERE `Pinjam_user_tag`='$idpeminjam' AND `Pinjam_barang_id`='$idbarangpinjam' AND `Pinjam_tgl_kembalireal` IS NULL");
 
-  if ($user != NULL) {
-    $cariusernama       = $user['User_nama'];
-    $cariuseremail      = $user['User_email'];
-    $cariuserkoin       = $user['User_nokoin'];
-    $cariuserjumlahkoin = $user['User_koin'];
+  $cekpinjaman_array = mysqli_fetch_array($cekpinjaman);
+  // var_dump(mysqli_fetch_array($cekpinjaman));
+  // exit;
+
+  if($cekpinjaman_array != NULL){
+    header("location:formpeminjaman?gagalpeminjaman_cari=1");
   } else {
-    $cariusernama       = "";
-    $cariuseremail      = "";
-    $cariuserkoin       = "";
-    $cariuserjumlahkoin = "";
+    $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `user` WHERE User_tag = '$idpeminjam'");
+    $user = mysqli_fetch_array($ambilsemuadatauser);
+    //  var_dump($_GET["cariuser"]);
+    //  exit;
+    $valuecariuser = getUrlParam('cariuser');
+
+    if ($user != NULL) {
+      $cariusernama       = $user['User_nama'];
+      $cariuseremail      = $user['User_email'];
+      $cariuserkoin       = $user['User_nokoin'];
+      $cariuserjumlahkoin = $user['User_koin'];
+    } else {
+      header("location:formpeminjaman?peminjaman_cariuser_gagal=1");
+    }
+
+    $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `barang` WHERE Barang_id = '$idbarangpinjam'");
+    $barang = mysqli_fetch_array($ambilsemuadatabarang);
+    $valuecaribarang = getUrlParam('caribarang');
+
+    
+    if ($barang != NULL) { // mengecek keberadaan data barang
+      
+      if($barang['Barang_jumlah_sisa']!=0){ // mengecek jumlah sisa barang
+      $caribarangnama   = $barang['Barang_nama'];
+      $caribarangmerk   = $barang['Barang_merk'];
+      $caribarangloker  = $barang['Barang_Loker'];
+      $caribarangjumlah = $barang['Barang_jumlah_sisa'];
+      }else{
+      header("location:formpeminjaman?peminjaman_caribarangjumlah_gagal=1"); }
+    } else {
+      
+      header("location:formpeminjaman?peminjaman_caribarang_gagal=1");
+    }
   }
 
-  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `barang` WHERE Barang_id = '$idbarangpinjam'");
-  $barang = mysqli_fetch_array($ambilsemuadatabarang);
-  $valuecaribarang = getUrlParam('caribarang');
-
-  if ($barang != NULL) {
-    $caribarangnama   = $barang['Barang_nama'];
-    $caribarangmerk   = $barang['Barang_merk'];
-    $caribarangloker  = $barang['Barang_Loker'];
-    $caribarangjumlah = $barang['Barang_jumlah_sisa'];
-  } else {
-    $caribarangnama   = "";
-    $caribarangmerk   = "";
-    $caribarangloker  = "";
-    $caribarangjumlah = "";
-  }
 } else {
   $cariusernama       = "";
   $cariuseremail      = "";
@@ -447,40 +467,45 @@ if (getUrlParam('cariuserpengembalian') != null ) {
   $idpeminjam = getUrlParam('cariuserpengembalian');
   $idbarangpinjam = getUrlParam('caribarang');
 
-  $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `user` ON pinjam.Pinjam_user_tag=user.User_tag WHERE pinjam.Pinjam_user_tag='$idpeminjam'");
-  $user = mysqli_fetch_array($ambilsemuadatauser);
-  //  var_dump($_GET["cariuser"]);
-  //  exit;
-  $valuecariuser = getUrlParam('cariuserpengembalian');
 
-  if ($user != NULL) {
-    $cariusernama             = $user['User_nama'];
-    $cariuseremail            = $user['User_email'];
-    $cariuserkoin             = $user['User_nokoin'];
-    $cariuserjumlahkoin       = $user['User_koin'];
-    $valuejumlahbarangpinjam  = $user['Pinjam_jumlah'];
+  $cekdatapinjaman = mysqli_query($conn, "SELECT `Pinjam_id` FROM `pinjam` 
+  WHERE `Pinjam_user_tag`='$idpeminjam' AND `Pinjam_barang_id`='$idbarangpinjam' AND `Pinjam_tgl_kembalireal` IS NULL");
+  
+  $cekdatapinjaman_array = mysqli_fetch_array($cekdatapinjaman);
+
+  if($cekdatapinjaman_array === NULL){
+
+    header("location:formpengembalian?pengembalian_pencarian_gagal=1"); 
   } else {
-    $cariusernama             = "";
-    $cariuseremail            = "";
-    $cariuserkoin             = "";
-    $cariuserjumlahkoin       = "";
-    $valuejumlahbarangpinjam  = "";
-  }
+    
+    $ambilsemuadatauser = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `user` ON pinjam.Pinjam_user_tag=user.User_tag WHERE pinjam.Pinjam_user_tag='$idpeminjam'");
+    $user = mysqli_fetch_array($ambilsemuadatauser);
+    //  var_dump($_GET["cariuser"]);
+    //  exit;
+    $valuecariuser = getUrlParam('cariuserpengembalian');
 
-  $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id WHERE pinjam.Pinjam_barang_id='$idbarangpinjam'");
-  $barang = mysqli_fetch_array($ambilsemuadatabarang);
-  $valuecaribarang = getUrlParam('caribarang');  
+    if ($user != NULL) {
+      $cariusernama             = $user['User_nama'];
+      $cariuseremail            = $user['User_email'];
+      $cariuserkoin             = $user['User_nokoin'];
+      $cariuserjumlahkoin       = $user['User_koin'];
+      $valuejumlahbarangpinjam  = $user['Pinjam_jumlah'];
+    } else {
+      header("location:formpengembalian?pengembalian_pencarian_gagal=1"); 
+    }
 
-  if ($barang != NULL) {
-    $caribarangnama   = $barang['Barang_nama'];
-    $caribarangmerk   = $barang['Barang_merk'];
-    $caribarangloker  = $barang['Barang_Loker'];
-    $caribarangjumlah = $barang['Pinjam_jumlah'];
-  } else {
-    $caribarangnama   = "";
-    $caribarangmerk   = "";
-    $caribarangloker  = "";
-    $caribarangjumlah = "";
+    $ambilsemuadatabarang = mysqli_query($conn, "SELECT * FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id WHERE pinjam.Pinjam_barang_id='$idbarangpinjam'");
+    $barang = mysqli_fetch_array($ambilsemuadatabarang);
+    $valuecaribarang = getUrlParam('caribarang');  
+
+    if ($barang != NULL) {
+      $caribarangnama   = $barang['Barang_nama'];
+      $caribarangmerk   = $barang['Barang_merk'];
+      $caribarangloker  = $barang['Barang_Loker'];
+      $caribarangjumlah = $barang['Pinjam_jumlah'];
+    } else {
+      header("location:formpengembalian?pengembalian_pencarian_gagal=1"); 
+    }
   }
 }
 //END OF TOMBOL CARI PENGEMBALIAN

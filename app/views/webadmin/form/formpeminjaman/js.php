@@ -1,3 +1,56 @@
+
+<!-- DAFTAR MODAL  -->
+
+
+<!--mengaktifkan modal peminjaman gagal pencarian user-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("peminjaman_cariuser_gagal")){?>
+$("#modalpeminjamangagal_user").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal peminjaman gagal pencarian barang-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("peminjaman_caribarang_gagal")){?>
+$("#modalpeminjamangagal_barang").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal peminjaman gagal pencarian barang << barang habis-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("peminjaman_caribarangjumlah_gagal")){?>
+$("#modalpeminjamangagal_baranghabis").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal peminjaman gagal pencarian belum dikembalikan-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("gagalpeminjaman_cari")){?>
+$("#modalpeminjamangagal_belumkembali").modal("show");
+<?php }; ?>
+})
+</script>
+
+<!--mengaktifkan modal peminjaman sukses-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("peminjaman_submit_sukses")){?>
+$("#modalpeminjamansukses").modal("show");
+<?php }; ?>
+})
+</script>
+
+
+<!-- END OF DAFTAR MODAL -->
+
+
 <script>
 $(document).ready(function() {
     if ($_SESSION['suksespinjam_status']) {
