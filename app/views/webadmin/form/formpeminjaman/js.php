@@ -2,6 +2,15 @@
 <!-- DAFTAR MODAL  -->
 
 
+<!--mengaktifkan modal peminjaman gagal pencarian user koin-->
+<script>
+$(document).ready(function(){
+    <?php if(getUrlParam("peminjaman_cariuserkoin_gagal")){?>
+$("#modalpeminjamangagal_userkoin").modal("show");
+<?php }; ?>
+})
+</script>
+
 <!--mengaktifkan modal peminjaman gagal pencarian user-->
 <script>
 $(document).ready(function(){

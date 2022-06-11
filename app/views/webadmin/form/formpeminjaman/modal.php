@@ -18,6 +18,22 @@
     </div>
 </div>
 
+<!-- Peringatan GAGAL PENCARIAN (KOIN USER habis)-->
+<div class="modal fade" id="modalpeminjamangagal_userkoin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+            </div>
+            <div class="modal-body">Koin telah habis</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">kembali</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Peringatan GAGAL PENCARIAN (USER tidak ada)-->
 <div class="modal fade" id="modalpeminjamangagal_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

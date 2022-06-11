@@ -382,7 +382,7 @@
 <script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>F
+<script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
 
 <!-- datetime picker -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
