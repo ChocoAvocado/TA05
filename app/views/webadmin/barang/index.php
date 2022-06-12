@@ -288,8 +288,9 @@
                                             else
                                             {
                                                     $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
-                                                    $i=1;
+                                                    
                                             }
+                                            $i = 1;
                                         while($data = mysqli_fetch_array($ambilsemuadatabarang))
                                         {
 
