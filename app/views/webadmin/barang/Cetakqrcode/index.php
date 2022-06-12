@@ -89,26 +89,24 @@
                             <!-- <?php echo $data['Barang_merk'] ?> -->
 
                             <!-- <?php echo $data['Barang_nama'] ?>
-                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <?php echo $img_barcode ?> -->
-                        </tr>
-                        <td> <?php echo $data['Barang_id'] ?></td>
+                            <?php echo $img_barcode ?> -->
+                            </tr>
+                            <td> <?php echo $data['Barang_id'] ?></td>
 
-                        <!-- <td> <?php echo $data['Barang_id'] ?> </td> -->
+                            <!-- <td> <?php echo $data['Barang_id'] ?> </td> -->
 
-                    </thead>
+                    </thead> 
+                    <script> window.print() </script>
                     <?php
                     }} exit;  
                     ?>
-
+ 
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <script>
-    window.print()
-    </script>
+   
     <!-- <script>
     $(document).ready(function() {
         $('#mauexport').DataTable({

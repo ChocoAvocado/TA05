@@ -348,17 +348,6 @@
                                                                 value="<?=$IDBarang;?>">
                                                         </span>
 
-                                                     <!-- The Modal TAMBAH BARANG -->
-                                                     <div class="modal fade" id="tambah<?=$IDBarang;?>">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-
-                                                                    <!-- Modal Header -->
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Tambah Barang</h4>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal">&times;</button>
-                                                                    </div>
 
                                                         <!-- The Modal EDIT BARANG -->
                                                         <div class="modal fade" id="edit<?=$IDBarang;?>">
@@ -563,7 +552,7 @@
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td><strong> Sisa
+                                                                                           <td><strong> Sisa
                                                                                                     Barang</strong>
                                                                                             </td>
                                                                                             <td><?php echo $data['Barang_jumlah'] ?>
@@ -757,7 +746,7 @@ $(".cari_barang").on("keyup", function(e) {
 })
 </script>
 <?php
-    include("modal_search_barang.php");
+    include ("modal_search_barang.php");
     ?>
 
 <!-- Bootstrap core JavaScript-->
