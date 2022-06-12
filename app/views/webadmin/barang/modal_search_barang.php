@@ -8,15 +8,17 @@
       </div>
       <div class="modal-body">
           <?php
+          // var_dump ();
+          // if (getUrlParam('cari') != null):
+          //   $cariqr=mysqli_query($conn,"SELECT*FROM barang WHERE Barang_id = '".getUrlParam('cari')."'");
+          //   $user = mysqli_fetch_array($cariqr);
            if (isset($_GET['cari'])):
             $id_barang = $_GET['cari']; 
             $sql = "
             SELECT a.*,b.Lab_nama nama_lab 
             FROM barang a 
             LEFT JOIN lab b ON a.Barang_lab_id = b.Lab_id 
-            WHERE a.Barang_id = '".$id_barang."' 
-            
-            ";
+            WHERE a.Barang_id = '".$id_barang."'";
             $query=mysqli_query($conn, $sql);
             $data = mysqli_fetch_array($query);
             // var_dump($user);
