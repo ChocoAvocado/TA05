@@ -479,7 +479,8 @@ if (getUrlParam('cariuser') != null ) {
   $cariuseremail      = "";
   $cariuserkoin       = "";
   $cariuserjumlahkoin = "";
-  $cariuserfoto     = "undraw_profile_3.svg";
+  //$cariuserfoto     = "20192001_ALBERTUS CHRISTIAN PRABASWARA.png";
+  $cariuserfoto     = "undraw_profile.svg";
 
   $caribarangnama   = "";
   $caribarangmerk   = "";
