@@ -36,6 +36,13 @@
         height: 100%;
     }
 
+
+    .foto_container {
+        margin: 0px auto;
+        width: 200px;
+        height: 200px;
+    }
+
     #videoElement {
         width: 100%;
         height: 100%;
@@ -131,7 +138,7 @@
                             </form>
                         </div>
 
-                        
+
                         <form method="post">
                             <div class="row">
 
@@ -143,12 +150,14 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <div class="container">
-                                                <div class="row justify-content-center">
+                                            <div class="row justify-content-center">
 
-                                                    <div class="col-lg-6 mb-0">
-                                                        <img src="../img/undraw_profile_1.svg"
-                                                            class="w-100 h-100 img-thumbnail" alt="Chania">
+                                                <div class="foto_container">
+                                                    <div class="col-auto text-center h-100">
+                                                        <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+
+                                                        <img src='<?= BASEURL; ?>/img/<?php echo $cariuserfoto ?>'
+                                                            class="img-thumbnail h-100" alt="Chania">
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,10 +200,15 @@
 
                                         <div class="card-body">
                                             <div class="row justify-content-center">
-                                                <div class="col-lg-6 mb-0">
-                                                    <img src="../img/toolkit.svg" class="w-100 h-100 img-thumbnail"
-                                                        alt="Chania">
+
+                                                <div class="foto_container">
+                                                    <div class="col-auto text-center h-100">
+                                                        <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
+                                                        <img src='<?= BASEURL; ?>/img/<?php echo $caribarangfoto ?>'
+                                                            class="h-100 img-thumbnail" alt="Chania">
+                                                    </div>
                                                 </div>
+
                                             </div>
                                             <br>
                                             <div class="row">
