@@ -1,6 +1,6 @@
 <?php
 //PENYAMBUNG PHP 
-$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
+$conn = mysqli_connect("localhost", "root", "", "peminjamanalatz");
 //$conn = mysqli_connect("localhost", "root", "", "peminjamanalat");
 // if(isset($_POST)){
 // // print_r($_POST);
