@@ -156,7 +156,7 @@
                                                     <div class="col-auto text-center h-100">
                                                         <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
 
-                                                        <img src='<?= BASEURL; ?>/img/<?php echo $cariuserfoto ?>'
+                                                        <img src='http://localhost/websitePeminjaman/user-foto/<?php echo $cariuserfoto ?>'
                                                             class="img-thumbnail h-100" alt="Chania">
                                                     </div>
                                                 </div>
@@ -204,7 +204,7 @@
                                                 <div class="foto_container">
                                                     <div class="col-auto text-center h-100">
                                                         <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
-                                                        <img src='<?= BASEURL; ?>/img/<?php echo $caribarangfoto ?>'
+                                                        <img src='http://localhost/websitePeminjaman/barang-foto/<?php echo $caribarangfoto ?>'
                                                             class="h-100 img-thumbnail" alt="Chania">
                                                     </div>
                                                 </div>

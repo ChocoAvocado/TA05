@@ -29,7 +29,7 @@
             </div>
             <div class="modal-body">Data peminjaman tidak dapat ditemukan</div>
             <div class="modal-footer">
-            <a href="formpengembalian" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Kembali</a>
+            <a data-dismiss="modal" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Kembali</a>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="modal-body">Batas jumlah perpanjangan telah tercapai, silahkan mengembalikan barang atau meminjam kembali alat yang ingin diperpanjang</div>
             <div class="modal-footer">
-            <a href="formpengembalian" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Kembali</a>
+            <a data-dismiss="modal" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Kembali</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
             <div class="modal-body">Perpanjangan Barang Berhasil. Apakah ingin memperpanjang barang kembali?</div>
             <div class="modal-footer">
             <a href="dashboard" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Keluar</a>
-            <a href="formpengembalian" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Perpanjang</a>
+            <a data-dismiss="modal" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Kembali</a>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
             <div class="modal-body">Pengembalian Barang Berhasil. Apakah ingin melakukan pengembalian barang kembali?</div>
             <div class="modal-footer">
             <a href="dashboard" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Keluar</a>
-            <a href="formpengembalian" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Kembali</a>
+            <a data-dismiss="modal" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Kembali</a>
             </div>
         </div>
     </div>

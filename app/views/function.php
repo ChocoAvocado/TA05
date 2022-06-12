@@ -10,7 +10,7 @@ function isLogin(){
   // echo "function check";
 if(!isset($_SESSION['User_level_id'])){
   return false;
-}
+} 
 $levelid= $_SESSION['User_level_id'];
 if($levelid == '1'){
   header("location:dashboard");

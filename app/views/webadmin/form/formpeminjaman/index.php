@@ -153,7 +153,7 @@
                                                 <div class="col-auto text-center h-100">
                                                     <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
 
-                                                    <img src='<?= BASEURL; ?>/img/<?php echo $cariuserfoto ?>'
+                                                    <img src='http://localhost/websitePeminjaman/user-foto/<?php echo $cariuserfoto ?>'
                                                         class="img-thumbnail h-100" alt="Chania">
                                                 </div>
                                             </div>
@@ -202,7 +202,7 @@
                                             <div class="foto_container">
                                                 <div class="col-auto text-center h-100">
                                                     <!------DIGANTI SEWAKTU UPLOAD HOSTING-------------PERHATIAN WOY---->
-                                                    <img src='<?= BASEURL; ?>/img/<?php echo $caribarangfoto ?>'
+                                                    <img src='http://localhost/websitePeminjaman/barang-foto/<?php echo $caribarangfoto ?>'
                                                         class="h-100 img-thumbnail" alt="Chania">
                                                 </div>
                                             </div>
@@ -259,16 +259,16 @@
                                             <div class="col-auto mb-4 form-group">
                                                 <h6 class="mb-0 text-gray-800">Jumlah Barang pinjam</h6>
                                                 <div class="input-group">
-                                                    <span class="btn-group">
+                                                    <span class="input-group-prepend">
                                                         <button type="button" class="btn btn-danger btn-number"
                                                             data-type="minus" data-field="jumlahbarangpinjam">
                                                             <span class="fas fa-minus"></span>
                                                         </button>
                                                     </span>
                                                     <input type="text" name="jumlahbarangpinjam"
-                                                        class="form-control input-number" value="1" min="1"
+                                                        class="form-control" value="1" min="1"
                                                         max="<?= $caribarangjumlah ?>">
-                                                    <span class="btn-group">
+                                                    <span class="input-group-append">
                                                         <button type="button" class="btn btn-success btn-number"
                                                             data-type="plus" data-field="jumlahbarangpinjam">
                                                             <span class="fas fa-plus"></span>
