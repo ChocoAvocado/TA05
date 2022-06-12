@@ -279,11 +279,15 @@
                                             <tbody>
                                                 <tr>
                                                     <?php
+                                                    if(getUrlParam("Lab_id")!=null)
+                                                    {
+                                                         $labid=getUrlParam("Lab_id");
+                                                         $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$labid");
+                                                    }
                                           
-                                            if(isset($_SESSION['User_lab_id']))
+                                            else if(isset($_SESSION['User_lab_id']))
                                             {
                                                  $Userlabid=$_SESSION['User_lab_id'];
-                                                
                                                  $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
                                             }
                                             else
