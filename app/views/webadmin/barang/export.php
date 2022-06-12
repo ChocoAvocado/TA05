@@ -18,6 +18,7 @@
     </script>
 
 </head>
+
 <body>
     <div class="container">
 
@@ -30,7 +31,6 @@
                 <!-- <tbody method="get" action=""> -->
                 <tr>
                     <?php 
-                         
                                             if(isset($_SESSION['User_lab_id']))
                                             {
                                                  $Userlabid=$_SESSION['User_lab_id'];
@@ -40,12 +40,16 @@
                                             {
                                                     $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
                                                     $i=1;
-                                            }   
-                                            if(isset($_conn['Barang_id']))
+                                            } 
+                                            if (isset($_POST['Barang_id'])) 
                                             {
-                                                 $Barangid=$_conn['Barang_id'];
-                                                 $sama = mysqli_query($conn, "select * from barang where Barang_id=$Barangid");
-                                            }
+                                                $id_barang = $_POST['Barang_id'];
+                                              
+                                                $query = mysqli_query($conn, "select * from barang where Barang_id= $id_barang ");
+                                                $data = mysqli_fetch_array($query);
+                                                echo json_encode($data);
+                                            }  
+                                        
                                             
                                         while($data = mysqli_fetch_array($ambilsemuadatabarang))
                                          {
@@ -95,7 +99,7 @@
                     </thead>
                     <?php
                                 } ;  
-                        ?>
+                    ?>
 
                 </tr>
                 </tbody>
