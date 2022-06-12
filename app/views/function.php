@@ -139,10 +139,10 @@ if (isset($_POST["btn_simpan"])) {
 
   $addtotable = mysqli_query($conn, "insert into barang (Nama_Barang,Merek_Barang,Jumlah_Barang,Foto_Barang)values ('$NamaBarang', '$MerekBarang', '$Jumlah''$Foto)");
   if ($addtotable) {
-    header('location:barang.php');
+    header('location:barang');
   } else
     echo 'Gagal';
-  header('location:barang.php');
+  header('location:barang');
 }
 
 
@@ -170,10 +170,10 @@ if (isset($_POST["editbarang"])) {
 
   $edit = mysqli_query($conn, "update barang set Barang_nama='$NamaBarang',Barang_jumlah='$Jumlah', Barang_merk='$MerekBarang' ,Barang_foto='$file_jadi' where Barang_id= '$IDBarang'");
   if ($edit) {
-    header('location:barang.php');
+    header('location:barang');
   } else
     echo 'Gagal';
-  header('location:barang.php');
+  header('location:barang');
 }
 
 
@@ -184,10 +184,10 @@ if (isset($_POST["hapusdatabarang"])) {
   $hapusfk = mysqli_query($conn, "delete from pinjam where Pinjam_barang_id=$IDBarang");
   $hapus = mysqli_query($conn, "delete from barang where Barang_id=$IDBarang");
   if ($hapus) {
-    header('location:barang.php');
+    header('location:barang');
   } else
     echo 'Gagal';
-  header('location:barang.php');
+  header('location:barang');
   // echo mysqli_error($conn);
   // exit;
 }
@@ -244,10 +244,10 @@ if (isset($_POST["simpan_tambah_barang"])) {
   $proses = mysqli_query($conn, "insert into barang (Barang_nama,Barang_merk,Barang_jumlah,Barang_foto,Barang_qrcode) 
         values ('$NamaBarang', '$MerekBarang', '$jumlah_barang', '$file_jadi' ,'$filee')");
   if ($proses) {
-    header('location:barang.php');
+    header('location:barang');
   } else {
     echo 'Gagal';
-    header('location:barang.php');
+    header('location:barang');
   }
 }
 
@@ -279,10 +279,10 @@ if (isset($_POST["simpan_ubah_barang"])) {
 
 
   if ($proses) {
-    header('location:barang.php');
+    header('location:barang');
   } else {
     echo 'Gagal';
-    header('location:barang.php');
+    header('location:barang');
   }
 }
 
