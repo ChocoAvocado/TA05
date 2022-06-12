@@ -5,6 +5,7 @@ class Peminjaman extends Controller{
     {
         
         $data['judul'] = 'Peminjaman';
+        $data['status_sidebar'] = 'aktivitas';
         $this->view('webadmin/peminjaman/index',$data);
     }
     

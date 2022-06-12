@@ -15,7 +15,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item  <?php if($data['status_sidebar']=='dashboard') echo "active" ?>">
         <a class="nav-link" href="dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -30,20 +30,20 @@
     </div>
 
     <!--side bar menu-->
-    <li class="nav-item">
+    <li class="nav-item <?php if($data['status_sidebar']=='user') echo "active" ?>">
         <a class="nav-link" href="user">
             <i class="fas fa-fw fa-user"></i>
             <span>User</span></a>
     </li>
 
 
-    <li class="nav-item">
+    <li class="nav-item <?php if($data['status_sidebar']=='barang') echo "active" ?>">
         <a class="nav-link" href="barang">
             <i class="fas fa-fw fa-shopping-bag"></i>
             <span>Barang</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item <?php if($data['status_sidebar']=='aktivitas') echo "active" ?>">
         <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-running"></i>
