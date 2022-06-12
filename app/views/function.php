@@ -565,3 +565,82 @@ if (isset($_POST["pengecekan_submit"])) {
     header('location:checker');
 }
 //END OF PENGECEKAN
+
+
+
+//------------------------------------- CHART < Dashboard > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
+
+if($data['status_sidebar']=='dashboard'){
+
+
+
+// ---------------- BAR CHART >>
+
+// setting bulan ke 0 
+$jumlah_bulan = 1;
+
+//looping sampai bulan ke 12 stop
+while($jumlah_bulan < 13){
+
+//memasukkan jumlah tiap bulan ke tiap kolom array
+$chart_bar[$jumlah_bulan] = mysqli_query($conn, "SELECT Count(`Pinjam_tgl`) as jumlah FROM `pinjam` WHERE Month(`Pinjam_tgl`)='$jumlah_bulan' GROUP BY Month(`Pinjam_tgl`);"); 
+$row[$jumlah_bulan] = mysqli_fetch_object($chart_bar[$jumlah_bulan]);
+
+
+if(!empty($row[$jumlah_bulan])){
+
+  $chart_bar_array[$jumlah_bulan] = $row[$jumlah_bulan]->jumlah;
+
+} else{$chart_bar_array[$jumlah_bulan] = 0;}
+
+
+//incremental jumlah_bulan
+$jumlah_bulan += 1;
+}
+
+
+// var_dump($chart_bar_array[7]);
+// exit;
+
+// $chart_bar[7] = mysqli_query($conn, "SELECT Count(`Pinjam_tgl`) as jumlah FROM `pinjam` WHERE Month(`Pinjam_tgl`)='8' GROUP BY Month(`Pinjam_tgl`);"); 
+
+// $chart_bar_array[7] = mysqli_fetch_array($chart_bar[7]);
+
+// var_dump(trim($chart_bar_array[7]),"''");
+// exit;
+
+
+// $blabla = "1000";
+
+// var_dump($blabla);
+// exit;
+
+
+
+
+
+//---------------- PIE CHART >>
+
+$jumlahbaranglab_sisa = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+$jumlahbaranglab_sisa_row = mysqli_fetch_object($jumlahbaranglab_sisa);
+
+if(!empty($jumlahbaranglab_sisa_row)){
+  $jumlahbaranglab_array[0] = $jumlahbaranglab_sisa_row->jumlahbarang;
+} else $jumlahbaranglab_array[0] = 0;
+
+$jumlahbaranglab_total = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
+$jumlahbaranglab_total_row = mysqli_fetch_object($jumlahbaranglab_total);
+
+if(!empty($jumlahbaranglab_total_row)){
+  $jumlahbaranglab_array[1] = ($jumlahbaranglab_total_row->jumlahbarang) - $jumlahbaranglab_array[0];
+} else $jumlahbaranglab_array[1] = 0;
+
+// var_dump($jumlahbaranglab_array[0]);
+// exit;
+
+
+
+
+
+
+}

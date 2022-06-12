@@ -32,7 +32,7 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Aug", "Sep", "Okt", "Nov", "Des"],
+    labels: ["asds", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Aug", "Sep", "Okt", "Nov", "Des"],
     datasets: [{
       label: "barang dipinjam",
       backgroundColor: "#4e73df",
