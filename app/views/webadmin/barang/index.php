@@ -201,7 +201,7 @@
                                 Data Barang Lab
                             </h3>
                         </div>
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
                             <div class="d-flex float-right">
                                 <!-- Topbar Search ATAS-->
                                 <form method="get" action=""
@@ -241,7 +241,7 @@
                                     <!--//data-toggle="modal" data-target="#myModal"-->
                                     <!-- <i class="fa fa-plus"></i> -->
                                     </a>
-                                    <a href="tambah_barang.php" class="btn btn-primary plus btn-circle offset-lg-1 ml-4">
+                                    <a href="Tambahbarang" class="btn btn-primary plus btn-circle offset-lg-1 ml-4">
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -253,32 +253,32 @@
                         <!-- DataTales Example -->
 
                         <div class="col-12">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
-                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+                                </div>
 
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Barcode</th>
-                                                <!-- <th>ID Barang</th> -->
-                                                <th>Nama Barang</th>
-                                                <th>Merek Barang</th>
-                                                <th>Jumlah</th>
-                                                <th>Foto Barang</th>
-                                                <th>view</th>
-                                                <th style="width: 100px;">edit</th>
-                                                <th>delete</th>
-                                            </tr>
-                                        </thead>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Barcode</th>
+                                                    <!-- <th>ID Barang</th> -->
+                                                    <th>Nama Barang</th>
+                                                    <th>Merek Barang</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Foto Barang</th>
+                                                    <th>view</th>
+                                                    <th style="width: 100px;">edit</th>
+                                                    <th>delete</th>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
-                                            <tr>
-                                                <?php
+                                            <tbody>
+                                                <tr>
+                                                    <?php
                                           
                                             if(isset($_SESSION['User_lab_id']))
                                             {
@@ -302,7 +302,7 @@
                                             //$file_name = date("Ymd") . rand() . ".png";
                                             $file_name = $kode_barcode . ".png";
                                             $file_path = $tempdir . $file_name;
-                                            // QRcode::png($kode_barcode, $file_path, "H", 3, 2);
+                                            QRcode::png($kode_barcode, $file_path, "H", 3, 2);
                                             /* param (1)qrcontent,(2)filename,(3)errorcorrectionlevel,(4)pixelwidth,(5)margin */
                                             $img_barcode = "<img src='" . $file_path . "' />";
                                             
@@ -328,279 +328,284 @@
 
                                             ?>
 
-                                                <td><?=$i++;?></td>
-                                                <td><?=$img_barcode;?></td>
-                                                <!-- <td><?=$IDBarang;?></td> -->
-                                                <td><?=$NamaBarang;?></td>
-                                                <td><?=$MerekBarang;?></td>
-                                                <td><?=$Jumlah;?></td>
-                                                <td><?=$img_barang;?></td>
+                                                    <td><?=$i++;?></td>
+                                                    <td><?=$img_barcode;?></td>
+                                                    <!-- <td><?=$IDBarang;?></td> -->
+                                                    <td><?=$NamaBarang;?></td>
+                                                    <td><?=$MerekBarang;?></td>
+                                                    <td><?=$Jumlah;?></td>
+                                                    <td><?=$img_barang;?></td>
 
-                                                <td>
-                                                    <span>
-                                                        <button type="button" class="btn btn-success"
-                                                            data-toggle="modal" data-target="#lihat<?=$IDBarang;?>">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-eye"></i>
-                                                            </span>
-                                                        </button>
-                                                        <input type="hidden" name="ID_Barang" value="<?=$IDBarang;?>">
-                                                    </span>
+                                                    <td>
+                                                        <span>
+                                                            <button type="button" class="btn btn-success"
+                                                                data-toggle="modal" data-target="#lihat<?=$IDBarang;?>">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </span>
+                                                            </button>
+                                                            <input type="hidden" name="ID_Barang"
+                                                                value="<?=$IDBarang;?>">
+                                                        </span>
 
-
-                                                    <!-- The Modal EDIT BARANG -->
-
-
-                                                    <div class="modal fade" id="edit<?=$IDBarang;?>">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-
-                                                                <!-- Modal Header -->
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Edit Barang</h4>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal">&times;</button>
-                                                                </div>
-
-                                                                <!-- Modal body -->
-                                                                <form method="post">
-                                                                    <div class="modal-body">
-                                                                        Nama Barang
-                                                                        <input type="text" name="NamaBarang"
-                                                                            value="<?=$NamaBarang?>"
-                                                                            class="form-control" autocomplete="off">
-                                                                        <br>
-                                                                        Merek Barang
-                                                                        <input type="text" name="MerekBarang"
-                                                                            value="<?=$MerekBarang?>"
-                                                                            class="form-control" autocomplete="off">
-                                                                        <br>
-                                                                        Jumlah Barang
-                                                                        <input type="number" name="Jumlah"
-                                                                            value="<?=$Jumlah?>" class="form-control"
-                                                                            autocomplete="off">
-                                                                        <br>
-                                                                        Loker
-                                                                        <input type="text" name="Loker"
-                                                                            value="<?=$Loker?>" class="form-control"
-                                                                            autocomplete="off">
-                                                                        <br>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4 col-form-label"> Foto
-                                                                                Barang</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="custom-file">
-                                                                                    <input type="file" name="file"
-                                                                                        value="<?=$img_barang?>"
-                                                                                        class="custom-file-input"
-                                                                                        id="customFile">
-                                                                                    <label class="custom-file-label"
-                                                                                        for="customFile"> edit
-                                                                                        gambar</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Foto Barang-->
-                                                                        <!--<input type ="file" name="Foto" value="<?=$img_barang?>" class="form-control" autocomplete="off">-->
-                                                                        <!--<br>-->
-                                                                        <input type="hidden" name="ID_Barang"
-                                                                            value="<?=$IDBarang;?>">
-                                                                </form>
-
-                                                                <!-- Modal footer -->
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-primary"
-                                                                        name="editbarang">
-                                                                        Submit
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-
-
-
-
-                                                    <span>
-                                                        <button type="button" class="btn btn-primary"
-                                                            data-toggle="modal" data-target="#edit<?=$IDBarang;?>">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-pen"></i>
-                                                            </span>
-                                                        </button>
-                                                        <input type="hidden" name="ID_Barang" value="<?=$IDBarang;?>">
-                                                    </span>
-
-                                                    <div>
-                                                        <!-- The Modal HAPUS BARANG-->
-                                                        <div class="modal fade" id="delete<?=$IDBarang;?>">
+                                                     <!-- The Modal TAMBAH BARANG -->
+                                                     <div class="modal fade" id="tambah<?=$IDBarang;?>">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
 
                                                                     <!-- Modal Header -->
                                                                     <div class="modal-header">
-                                                                        <h4 class="modal-title">Hapus Barang</h4>
+                                                                        <h4 class="modal-title">Tambah Barang</h4>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal">&times;</button>
                                                                     </div>
-                                                                    <!-- Modal body -->
 
-                                                                    <div class="modal-body">
-                                                                        <form method="post">
-                                                                            <p> Apakah anda yakin ingin menghapus
-                                                                                <?="$NamaBarang";?> ? </p>
-                                                                            <input type="hidden" name="ID_Barang"
-                                                                                value="<?=$IDBarang;?>">
-                                                                            <div class="modal-top mt-1 mb-2"
-                                                                                align="right">
-                                                                                <button type="submit"
-                                                                                    name="hapusdatabarang"
-                                                                                    class="btn btn-danger mr-1">
-                                                                                    YA
-                                                                                </button>
-                                                                                <button type="button"
-                                                                                    class="btn btn-primary "
-                                                                                    data-dismiss="modal">
-                                                                                    TIDAK
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-
-
-
-                                                </td>
-
-                                                <td>
-                                                    <span>
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                            data-target="#delete<?=$IDBarang;?>">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-times"></i>
-                                                            </span>
-                                                        </button>
-                                                        <input type="hidden" name="ID_Barang" value="<?=$IDBarang;?>">
-                                                    </span>
-
-                                                    <div>
-                                                        <!-- The Modal LIHAT BARANG-->
-                                                        <div class="modal fade" id="lihat<?=$IDBarang;?>">
+                                                        <!-- The Modal EDIT BARANG -->
+                                                        <div class="modal fade" id="edit<?=$IDBarang;?>">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
 
                                                                     <!-- Modal Header -->
                                                                     <div class="modal-header">
-                                                                        <h4 class="modal-title">Detail Barang</h4>
+                                                                        <h4 class="modal-title">Edit Barang</h4>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal">&times;</button>
                                                                     </div>
 
+                                                                    
                                                                     <!-- Modal body -->
                                                                     <form method="post">
-                                                                        <div table class="modal-body">
-
-
-                                                                            <table
-                                                                                class="table table-striped table-bordered">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <td> Gambar </td>
-                                                                                        <td> <?php echo $img_barang ?>
-                                                                                        </td>
-                                                                                    </tr>
-
-                                                                                    <!-- <tr>
-                                                                                    <td> Lab </td>
-                                                                                    <td> <?php echo $data['nama_lab'] ?>
-                                                                                    </td>
-                                                                                </tr> -->
-                                                                                    <tr>
-                                                                                        <td width='35%'><strong>ID
-                                                                                                Barang
-                                                                                            </strong></td>
-                                                                                        <td><?php echo $data['Barang_id'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong> Nama Barang
-                                                                                            </strong>
-                                                                                        </td>
-                                                                                        <td><?php echo $data['Barang_nama'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong> Merk Barang
-                                                                                            </strong>
-                                                                                        </td>
-                                                                                        <td><?php echo $data['Barang_merk'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong> Loker
-                                                                                                Barang</strong>
-                                                                                        </td>
-                                                                                        <td><?php echo $data['Barang_Loker'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong> Total
-                                                                                                Barang</strong>
-                                                                                        </td>
-                                                                                        <td><?php echo $data['Barang_jumlah'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong> Sisa
-                                                                                                Barang</strong>
-                                                                                        </td>
-                                                                                        <td><?php echo $data['Barang_jumlah'] ?>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                            </table>
+                                                                        <div class="modal-body">
+                                                                            Nama Barang
+                                                                            <input type="text" name="NamaBarang"
+                                                                                value="<?=$NamaBarang?>"
+                                                                                class="form-control" autocomplete="off">
+                                                                            <br>
+                                                                            Merek Barang
+                                                                            <input type="text" name="MerekBarang"
+                                                                                value="<?=$MerekBarang?>"
+                                                                                class="form-control" autocomplete="off">
+                                                                            <br>
+                                                                            Jumlah Barang
+                                                                            <input type="number" name="Jumlah"
+                                                                                value="<?=$Jumlah?>"
+                                                                                class="form-control" autocomplete="off">
+                                                                            <br>
+                                                                            Loker
+                                                                            <input type="text" name="Loker"
+                                                                                value="<?=$Loker?>" class="form-control"
+                                                                                autocomplete="off">
+                                                                            <br>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-md-4 col-form-label">
+                                                                                    Foto
+                                                                                    Barang</label>
+                                                                                <div class="col-md-8">
+                                                                                    <div class="custom-file">
+                                                                                        <input type="file" name="file"
+                                                                                            value="<?=$img_barang?>"
+                                                                                            class="custom-file-input"
+                                                                                            id="customFile">
+                                                                                        <label class="custom-file-label"
+                                                                                            for="customFile"> edit
+                                                                                            gambar</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--Foto Barang-->
+                                                                            <!--<input type ="file" name="Foto" value="<?=$img_barang?>" class="form-control" autocomplete="off">-->
+                                                                            <!--<br>-->
                                                                             <input type="hidden" name="ID_Barang"
                                                                                 value="<?=$IDBarang;?>">
                                                                     </form>
 
                                                                     <!-- Modal footer -->
-                                                                    <br>
-                                                                    <div>
-                                                                        <div class="modal-top">
-                                                                            <button type="submit"
-                                                                                class="btn btn-success">
-                                                                                <a href="export.php">
-                                                                                    Cetak
-                                                                            </button>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary"
+                                                                            name="editbarang">
+                                                                            Submit
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary float-right"
-                                                                                data-dismiss="modal">
-                                                                                OK
-                                                                            </button>
+                                                    <td>
+                                                        <span>
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#edit<?=$IDBarang;?>">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </span>
+                                                            </button>
+                                                            <input type="hidden" name="ID_Barang"
+                                                                value="<?=$IDBarang;?>">
+                                                        </span>
+
+                                                        <div>
+                                                            <!-- The Modal HAPUS BARANG-->
+                                                            <div class="modal fade" id="delete<?=$IDBarang;?>">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+
+                                                                        <!-- Modal Header -->
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Hapus Barang</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
+                                                                        </div>
+                                                                        <!-- Modal body -->
+
+                                                                        <div class="modal-body">
+                                                                            <form method="post">
+                                                                                <p> Apakah anda yakin ingin menghapus
+                                                                                    <?="$NamaBarang";?> ? </p>
+                                                                                <input type="hidden" name="ID_Barang"
+                                                                                    value="<?=$IDBarang;?>">
+                                                                                <div class="modal-top mt-1 mb-2" >
+                                                                                    <button type="submit"
+                                                                                        name="hapusdatabarang"
+                                                                                        class="btn btn-danger mr-1">
+                                                                                        YA
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        class="btn btn-primary "
+                                                                                        data-dismiss="modal">
+                                                                                        TIDAK
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
-                                                                    <br>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                                                </div>
+                                                            </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <span>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="modal"
+                                                                data-target="#delete<?=$IDBarang;?>">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-times"></i>
+                                                                </span>
+                                                            </button>
+                                                            <input type="hidden" name="ID_Barang"
+                                                                value="<?=$IDBarang;?>">
+                                                        </span>
+
+                                                        <div>
+                                                            <!-- The Modal LIHAT BARANG-->
+                                                            <div class="modal fade" id="lihat<?=$IDBarang;?>">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+
+                                                                        <!-- Modal Header -->
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Detail Barang</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
+                                                                        </div>
+
+                                                                        <!-- Modal body -->
+                                                                        <form method="post">
+                                                                            <div table class="modal-body">
+
+
+                                                                                <table
+                                                                                    class="table table-striped table-bordered">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td> Gambar </td>
+                                                                                            <td> <?php echo $img_barang ?>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                        <!-- <tr>
+                                                                                    <td> Lab </td>
+                                                                                    <td> <?php echo $data['nama_lab'] ?>
+                                                                                    </td>
+                                                                                </tr> -->
+                                                                                        <tr>
+                                                                                            <td width='35%'><strong>ID
+                                                                                                    Barang
+                                                                                                </strong></td>
+                                                                                            <td><?php echo $data['Barang_id'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong> Nama Barang
+                                                                                                </strong>
+                                                                                            </td>
+                                                                                            <td><?php echo $data['Barang_nama'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong> Merk Barang
+                                                                                                </strong>
+                                                                                            </td>
+                                                                                            <td><?php echo $data['Barang_merk'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong> Loker
+                                                                                                    Barang</strong>
+                                                                                            </td>
+                                                                                            <td><?php echo $data['Barang_Loker'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong> Total
+                                                                                                    Barang</strong>
+                                                                                            </td>
+                                                                                            <td><?php echo $data['Barang_jumlah'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong> Sisa
+                                                                                                    Barang</strong>
+                                                                                            </td>
+                                                                                            <td><?php echo $data['Barang_jumlah'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                </table>
+                                                                                <input type="hidden" name="ID_Barang"
+                                                                                    value="<?=$IDBarang;?>">
+                                                                        </form>
+
+                                                                        <!-- Modal footer -->
+                                                                        <br>
+                                                                        <div>
+                                                                            <div class="modal-top">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-success" name="cetakqr">
+                                                                                    <a href="Cetakqrcode?cetakqr=<?= $IDBarang ?>">
+                                                                                        Cetak
+                                                                                </button>
+
+                                                                                <button type="submit"
+                                                                                    class="btn btn-primary float-right"
+                                                                                    data-dismiss="modal">
+                                                                                    OK
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <br>
+                                                    </td>
+                                                </tr>
+                                                <?php
                                         }   
                                         ?>
-                                        </tbody>
+                                            </tbody>
+                                    </div>
+                                    </table>
                                 </div>
-                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                                    </div>  
                 <!-- /.container-fluid -->
 
             </div>
@@ -662,34 +667,13 @@
     </script>
 
 </body>
-<!-- The Modal TAMBAH BARANG-->
-<!--<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-         Modal Header -->
-<!--<div class="modal-header">
-          <h4 class="modal-title">Tambah Barang</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>-->
 
-<!-- Modal body -->
-<!--<form method="post">
-        <div class="modal-body">
-            <input type ="text" name="NamaBarang" placeholder= "Nama Barang" class="form-control" required autocomplete="off">
-            <br>
-            <input type ="text" name="MerekBarang" placeholder= "Merek Barang" class="form-control" required autocomplete="off">
-        <br>
-        <input type ="number" name="Jumlah" placeholder= "Jumlah" class="form-control" required autocomplete="off">
-        <br>
-        <input type ="text" name="Loker" placeholder= "Loker" class="form-control" autocomplete="off">
-        <br>
 <body>
-    <form action="https://www.the-qrcode-generator.com/"> 
+    <!-- <form action="https://www.the-qrcode-generator.com/"> 
         <button name="dudu">Buat QR Code </button> 
-    </form>
-</body>-->
-        <?php
+    </form> -->
+</body>
+<?php
         //Validasi untuk menampilkan pesan pemberitahuan
         if (isset($_GET['add'])) 
         {
@@ -701,46 +685,27 @@
             }    
         }
         ?>
-        <!--<form action="simpan.php" method="post" enctype="multipart/form-data"> rows -->
-            <!-- <div class="row"> -->
-            <!--<div class="col-sm-6">
-                    <div class="form-group">
-                        <div id="msg"></div>
-                        <input type="file" name="gambar" class="file" >
-                            <div class="input-group my-10">
-                                <div class="input-group-append">     
-                                </div>
-                            </div>
-                        <img src="gambar/80x80.png" id="preview" class="img-thumbnail">
-                    </div>
-                </div>
-            </div>
 
-                <button type="submit" name="addnamabarang" class="btn btn-success">Simpan</button>
-        </form> -->
+<script>
+$(document).on("click", "#pilih_gambar", function() {
+    var file = $(this).parents().find(".file");
+    file.trigger("click");
+});
 
+$('input[type="file"]').change(function(e) {
+    var fileName = e.target.files[0].name;
+    $("#file").val(fileName);
 
-
-            <script>
-            $(document).on("click", "#pilih_gambar", function() {
-                var file = $(this).parents().find(".file");
-                file.trigger("click");
-            });
-
-            $('input[type="file"]').change(function(e) {
-                var fileName = e.target.files[0].name;
-                $("#file").val(fileName);
-
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    // get loaded data and render thumbnail.
-                    document.getElementById("preview").src = e.target.result;
-                };
-                // read the image file as a data URL.
-                reader.readAsDataURL(this.files[0]);
-            });
-            </script>
-            <?php
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("preview").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+});
+</script>
+<?php
     
     if (isset($_POST['addnamabarang'])) {
         //Include file koneksi, untuk koneksikan ke database
@@ -779,49 +744,49 @@
 
     }
 ?>
-            <script type="text/javascript">
-            $('#cari_barang').focus();
-            $(".cari_barang").on("keyup", function(e) {
-                var kode_barang = $('#cari_barang').val();
-                if (kode_barang != "") {
-                    var link = 'http://pinjamalat-ta05.com/webadmin/ubah_barang.php?id_barang=' +
-                        kode_barang + '';
-                    //window.location.href = 'http://localhost/PEMINJAMAN/detail_barang.php?id_barang='+kode_barang+'';
-                    window.open(link, '_blank');
-                }
-            })
-            </script>
-            <?php
+<script type="text/javascript">
+$('#cari_barang').focus();
+$(".cari_barang").on("keyup", function(e) {
+    var kode_barang = $('#cari_barang').val();
+    if (kode_barang != "") {
+        var link = 'http://pinjamalat-ta05.com/webadmin/ubah_barang.php?id_barang=' +
+            kode_barang + '';
+        //window.location.href = 'http://localhost/PEMINJAMAN/detail_barang.php?id_barang='+kode_barang+'';
+        window.open(link, '_blank');
+    }
+})
+</script>
+<?php
     include("modal_search_barang.php");
     ?>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
-            <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
+<script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="<?= BASEURL; ?>/js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="<?= BASEURL; ?>/js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="<?= BASEURL; ?>/vendor/datatables/jquery.dataTables.js"></script>
-            <script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Page level plugins -->
+<script src="<?= BASEURL; ?>/vendor/datatables/jquery.dataTables.js"></script>
+<script src="<?= BASEURL; ?>/vendor/datatables/dataTables.bootstrap4.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
+<!-- Page level custom scripts -->
+<script src="<?= BASEURL; ?>/js/demo/datatables-demo.js"></script>
 
 
-            <script src="<?= BASEURL; ?>/js/app.js"></script>
+<script src="<?= BASEURL; ?>/js/app.js"></script>
 
-            <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable();
-            });
-            <?php if (isset($_GET['cari'])) : ?>
-            $("#popup_search_barang").modal("show");
-            <?php endif; ?>
-            </script>
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+});
+<?php if (isset($_GET['cari'])) : ?>
+$("#popup_search_barang").modal("show");
+<?php endif; ?>
+</script>
 
 </html>
