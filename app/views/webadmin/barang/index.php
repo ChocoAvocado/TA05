@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__.('/../../function.php');  
     include "lib_qrcode/qrlib.php";   
+    include("modal_search_barang.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +68,7 @@
                                 <?php
                             if(isset($_GET['cari'])){
                             ?>
-                                <a href="user.php"><i class="fas fa-fw mr-2 fa-caret-square-left"></i></a>
+                                <a href="barang"><i class="fas fa-fw mr-2 fa-caret-square-left"></i></a>
                                 <?php
                             }
                             ?>
@@ -610,7 +611,7 @@ $('input[type="file"]').change(function(e) {
 
     }
 ?>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $('#cari_barang').focus();
 $(".cari_barang").on("keyup", function(e) {
     var kode_barang = $('#cari_barang').val();
@@ -621,7 +622,7 @@ $(".cari_barang").on("keyup", function(e) {
         window.open(link, '_blank');
     }
 })
-</script>
+</script> -->
 <?php
     include ("modal_search_barang.php");
     ?>
@@ -651,7 +652,7 @@ $(document).ready(function() {
     $('#dataTable').DataTable();
 });
 <?php if (isset($_GET['cari'])) : ?>
-$("#popup_search_barang").modal("show");
+$("#popup").modal("show");
 <?php endif; ?>
 </script>
 
