@@ -651,7 +651,7 @@ if(!empty($jumlahbaranglab_total_row)){
 
 //mengambil jumlah data barang dimana sedang dipinjam ()
 $jumlahbaranglab_dipinjam = mysqli_query($conn, 
-"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbaranga FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbaranga FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
 
 $jumlahbaranglab_dipinjam_row = mysqli_fetch_object($jumlahbaranglab_dipinjam);
 
