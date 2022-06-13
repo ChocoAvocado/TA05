@@ -575,8 +575,6 @@ if (isset($_POST["pengecekan_submit"])) {
 
 if($data['status_sidebar']=='dashboard'){
 
-
-
 // ---------------- BAR CHART >>
 
 // setting bulan ke 0 
