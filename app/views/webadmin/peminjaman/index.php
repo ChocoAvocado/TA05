@@ -102,10 +102,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a href="peminjaman?status_peminjaman=1" type="button"
                                     class="dropdown-item">Dipinjam</a>
-                                <a href="peminjaman?status_peminjaman=2" type="button"
-                                    class="dropdown-item">Diperpanjang</a>
-                                <a href="peminjaman?status_peminjaman=3" type="button"
-                                    class="dropdown-item">Terlambat</a>
+                                <a href="peminjaman?status_peminjaman=3" type="button "
+                                    class="dropdown-item txt-red">Terlambat</a>
                             </div>
 
                         </div>

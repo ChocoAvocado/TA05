@@ -346,8 +346,8 @@
     <script>
     const baranglab = [];
 
-    baranglab[0] = <?php echo json_encode($jumlahbaranglab_array[0]); ?>;
-    baranglab[1] = <?php echo json_encode($jumlahbaranglab_array[1]); ?>;
+    baranglab[0] = <?php echo json_encode($jumlahbaranglab_array[2]); ?>;
+    baranglab[1] = <?php echo json_encode($jumlahbaranglab_array[3]); ?>;
 
 
     // Set new default font family and font color to mimic Bootstrap's default styling

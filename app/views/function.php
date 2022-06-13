@@ -636,15 +636,7 @@ $jumlah_bulan += 1;
 
 // START OF PIE CHART <<<
 
-//mengambil jumlah data barang dimana sedang dipinjam ()
-$jumlahbaranglab_sisa = mysqli_query($conn, 
-"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
 
-$jumlahbaranglab_sisa_row = mysqli_fetch_object($jumlahbaranglab_sisa);
-
-if(!empty($jumlahbaranglab_sisa_row)){
-  $jumlahbaranglab_array[0] = $jumlahbaranglab_sisa_row->jumlahbarang;
-} else $jumlahbaranglab_array[0] = 0;
 
 
 //mengambil total data jumlah semua data barang yang barang_lab_id sama seperti user_lab_id  
@@ -654,8 +646,29 @@ $jumlahbaranglab_total = mysqli_query($conn,
 $jumlahbaranglab_total_row = mysqli_fetch_object($jumlahbaranglab_total);
 
 if(!empty($jumlahbaranglab_total_row)){
-  $jumlahbaranglab_array[1] = ($jumlahbaranglab_total_row->jumlahbarang) - $jumlahbaranglab_array[0];
-} else $jumlahbaranglab_array[1] = 0;
+  $jumlahbaranglab_array[0] = ($jumlahbaranglab_total_row->jumlahbarang);
+} else $jumlahbaranglab_array[0] = 0;
+
+//mengambil jumlah data barang dimana sedang dipinjam ()
+$jumlahbaranglab_dipinjam = mysqli_query($conn, 
+"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbaranga FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+
+$jumlahbaranglab_dipinjam_row = mysqli_fetch_object($jumlahbaranglab_dipinjam);
+
+if(!empty($jumlahbaranglab_dipinjam_row)){
+  $jumlahbaranglab_array[1] = $jumlahbaranglab_dipinjam_row->jumlahbaranga;
+  $jumlahbaranglab_array[2] = $jumlahbaranglab_array[0] - $jumlahbaranglab_array[1] ;
+} else $jumlahbaranglab_array[2] = 0;
+
+//mengambil jumlah data barang di lab yang tersisa ()
+$jumlahbaranglab_sisa = mysqli_query($conn, 
+"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbarangb FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
+
+$jumlahbaranglab_sisa_row = mysqli_fetch_object($jumlahbaranglab_sisa);
+
+if(!empty($jumlahbaranglab_sisa_row)){
+  $jumlahbaranglab_array[3] = $jumlahbaranglab_sisa_row->jumlahbarangb;
+} else $jumlahbaranglab_array[3] = 0;
 
 // END OF PIE CHART >>>
 
