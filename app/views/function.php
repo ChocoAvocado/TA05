@@ -636,9 +636,6 @@ $jumlah_bulan += 1;
 
 // START OF PIE CHART <<<
 
-
-
-
 //mengambil total data jumlah semua data barang yang barang_lab_id sama seperti user_lab_id  
 $jumlahbaranglab_total = mysqli_query($conn, 
 "SELECT sum(`Barang_jumlah`) AS jumlahbarang FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
