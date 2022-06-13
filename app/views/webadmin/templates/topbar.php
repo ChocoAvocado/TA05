@@ -91,13 +91,7 @@ else{
                 </a>
                 <?php endwhile; ?>
 
-                <?php while ($data = mysqli_fetch_assoc($qry)):?>    
-            <a class="dropdown-item" href="/websitePeminjaman/public/peminjaman?Pinjam_id=<?php echo $data['Lab_id']?>">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-            <?php echo $data['Lab_nama']?>
-                </a>
-                <?php endwhile; ?>
-
+                
             </div>
         </li>
 
