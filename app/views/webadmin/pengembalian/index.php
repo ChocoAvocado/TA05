@@ -80,7 +80,8 @@
                                     </form>
                                 </div>
                                 <div class="col-lg-6">
-                                    <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
+                                    <a href="formpengembalian"
+                                        class="btn btn-danger offset-lg-1 float-right">Kembali</a>
                                     <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
                                 </div>
                             </div>
@@ -256,6 +257,12 @@
     <script>
     $('#dataTable').dataTable({
         "lengthMenu": [5, 10, 20],
+        "oLanguage": {
+            "sSearch": "Mencari Peminjam: "
+        },
+        language: {
+            "searchPlaceholder": "Scan QR here"
+        },
     });
     </script>
 

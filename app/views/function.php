@@ -568,6 +568,9 @@ if (isset($_POST["pengecekan_submit"])) {
 
 
 
+
+
+
 //------------------------------------- CHART < Dashboard > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
 
 if($data['status_sidebar']=='dashboard'){
@@ -616,9 +619,6 @@ $jumlah_bulan += 1;
 // exit;
 
 
-
-
-
 //---------------- PIE CHART >>
 
 $jumlahbaranglab_sisa = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
@@ -638,9 +638,25 @@ if(!empty($jumlahbaranglab_total_row)){
 // var_dump($jumlahbaranglab_array[0]);
 // exit;
 
+}
 
 
 
 
+
+
+//------------------------------------- CHART < Dashboard > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
+
+if($data['status_sidebar']=='aktivitas'){
+
+  if(getUrlParam('status_peminjaman')=='1'){
+    $status_peminjaman_value = 'Dipinjam';
+  } else if(getUrlParam('status_peminjaman')=='2'){
+    $status_peminjaman_value = 'Diperpanjang';
+  } else if(getUrlParam('status_peminjaman')=='3'){
+    $status_peminjaman_value = 'Terlambat';
+  } else {
+    $status_peminjaman_value = "";
+  }
 
 }

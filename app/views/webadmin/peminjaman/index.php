@@ -2,6 +2,8 @@
 	require_once __DIR__.('/../../function.php'); 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +82,8 @@
                                     </form>
                                 </div>
                                 <div class="col-lg-6">
-                                    <a href="formpengembalian" class="btn btn-danger offset-lg-1 float-right">Kembali</a>
+                                    <a href="formpengembalian"
+                                        class="btn btn-danger offset-lg-1 float-right">Kembali</a>
                                     <a href="formpeminjaman" class="btn btn-success offset-lg-1 float-right">Pinjam</a>
                                 </div>
                             </div>
@@ -88,6 +91,25 @@
                     </div>
                     <!-- end of page heading -->
                     <p>*Tanggal Pinjam dan NIM yang sama jadi satu baris</p>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="pilihan_status"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status
+                                Peminjaman</button>
+                            <div class="dropdown-menu" aria-labelledby="pilihan_status">
+                                <a href="peminjaman?status_peminjaman=0" type="button" class="dropdown-item">Semua</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="peminjaman?status_peminjaman=1" type="button"
+                                    class="dropdown-item">Dipinjam</a>
+                                <a href="peminjaman?status_peminjaman=2" type="button"
+                                    class="dropdown-item">Diperpanjang</a>
+                                <a href="peminjaman?status_peminjaman=3" type="button"
+                                    class="dropdown-item">Terlambat</a>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <br>
                     <!-- DataTales Example -->
@@ -144,7 +166,7 @@
                                                 if($status == 0){
                                                     $status = "dipinjam";
                                                 } else if($status == 1){
-                                                    $status = "diperpanjang";
+                                                    $status = "dipinjam";
                                                 } else if($status == 3){
                                                     $status = "<p style='color:red'><b>Terlambat<b></p>";
                                                 } else{
@@ -217,7 +239,7 @@
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
                                                                                                 INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id 
                                                                                                 WHERE pinjam.Pinjam_user_tag = $IDpeminjam
-                                                                                                AND pinjam.Pinjam_tgl = '$TglPinjam'");
+                                                                                                AND pinjam.Pinjam_tgl = '$TglPinjam' AND pinjam.Pinjam_status != 2 AND pinjam.Pinjam_tgl_kembalireal IS NOT NULL");
 
                                                                                                 $i = 1;
                                                                                                 while ($data = mysqli_fetch_array($ambildatabarang)) {
@@ -357,16 +379,29 @@
     </script>
 
     <script>
+    var status_search = <?php echo json_encode($status_peminjaman_value);?>;
+
     $('#dataTable').dataTable({
         "lengthMenu": [5, 10, 20],
         "oLanguage": {
             "sSearch": "Mencari Peminjam: "
         },
         language: {
-            "searchPlaceholder": "Scan RFID here"
+            "searchPlaceholder": "Scan QR here"
+        },
+        "search": {
+            "search": status_search
         },
     });
     </script>
+
+
+
+
+
+
+
+
 
 </body>
 
