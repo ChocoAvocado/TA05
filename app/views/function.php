@@ -573,9 +573,19 @@ if (isset($_POST["pengecekan_submit"])) {
 
 //------------------------------------- CHART < Dashboard > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
 
+/*  -- Tentang Pie Chart dan Bar Chart -- 
+   mengambil data jumlah barang pie chart dari TABEL BARANG SAJA
+   bila di tabel barang barang_jumlah_sisa tidak berganti maka pie chart RIP
+
+     < check logika program penambahan dan pengurangan barang_jumlah_sisa di pengembalian dan peminjaman (FORM) >
+
+   BAR CHART hanya mengambil data jumlah barang dari TABEL PINJAM seharusnya tidak ada bug yang berarti  :)
+*/
+
+
 if($data['status_sidebar']=='dashboard'){
 
-// ---------------- BAR CHART >>
+// START OF BAR CHART <<<
 
 // setting bulan ke 0 
 $jumlah_bulan = 1;
@@ -583,8 +593,11 @@ $jumlah_bulan = 1;
 //looping sampai bulan ke 12 stop
 while($jumlah_bulan < 13){
 
-//memasukkan jumlah tiap bulan ke tiap kolom array
-$chart_bar[$jumlah_bulan] = mysqli_query($conn, "SELECT Count(`Pinjam_tgl`) as jumlah FROM `pinjam` WHERE Month(`Pinjam_tgl`)='$jumlah_bulan' GROUP BY Month(`Pinjam_tgl`);"); 
+//memasukkan jumlah tiap bulan ke tiap kolom array ( sudah tiap lab )
+$chart_bar[$jumlah_bulan] = mysqli_query($conn, 
+"SELECT sum(`Pinjam_jumlah`) as jumlah FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id 
+WHERE Month(`Pinjam_tgl`)='$jumlah_bulan' && barang.Barang_lab_id=$_SESSION[User_lab_id]  GROUP BY Month(`Pinjam_tgl`);"); 
+
 $row[$jumlah_bulan] = mysqli_fetch_object($chart_bar[$jumlah_bulan]);
 
 
@@ -599,7 +612,9 @@ if(!empty($row[$jumlah_bulan])){
 $jumlah_bulan += 1;
 }
 
+//END OF BAR CHART >>>
 
+// ###  notes   ###
 // var_dump($chart_bar_array[7]);
 // exit;
 
@@ -617,33 +632,68 @@ $jumlah_bulan += 1;
 // exit;
 
 
-//---------------- PIE CHART >>
 
-$jumlahbaranglab_sisa = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+
+// START OF PIE CHART <<<
+
+//mengambil jumlah data barang dimana sedang dipinjam ()
+$jumlahbaranglab_sisa = mysqli_query($conn, 
+"SELECT sum(`Barang_jumlah_sisa`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+
 $jumlahbaranglab_sisa_row = mysqli_fetch_object($jumlahbaranglab_sisa);
 
 if(!empty($jumlahbaranglab_sisa_row)){
   $jumlahbaranglab_array[0] = $jumlahbaranglab_sisa_row->jumlahbarang;
 } else $jumlahbaranglab_array[0] = 0;
 
-$jumlahbaranglab_total = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
+
+//mengambil total data jumlah semua data barang yang barang_lab_id sama seperti user_lab_id  
+$jumlahbaranglab_total = mysqli_query($conn, 
+"SELECT sum(`Barang_jumlah`) AS jumlahbarang FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
+
 $jumlahbaranglab_total_row = mysqli_fetch_object($jumlahbaranglab_total);
 
 if(!empty($jumlahbaranglab_total_row)){
   $jumlahbaranglab_array[1] = ($jumlahbaranglab_total_row->jumlahbarang) - $jumlahbaranglab_array[0];
 } else $jumlahbaranglab_array[1] = 0;
 
+// END OF PIE CHART >>>
+
+
 // var_dump($jumlahbaranglab_array[0]);
 // exit;
+
+// ###  notes   ###
+// ------------ SUDAH JADI PIE CHART ( data barang lab mengambil dari jumlah data barang tiap jenis barang )
+// START OF PIE CHART <<<
+
+// //mengambil jumlah data barang dimana sedang dipinjam ()
+// $jumlahbaranglab_sisa = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_jumlah_sisa` < `Barang_jumlah` AND `Barang_lab_id`=$_SESSION[User_lab_id];");
+// $jumlahbaranglab_sisa_row = mysqli_fetch_object($jumlahbaranglab_sisa);
+
+// if(!empty($jumlahbaranglab_sisa_row)){
+//   $jumlahbaranglab_array[0] = $jumlahbaranglab_sisa_row->jumlahbarang;
+// } else $jumlahbaranglab_array[0] = 0;
+
+
+// //mengambil total data jumlah semua data barang yang barang_lab_id sama seperti user_lab_id  
+// $jumlahbaranglab_total = mysqli_query($conn, "SELECT count(`Barang_id`) AS jumlahbarang FROM `barang` WHERE `Barang_lab_id`=$_SESSION[User_lab_id];");
+// $jumlahbaranglab_total_row = mysqli_fetch_object($jumlahbaranglab_total);
+
+// if(!empty($jumlahbaranglab_total_row)){
+//   $jumlahbaranglab_array[1] = ($jumlahbaranglab_total_row->jumlahbarang) - $jumlahbaranglab_array[0];
+// } else $jumlahbaranglab_array[1] = 0;
+
+// // var_dump($jumlahbaranglab_array[0]);
+// // exit;
+
+// END OF PIE CHART >>>
 
 }
 
 
 
-
-
-
-//------------------------------------- CHART < Dashboard > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
+//------------------------------------- FILTER < Peminjaman > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
 
 if($data['status_sidebar']=='aktivitas'){
 

@@ -51,70 +51,38 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
-                    <div class="row justify-content-center">
-
-                        <!-- <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center">
-                                    <h6 class="m-0 font-weight-bold text-primary">PERSONIL TA</h6>
-                                </div>
-                                <div class="card-body">
-
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="col-auto">
-                            <!-- Page Heading -->
-                            <div class="d-sm-flex justify-content-center mb-4">
-                                <h5 class="mb-0 text-gray-800"><i><b>TA-05 Implementasi Monitoring Peminjaman Alat
-                                            Lab</b></i></h5>
-                            </div>
-
-                            <!-- Content Row -->
-                            <div class="row justify-content-center">
-
-                                <!-- pejetan peminjaman -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <a class="btn btn-success" href="formpeminjaman">
-                                        <div class="card-tombol">
-
-                                            <div class="col mr-2">
-                                                <div class="col-auto">
-                                                    <i class="fas fa-plus-circle fa-1x text-gray-300"></i>
-                                                </div>
-                                                <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">
-                                                    <font size="+1">Peminjaman</font>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="d-flex mb-4">
+                        <div class="p-2">
+                            <h5 class="mb-2 text-gray-800"><i><b>TA-05 Implementasi Monitoring Peminjaman Alat
+                                        Lab</b></i></h5>
                         </div>
-                        <div class="row justify-content-center"></div>
 
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <a class="btn btn-danger" href="formpengembalian">
-                                    <div class="card-tombol justify-content-center">
+                        <div class="ml-auto p-2">
+                            <a class="btn btn-success" href="formpeminjaman">
 
-                                        <div class="col mr-2">
-                                            <div class="col-auto">
-                                                <i class="fas fa-hands-helping fa-1x text-gray-300"></i>
-                                            </div>
-                                            <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">
-                                                <font size="+1">Pengembalian</font>
-                                            </div>
-                                        </div>
+                                <div class="text font-weight-bold text-white text-uppercase mb-1">
+                                    Peminjaman
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="p-2">
+
+                            <a class="btn btn-danger" href="formpengembalian">
+
+                                <div class="col mr-2">
+
+                                    <div class="text font-weight-bold text-white text-uppercase mb-1">
+                                        Pengembalian
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+
+                            </a>
                         </div>
+                    </div>
 
 
+                    <div class="row">
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
@@ -154,24 +122,22 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Politeknik ATMI Surakarta 2022</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
             </div>
-            <!-- /.container-fluid -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Politeknik ATMI Surakarta 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
-        <!-- End of Main Content -->
-
-
-
-
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
 
     </div>
     <!-- End of Content Wrapper -->
@@ -328,7 +294,7 @@
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 50,
+                        max: 100,
                         maxTicksLimit: 10,
                         padding: 10,
                         // Include a dollar sign in the ticks
