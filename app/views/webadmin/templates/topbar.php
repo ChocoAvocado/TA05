@@ -77,8 +77,6 @@ if($_SESSION['User_level_id'] == "1"){
     $qry = mysqli_query($conn, "SELECT * FROM lab ");
 }
 else{
-
-
  $qry = mysqli_query($conn, "SELECT * FROM tr_userlab LEFT JOIN lab ON tr_userlab.Lab_id=lab.Lab_id WHERE User_tag=". $_SESSION['User_tag']);
 // print_r($data);
 // exit;
