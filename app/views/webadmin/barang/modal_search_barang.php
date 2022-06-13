@@ -1,27 +1,29 @@
 <!-- Modal -->
-<div class="modal fade" id="popup_search_barang" tabindex="-1">
+<div class="modal fade" id="popup" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Data Ditemukan</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h5 class="modal-title" id="exampleModalLabel">Data Ditemukan</h5>
+        <!-- <button type="button"  data-dismiss="modal">&times;</button> -->
+        <a class="btn btn-primary" href="/websitePeminjaman/public/barang">Tutup</a>
       </div>
       <div class="modal-body">
           <?php
-          // var_dump ();
-          // if (getUrlParam('cari') != null):
-          //   $cariqr=mysqli_query($conn,"SELECT*FROM barang WHERE Barang_id = '".getUrlParam('cari')."'");
-          //   $user = mysqli_fetch_array($cariqr);
-           if (isset($_GET['cari'])):
-            $id_barang = $_GET['cari']; 
-            $sql = "
-            SELECT a.*,b.Lab_nama nama_lab 
-            FROM barang a 
-            LEFT JOIN lab b ON a.Barang_lab_id = b.Lab_id 
-            WHERE a.Barang_id = '".$id_barang."'";
-            $query=mysqli_query($conn, $sql);
-            $data = mysqli_fetch_array($query);
-            // var_dump($user);
+          if (getUrlParam('cari') != null):
+            $cariqr=mysqli_query($conn,"SELECT*FROM barang WHERE Barang_id = '".getUrlParam('cari')."'");
+            $data = mysqli_fetch_array($cariqr);
+            //  var_dump($qr);
+          //  if (isset($_GET['cari'])):
+          //   $id_barang = $_GET['cari']; 
+          //   $sql = "
+          //   SELECT a.*,b.Lab_nama nama_lab 
+          //   FROM barang a 
+          //   LEFT JOIN lab b ON a.Barang_lab_id = b.Lab_id 
+          //   WHERE a.Barang_id = '".$id_barang."'";
+          //   $query=mysqli_query($conn, $sql);
+          //   $data = mysqli_fetch_array($query);
+          //   var_dump($user);
+          //   exit;
            if ($data != NULL):
                     
                    if($data['Barang_foto']!="" && $data['Barang_foto']!=NULL)

@@ -77,10 +77,9 @@ if($_SESSION['User_level_id'] == "1"){
     $qry = mysqli_query($conn, "SELECT * FROM lab ");
 }
 else{
-
-
  $qry = mysqli_query($conn, "SELECT * FROM tr_userlab LEFT JOIN lab ON tr_userlab.Lab_id=lab.Lab_id WHERE User_tag=". $_SESSION['User_tag']);
-// print_r($data);
+//  $qry2 = mysqli_query($conn, "SELECT * FROM pinjam LEFT JOIN lab ON pinjam.Pinjam_id=lab.Lab_id WHERE Pinjam_user_tag=". $_SESSION['User_tag']);
+ // print_r($data);
 // exit;
 }
 ?>
@@ -91,6 +90,14 @@ else{
             <?php echo $data['Lab_nama']?>
                 </a>
                 <?php endwhile; ?>
+
+                <?php while ($data = mysqli_fetch_assoc($qry)):?>    
+            <a class="dropdown-item" href="/websitePeminjaman/public/peminjaman?Pinjam_id=<?php echo $data['Lab_id']?>">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            <?php echo $data['Lab_nama']?>
+                </a>
+                <?php endwhile; ?>
+
             </div>
         </li>
 

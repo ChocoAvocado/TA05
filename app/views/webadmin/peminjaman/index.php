@@ -136,6 +136,12 @@
                                     <tbody>
                                         <tr>
                                             <?php
+                                             if(getUrlParam("peminjaman")!=null)
+                                             {
+                                                  $labid=getUrlParam("peminjaman");
+                                                  $ambilsemuadatabarang = mysqli_query($conn, "select * from pinjam where Pinjam_barang_id=$labid");
+                                             }
+
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
                                             JOIN user ON pinjam.Pinjam_user_tag=user.User_tag WHERE Pinjam_status != 2 
                                             ORDER BY Pinjam_tgl DESC, Pinjam_user_tag ASC;");
