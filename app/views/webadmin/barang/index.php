@@ -159,50 +159,50 @@
                                                          $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$labid");
                                                     }
                                           
-                                            else if(isset($_SESSION['User_lab_id']))
-                                            {
-                                                 $Userlabid=$_SESSION['User_lab_id'];
-                                                 $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
-                                            }
-                                            else
-                                            {
-                                                    $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
-                                                    
-                                            }
-                                            $i=1;
-                                        while($data = mysqli_fetch_array($ambilsemuadatabarang))
-                                        {
+                                                    else if(isset($_SESSION['User_lab_id']))
+                                                    {
+                                                        $Userlabid=$_SESSION['User_lab_id'];
+                                                        $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
+                                                    }
+                                                    else
+                                                    {
+                                                            $ambilsemuadatabarang = mysqli_query($conn, "select * from barang");
+                                                            
+                                                    }
+                                                    $i=1;
+                                                    while($data = mysqli_fetch_array($ambilsemuadatabarang))
+                                                    {
 
-                                            $kode_barcode = $data['Barang_id'];
-                                            $tempdir = "img-qrcode/";
-                                            if (!file_exists($tempdir))
-                                                mkdir($tempdir, 0755);
-                                            //$file_name = date("Ymd") . rand() . ".png";
-                                            $file_name = $kode_barcode . ".png";
-                                            $file_path = $tempdir . $file_name;
-                                            QRcode::png($kode_barcode, $file_path, "H", 3, 2);
-                                            /* param (1)qrcontent,(2)filename,(3)errorcorrectionlevel,(4)pixelwidth,(5)margin */
-                                            $img_barcode = "<img src='" . $file_path . "' />";
-                                            
-                                            $IDBarang= $data['Barang_id'];
-                                            $NamaBarang = $data['Barang_nama'];
-                                            $Jumlah = $data['Barang_jumlah'];
-                                            $MerekBarang = $data['Barang_merk'];
-                                            $Loker =$data['Barang_Loker'];
-                                            $Foto=$data['Barang_foto'];
-                                            if($data['Barang_foto']!="" && $data['Barang_foto']!=NULL)
-                                            {
-                                                $img_barang = '<img src="/../img/'.$data['Barang_foto'].'" style="width: 100px;">';
-                                            }else{
-                                                $img_barang = "-";
-                                            }
-                                            // $qr=$data['Barang_qrcode'];
-                                            // if($data['Barang_qrcode']!="" && $data['Barang_qrcode']!=NULL)
-                                            // {
-                                            //     $img_qr = '<img src="../img/'.$data['Barang_qrcode'].'" style="width: 100px;">';
-                                            // }else{
-                                            //     $img_qr = "-";
-                                            // }
+                                                        $kode_barcode = $data['Barang_id'];
+                                                        $tempdir = "img-qrcode/";
+                                                        if (!file_exists($tempdir))
+                                                            mkdir($tempdir, 0755);
+                                                        //$file_name = date("Ymd") . rand() . ".png";
+                                                        $file_name = $kode_barcode . ".png";
+                                                        $file_path = $tempdir . $file_name;
+                                                        QRcode::png($kode_barcode, $file_path, "H", 3, 2);
+                                                        /* param (1)qrcontent,(2)filename,(3)errorcorrectionlevel,(4)pixelwidth,(5)margin */
+                                                        $img_barcode = "<img src='" . $file_path . "' />";
+                                                        
+                                                        $IDBarang= $data['Barang_id'];
+                                                        $NamaBarang = $data['Barang_nama'];
+                                                        $Jumlah = $data['Barang_jumlah'];
+                                                        $MerekBarang = $data['Barang_merk'];
+                                                        $Loker =$data['Barang_Loker'];
+                                                        $Foto=$data['Barang_foto'];
+                                                        if($data['Barang_foto']!="" && $data['Barang_foto']!=NULL)
+                                                        {
+                                                            $img_barang = '<img src="/../img/'.$data['Barang_foto'].'" style="width: 100px;">';
+                                                        }else{
+                                                            $img_barang = "-";
+                                                        }
+                                                        // $qr=$data['Barang_qrcode'];
+                                                        // if($data['Barang_qrcode']!="" && $data['Barang_qrcode']!=NULL)
+                                                        // {
+                                                        //     $img_qr = '<img src="../img/'.$data['Barang_qrcode'].'" style="width: 100px;">';
+                                                        // }else{
+                                                        //     $img_qr = "-";
+                                                        // }
 
                                             ?>
 
