@@ -239,7 +239,7 @@
                                                                             data-dismiss="modal">&times;</button>
                                                                     </div>
 
-                                                                    
+
                                                                     <!-- Modal body -->
                                                                     <form method="post">
                                                                         <div class="modal-body">
@@ -310,43 +310,43 @@
                                                                 value="<?=$IDBarang;?>">
                                                         </span>
 
-                                                        <div>
-                                                            <!-- The Modal HAPUS BARANG-->
-                                                            <div class="modal fade" id="delete<?=$IDBarang;?>">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
 
-                                                                        <!-- Modal Header -->
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title">Hapus Barang</h4>
-                                                                            <button type="button" class="close"
-                                                                                data-dismiss="modal">&times;</button>
-                                                                        </div>
-                                                                        <!-- Modal body -->
+                                                        <!-- The Modal HAPUS BARANG-->
+                                                        <div class="modal fade" id="delete<?=$IDBarang;?>">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
 
-                                                                        <div class="modal-body">
-                                                                            <form method="post">
-                                                                                <p> Apakah anda yakin ingin menghapus
-                                                                                    <?="$NamaBarang";?> ? </p>
-                                                                                <input type="hidden" name="ID_Barang"
-                                                                                    value="<?=$IDBarang;?>">
-                                                                                <div class="modal-top mt-1 mb-2" >
-                                                                                    <button type="submit"
-                                                                                        name="hapusdatabarang"
-                                                                                        class="btn btn-danger mr-1">
-                                                                                        YA
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn btn-primary "
-                                                                                        data-dismiss="modal">
-                                                                                        TIDAK
-                                                                                    </button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
+                                                                    <!-- Modal Header -->
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Hapus Barang</h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <!-- Modal body -->
+
+                                                                    <div class="modal-body">
+                                                                        <form method="post">
+                                                                            <p> Apakah anda yakin ingin menghapus
+                                                                                <?="$NamaBarang";?> ? </p>
+                                                                            <input type="hidden" name="ID_Barang"
+                                                                                value="<?=$IDBarang;?>">
+                                                                            <div class="modal-top mt-1 mb-2">
+                                                                                <button type="submit"
+                                                                                    name="hapusdatabarang"
+                                                                                    class="btn btn-danger mr-1">
+                                                                                    YA
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    class="btn btn-primary "
+                                                                                    data-dismiss="modal">
+                                                                                    TIDAK
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                     </td>
 
                                                     <td>
@@ -430,7 +430,7 @@
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                           <td><strong> Sisa
+                                                                                            <td><strong> Sisa
                                                                                                     Barang</strong>
                                                                                             </td>
                                                                                             <td><?php echo $data['Barang_jumlah'] ?>
@@ -447,8 +447,10 @@
                                                                         <div>
                                                                             <div class="modal-top">
                                                                                 <button type="submit"
-                                                                                    class="btn btn-success" name="cetakqr">
-                                                                                    <a href="Cetakqrcode?cetakqr=<?= $IDBarang ?>">
+                                                                                    class="btn btn-success"
+                                                                                    name="cetakqr">
+                                                                                    <a
+                                                                                        href="Cetakqrcode?cetakqr=<?= $IDBarang ?>">
                                                                                         Cetak
                                                                                 </button>
 
@@ -467,6 +469,7 @@
                                         ?>
                                             </tbody>
                                     </div>
+
                                     </table>
                                 </div>
                             </div>
@@ -504,15 +507,14 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="logout">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= BASEURL; ?>/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= BASEURL; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
 
     <!-- Core plugin JavaScript-->
     <script src="<?= BASEURL; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -655,5 +657,6 @@ $(document).ready(function() {
 $("#popup").modal("show");
 <?php endif; ?>
 </script>
+
 
 </html>

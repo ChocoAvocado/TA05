@@ -122,7 +122,8 @@
                                             <?php
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
                                             INNER JOIN user ON pinjam.Pinjam_user_tag=user.User_tag
-                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id;");
+                                            INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
+                                            WHERE barang.Barang_lab_id = $_SESSION[User_lab_id];");
 
                                             $NamaPeminjam = "";
                                             $TglPinjam = "";
@@ -225,7 +226,7 @@
                 <div class="modal-body">Pilih "Logout" untuk keluar dari akun.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="logout">Logout</a>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@
 
     <link href="<?= BASEURL; ?>/plugins/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 
-    <title>Pinjam Alat - Barang</title>
+    <title>Pinjam Alat - Peminjaman</title>
 
     <!-- Custom fonts for this template -->
     <link href="<?= BASEURL; ?>/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -102,10 +102,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a href="peminjaman?status_peminjaman=1" type="button"
                                     class="dropdown-item">Dipinjam</a>
-                                <a href="peminjaman?status_peminjaman=2" type="button"
-                                    class="dropdown-item">Diperpanjang</a>
-                                <a href="peminjaman?status_peminjaman=3" type="button"
-                                    class="dropdown-item">Terlambat</a>
+                                <a href="peminjaman?status_peminjaman=3" type="button "
+                                    class="dropdown-item txt-red">Terlambat</a>
                             </div>
 
                         </div>
@@ -143,7 +141,9 @@
                                              }
 
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
-                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag WHERE Pinjam_status != 2 
+                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag 
+                                            JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
+                                            WHERE Pinjam_status != 2 AND barang.Barang_lab_id=$_SESSION[User_lab_id] 
                                             ORDER BY Pinjam_tgl DESC, Pinjam_user_tag ASC;");
 
                                             $NamaPeminjam = "";
@@ -243,9 +243,10 @@
                                                                                                 $TglPinjam = date("Y-m-d", strtotime($TglPinjam));
 
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
-                                                                                                INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id 
-                                                                                                WHERE pinjam.Pinjam_user_tag = $IDpeminjam
-                                                                                                AND pinjam.Pinjam_tgl = '$TglPinjam' AND pinjam.Pinjam_status != 2 AND pinjam.Pinjam_tgl_kembalireal IS NOT NULL");
+                                                                                                JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
+                                                                                                WHERE pinjam.Pinjam_user_tag = $IDpeminjam AND pinjam.Pinjam_tgl = '$TglPinjam' 
+                                                                                                AND pinjam.Pinjam_status != 2 AND pinjam.Pinjam_tgl_kembalireal IS NULL
+                                                                                                AND barang.Barang_lab_id=$_SESSION[User_lab_id]");
 
                                                                                                 $i = 1;
                                                                                                 while ($data = mysqli_fetch_array($ambildatabarang)) {
@@ -355,7 +356,7 @@
                 <div class="modal-body">Pilih "Logout" untuk keluar dari akun.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="logout">Logout</a>
                 </div>
             </div>
         </div>
