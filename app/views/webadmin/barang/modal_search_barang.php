@@ -4,15 +4,16 @@
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Data Ditemukan</h5>
-        <!-- <button type="button"  data-dismiss="modal">&times;</button> -->
-        <a class="btn btn-primary" href="/websitePeminjaman/public/barang">Tutup</a>
+        <button type="button"  data-dismiss="modal">&times;</button>
+        <!-- <a class="btn btn-primary" href="/websitePeminjaman/public/barang">Tutup</a> -->
       </div>
       <div class="modal-body">
           <?php
           if (getUrlParam('cari') != null):
             $cariqr=mysqli_query($conn,"SELECT*FROM barang WHERE Barang_id = '".getUrlParam('cari')."'");
             $data = mysqli_fetch_array($cariqr);
-            //  var_dump($qr);
+            //  print_r($data);
+            //  exit;
           //  if (isset($_GET['cari'])):
           //   $id_barang = $_GET['cari']; 
           //   $sql = "

@@ -69,7 +69,7 @@
                                 <?php
                                 if (isset($_GET['cari'])) {
                                 ?>
-                                <a href="user.php"><i class="fas fa-fw mr-2 fa-caret-square-left"></i></a>
+                                <a href="user"><i class="fas fa-fw mr-2 fa-caret-square-left"></i></a>
                                 <?php
                                 }
                                 ?>

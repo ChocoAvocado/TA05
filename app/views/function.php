@@ -95,13 +95,13 @@ if (isset($_POST["edituser"])) {
   $edit1 = mysqli_query($conn, "UPDATE user SET User_nama='$NamaUser',User_level_id=$Jabuser, User_prodi='$Prodi', 
           User_email='$Email', User_pin='$Pin', User_tag='$Tag', User_koin='$Koin', 
           User_nokoin='$Nokoin' WHERE User_id= '$IDUser'");
-  // if ($conn->query($edit1) === TRUE) {
-  //   echo 'Berhasil';
-  //   header("location:user");
-  // } else {
-  //   echo 'Gagal';
-  // header('location:user');
-  // }
+  if ($edit1) {
+    echo 'Berhasil';
+    header("location:user");
+  } else {
+    echo 'Gagal';
+  header('location:user');
+  }
 }
 
 //HAPUS User
@@ -115,8 +115,7 @@ if (isset($_POST["hapus"])) {
   // exit;
   if ($cek == 1) {
     header("location:user");
-    echo "Delete Succesfully";
-    exit();
+   
   } else {
     die(mysqli_error($conn));
   }
@@ -169,9 +168,9 @@ if (isset($_POST["editbarang"])) {
   $edit = mysqli_query($conn, "update barang set Barang_nama='$NamaBarang',Barang_jumlah='$Jumlah', Barang_merk='$MerekBarang' ,Barang_foto='$file_jadi' where Barang_id= '$IDBarang'");
   if ($edit) {
     header('location:barang');
-  } else
+  } else{
     echo 'Gagal';
-  header('location:barang');
+  header('location:barang');}
 }
 
 
@@ -697,7 +696,7 @@ if(!empty($jumlahbaranglab_sisa_row)){
 
 // END OF PIE CHART >>>
 
-}
+} 
 
 
 
@@ -716,3 +715,8 @@ if($data['status_sidebar']=='aktivitas'){
   }
 
 }
+
+
+
+
+//------------------------------------- FILTER < Peminjaman > ------------------------------------------// @author Albert < albertuschristianp@gmail.com > 
