@@ -141,7 +141,9 @@
                                              }
 
                                             $ambildatapinjam = mysqli_query($conn, "SELECT * FROM pinjam 
-                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag WHERE Pinjam_status != 2 
+                                            JOIN user ON pinjam.Pinjam_user_tag=user.User_tag 
+                                            JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
+                                            WHERE Pinjam_status != 2 AND barang.Barang_lab_id=$_SESSION[User_lab_id] 
                                             ORDER BY Pinjam_tgl DESC, Pinjam_user_tag ASC;");
 
                                             $NamaPeminjam = "";
@@ -241,9 +243,10 @@
                                                                                                 $TglPinjam = date("Y-m-d", strtotime($TglPinjam));
 
                                                                                                 $ambildatabarang = mysqli_query($conn, "SELECT * FROM pinjam
-                                                                                                INNER JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id 
-                                                                                                WHERE pinjam.Pinjam_user_tag = $IDpeminjam
-                                                                                                AND pinjam.Pinjam_tgl = '$TglPinjam' AND pinjam.Pinjam_status != 2 AND pinjam.Pinjam_tgl_kembalireal IS NOT NULL");
+                                                                                                JOIN barang ON pinjam.Pinjam_barang_id=barang.Barang_id
+                                                                                                WHERE pinjam.Pinjam_user_tag = $IDpeminjam AND pinjam.Pinjam_tgl = '$TglPinjam' 
+                                                                                                AND pinjam.Pinjam_status != 2 AND pinjam.Pinjam_tgl_kembalireal IS NULL
+                                                                                                AND barang.Barang_lab_id=$_SESSION[User_lab_id]");
 
                                                                                                 $i = 1;
                                                                                                 while ($data = mysqli_fetch_array($ambildatabarang)) {

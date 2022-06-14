@@ -14,13 +14,11 @@ if(!isset($_SESSION['User_level_id'])){
 $levelid= $_SESSION['User_level_id'];
 if($levelid == '1'){
   header("location:dashboard");
-}
-if($levelid == '2'){
-  header("location:switchlogin");
-}
-if($levelid == '3'){
+} else if($levelid == '2'){
+  header("location:");
+} else if($levelid == '3'){
   header("location:baranguser");
-}
+} else header("location:login");
 }
 
 function getUrlParam($key) {
@@ -598,7 +596,7 @@ $chart_bar[$jumlah_bulan] = mysqli_query($conn,
 "SELECT sum(`Pinjam_jumlah`) as jumlah FROM `pinjam` JOIN `barang` ON pinjam.Pinjam_barang_id=barang.Barang_id 
 WHERE Month(`Pinjam_tgl`)='$jumlah_bulan' && barang.Barang_lab_id=$_SESSION[User_lab_id]  GROUP BY Month(`Pinjam_tgl`);"); 
 
-$row[$jumlah_bulan] = mysqli_fetch_object($chart_bar[$jumlah_bulan]);
+$row[$jumlah_bulan] = mysqli_fetch_object($chart_bar[$jumlah_bulan]); 
 
 
 if(!empty($row[$jumlah_bulan])){
