@@ -67,19 +67,22 @@
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form method="get" action=""
-                                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small"
-                                                placeholder="Cari Barang" name="cari" aria-label="Search"
-                                                aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="pilihan_status" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Status
+                                            Peminjaman</button>
+                                        <div class="dropdown-menu" aria-labelledby="pilihan_status">
+                                            <a href="peminjaman?status_peminjaman=0" type="button"
+                                                class="dropdown-item">Semua</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="peminjaman?status_peminjaman=1" type="button"
+                                                class="dropdown-item">Dipinjam</a>
+                                            <a href="peminjaman?status_peminjaman=3" type="button "
+                                                class="dropdown-item txt-red">Terlambat</a>
                                         </div>
-                                    </form>
+
+                                    </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <a href="formpengembalian"
@@ -92,23 +95,7 @@
                     <!-- end of page heading -->
                     <p>*Tanggal Pinjam dan NIM yang sama jadi satu baris</p>
 
-                    <div class="d-flex justify-content-end">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="pilihan_status"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status
-                                Peminjaman</button>
-                            <div class="dropdown-menu" aria-labelledby="pilihan_status">
-                                <a href="peminjaman?status_peminjaman=0" type="button" class="dropdown-item">Semua</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="peminjaman?status_peminjaman=1" type="button"
-                                    class="dropdown-item">Dipinjam</a>
-                                <a href="peminjaman?status_peminjaman=3" type="button "
-                                    class="dropdown-item txt-red">Terlambat</a>
-                            </div>
-
-                        </div>
-                    </div>
-
+                  
                     <br>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">

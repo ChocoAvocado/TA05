@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="text-right mt-2 mb-2 mr-2">
-                                <a href="barang.php" class="btn btn-info"> Kembali </a>
+                                <a href="barang" class="btn btn-info"> Kembali </a>
                             </div>
                             <!-- Default Card Example -->
                             <div class="card mb-4">
