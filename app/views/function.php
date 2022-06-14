@@ -15,7 +15,7 @@ $levelid= $_SESSION['User_level_id'];
 if($levelid == '1'){
   header("location:dashboard");
 } else if($levelid == '2'){
-  header("location:");
+  header("location:switchlab");
 } else if($levelid == '3'){
   header("location:baranguser");
 } else header("location:login");
