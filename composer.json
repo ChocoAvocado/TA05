@@ -1,0 +1,19 @@
+{
+    "name": "wcahy/website-peminjaman",
+    "autoload": {
+        "psr-4": {
+            "Wcahy\\WebsitePeminjaman\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "smartboss123",
+            "email": "wcahya72@gmail.com"
+        }
+    ],
+    "require": {
+        "mailgun/mailgun-php": "^3.5",
+        "symfony/http-client": "^6.1",
+        "nyholm/psr7": "^1.5"
+    }
+}

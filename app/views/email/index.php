@@ -109,10 +109,10 @@
 						Use Another Account<a href="#">Click Here</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="forgot-password.php">Forgot your password?</a>
+						<a href="#">Forgot your password?</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="index.php">Tap Ur RFID</a>
+						<a href="login">Tap Ur RFID</a>
 					</div>
 				</div>
 			</div>
