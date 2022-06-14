@@ -85,14 +85,14 @@ else{
 ?>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <?php while ($data = mysqli_fetch_assoc($qry)):?>    
-            <a class="dropdown-item" href="/websitePeminjaman/public/barang?Lab_id=<?php echo $data['Lab_id']?>">
+            <a class="dropdown-item" href="switchlab?lab=<?php echo $data['Lab_id']?>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             <?php echo $data['Lab_nama']?>
                 </a>
                 <?php endwhile; ?>
 
                 <?php while ($data = mysqli_fetch_assoc($qry)):?>    
-            <a class="dropdown-item" href="/websitePeminjaman/public/peminjaman?Pinjam_id=<?php echo $data['Lab_id']?>">
+            <a class="dropdown-item" href="switchlab?lab=<?php echo $data['Lab_id']?>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             <?php echo $data['Lab_nama']?>
                 </a>
