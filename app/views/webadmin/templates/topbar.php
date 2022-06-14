@@ -1,12 +1,13 @@
-<?php 
-
-$dapatnamalab = mysqli_query($conn, 
-"SELECT Lab_nama FROM lab WHERE Lab_id=$_SESSION[User_lab_id]");
-
+<?php
+if($_SESSION['User_lab_id'] == '0'){
+    $dapatnamalab = mysqli_query($conn, "SELECT * FROM lab ");
+}
+else{
+    $dapatnamalab = mysqli_query($conn, "SELECT Lab_nama FROM lab WHERE Lab_id=$_SESSION[User_lab_id]");
+}
 $dapatnamalab_array = mysqli_fetch_array($dapatnamalab);
-
-
-
+// var_dump($dapatnamalab_array);
+// exit;
 ?>
 
 
@@ -81,7 +82,7 @@ $dapatnamalab_array = mysqli_fetch_array($dapatnamalab);
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo ($dapatnamalab_array[0]); ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo ($dapatnamalab_array['Lab_nama']); ?></span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
             </a>
             <!-- Dropdown - User Information -->
@@ -103,9 +104,7 @@ else{
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             <?php echo $data['Lab_nama']?>
                 </a>
-                <?php endwhile; ?>
-
-                
+                <?php endwhile; ?>          
             </div>
         </li>
 

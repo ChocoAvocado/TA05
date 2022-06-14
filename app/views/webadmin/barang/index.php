@@ -153,13 +153,8 @@
                                             <tbody>
                                                 <tr>
                                                     <?php
-                                                    if(getUrlParam("Lab_id")!=null)
-                                                    {
-                                                         $labid=getUrlParam("Lab_id");
-                                                         $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$labid");
-                                                    }
-                                          
-                                                    else if(isset($_SESSION['User_lab_id']))
+                                                    
+                                                    if(isset($_SESSION['User_lab_id']))
                                                     {
                                                         $Userlabid=$_SESSION['User_lab_id'];
                                                         $ambilsemuadatabarang = mysqli_query($conn, "select * from barang where Barang_lab_id=$Userlabid");
@@ -653,9 +648,10 @@ $(".cari_barang").on("keyup", function(e) {
 $(document).ready(function() {
     $('#dataTable').DataTable();
 });
-<?php if (isset($_GET['cari'])) : ?>
-$("#popup").modal("show");
-<?php endif; ?>
+<?php if (getUrlParam('cari')) : ?>
+    $("#popup").modal("show");
+    <?php endif; ?> 
+    </script>
 </script>
 
 

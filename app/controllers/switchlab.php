@@ -18,7 +18,8 @@ class switchlab extends controller{
         $data['judul'] = 'dashboard';
         $data['status_sidebar'] = 'dashboard';
 
-        header('location: ../dashboard'); // << langsung otomatis masuk ke dashboard dengan id lab baru 
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit; //biar balik ke halaman yang sama masze
         
     }
 }

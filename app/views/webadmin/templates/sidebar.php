@@ -1,3 +1,7 @@
+
+<?php if(!isset($data['status_sidebar'])){
+    $data['status_sidebar'] = null;
+    }?>
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #465061; background-size: cover;" id="accordionSidebar">
 
