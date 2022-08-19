@@ -1,1 +1,2 @@
-<?php header("location:public"); ?>
+<?php header("location:public"); //asdasd?>
+
